@@ -52,7 +52,7 @@ const Feedback = () => {
           <ImageRow
             id="mobile-image-row-2"
             images={[image2, image3]}
-            gridCols="grid-cols-2 h-[100px]"
+            gridCols="grid-cols-2 h-[100px] gap-6"
           />
           <ImageRow
             id="mobile-image-row-3"
@@ -100,14 +100,11 @@ const ImageRow = ({
       if (container) {
         const containerRect = container.getBoundingClientRect();
         const containerBottom = containerRect.bottom;
-        if (
-          containerBottom + 100 <= window.innerHeight &&
-          containerBottom > 0
-        ) {
+        if (containerBottom + 80 <= window.innerHeight && containerBottom > 0) {
           setShowImage1(true);
         }
         if (
-          containerBottom + 150 <= window.innerHeight &&
+          containerBottom + 130 <= window.innerHeight &&
           containerBottom > 0
         ) {
           setShowImage2(true);
