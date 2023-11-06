@@ -136,7 +136,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-yellow bg-white shadow-lg w-fit p-4 rounded-lg flex items-center gap-4"
+            className="text-theme-yellow bg-white shadow-lg w-fit p-4 rounded-lg flex items-center gap-4 whitespace-nowrap"
           >
             <Icons.showPassword className="h-8 w-8" />
             Over 10 Million Views
@@ -147,7 +147,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-purple bg-white w-fit shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20"
+            className="text-theme-purple bg-white w-fit shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
           >
             <Icons.clapperBoard className="h-8 w-8" />
             30+ Videos
@@ -158,7 +158,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-pink bg-white shadow-lg w-fit p-4 rounded-lg flex flex-col items-center gap-4 mt-4 md:mt-6 lg::mt-20"
+            className="text-theme-pink bg-white shadow-lg w-fit p-4 rounded-lg flex flex-col items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
           >
             Across 3 Platforms
             <div
