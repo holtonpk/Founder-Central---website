@@ -3,8 +3,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/app/admin/components/ui/avatar";
-import { timeSince } from "@/app/admin/lib/utils";
-import { SalesData } from "@/app/admin/types/index";
+import {timeSince} from "@/app/admin/lib/utils";
+import {SalesData} from "@/app/admin/types/index";
 import {
   Table,
   TableBody,
@@ -14,9 +14,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/admin/components/ui/table";
-import { ScrollArea } from "@/app/admin/components/ui/scroll-area";
+import {ScrollArea} from "@/app/admin/components/ui/scroll-area";
 
-export function RecentSales({ data }: { data: SalesData[] }) {
+export function RecentSales({data}: {data: SalesData[]}) {
   return (
     <>
       <Table className="md:block hidden">
@@ -32,7 +32,7 @@ export function RecentSales({ data }: { data: SalesData[] }) {
 
         <TableBody className="">
           {data.map((sale, i) => (
-            <TableRow key={sale.customerId}>
+            <TableRow key={i}>
               <TableCell className="font-medium">
                 {sale.customer.firstName + " " + sale.customer.lastName}
               </TableCell>
