@@ -172,7 +172,7 @@ const VideoDisplay = () => {
                 className="video__social-link border-none p-0 aspect-square"
               >
                 <Icons.youtube
-                  className="h-16 w-16 "
+                  className="h-8 w-8"
                   id="video-social-link-youtube"
                   color="#EF1F80"
                 />
@@ -184,7 +184,7 @@ const VideoDisplay = () => {
                 className="video__social-link border-none p-0 aspect-square"
               >
                 <Icons.instaGram
-                  className="h-16 w-16 "
+                  className="h-8 w-8"
                   id="video-social-link-instagram"
                   color="#EF1F80"
                 />
@@ -196,7 +196,7 @@ const VideoDisplay = () => {
                 className="video__social-link border-none p-0 aspect-square"
               >
                 <Icons.tiktok
-                  className="h-16 w-16 "
+                  className="h-8 w-8 "
                   color="#EF1F80"
                   id="video-social-link-tiktok"
                 />

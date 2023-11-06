@@ -19,7 +19,7 @@ const Hero = () => {
 
   return (
     <div
-      className="hero relative overflow-visible z-40 min-h-fit  lg:pt-20"
+      className="hero relative overflow-visible z-40 min-h-fit pb-10 lg:pt-20"
       id="hero"
     >
       {/* {!scrolled && (
