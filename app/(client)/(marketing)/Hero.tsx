@@ -94,7 +94,7 @@ const Hero = () => {
           </div>
           <div className="h-fit lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
             <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-2xl capitalize relative  w-[100%] md:w-[100%] lg:w-[90%]">
-              Join 45k other business geeks like yourself.
+              Join 45k other founders like yourself.
             </h1>
             <div className="flex flex-col gap-4">
               <Input
