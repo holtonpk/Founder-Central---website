@@ -18,7 +18,10 @@ const Hero = () => {
   const bookIsAvailable = true;
 
   return (
-    <div className="hero relative overflow-visible z-40  lg:pt-20" id="hero">
+    <div
+      className="hero relative overflow-visible z-40 min-h-fit  lg:pt-20"
+      id="hero"
+    >
       {/* {!scrolled && (
         <div
           className="hero-arrow z-40 absolute -bottom-10 left-1/2 -translate-x-1/2 border border-theme-blue/30 rounded-md w-fit px-4 pt-2 pb-3 h-fit flex-col gap-2 hidden md:flex"
@@ -56,7 +59,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-1 lg:grid-rows-[55%_1fr] w-full md:gap-x-6 h-full  gap-y-6">
-          <div className="h-full w-full bg-theme-pink xsm:flex xsm:items-center  xsm:flex-row md:block block rounded-lg relative overflow-hidden p-4 ">
+          <div className="h-full w-full bg-theme-pink flex items-center  xsm:flex-row md:block  rounded-lg relative overflow-hidden p-4 ">
             <div className="flex flex-col xsm:pl-8 md:pl-0 gap-4  xsm:w-[55%] md:w-full">
               <h1 className="text-white font-bold font-body text-3xl xsm:text-3xl  md:text-3xl capitalize relative z-10">
                 E-book <br /> now available
@@ -66,14 +69,14 @@ const Hero = () => {
                   "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories"
                 }
                 variant={"outline"}
-                className="text-white border-white rounded-lg hidden xsm:flex md:hidden w-fit"
+                className="text-white border-white rounded-lg flex md:hidden w-fit"
               >
                 Buy now
                 <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
               </LinkButton>
             </div>
 
-            <div className="absolute z-10 top-4 right-4 xsm:hidden md:block block">
+            <div className="absolute z-10 top-4 right-4 hidden md:block ">
               <Icons.arrowRight className="text-white rotate-[-45deg] h-8 w-8" />
             </div>
             <div className="mt-6 z-10 relative xsm:absolute  xsm:right-0  md:relative mx-auto   h-full aspect-square md:h-full sm:h-[150%] sm:mt-40 md:mt-6">
@@ -90,7 +93,7 @@ const Hero = () => {
             </div>
           </div>
           <div className="h-fit lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
-            <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-3xl capitalize relative  w-[90%] md:w-[100%] lg:w-[90%]">
+            <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-3xl capitalize relative  w-[100%] md:w-[100%] lg:w-[90%]">
               Join 45k other business geeks like yourself.
             </h1>
             <div className="flex flex-col gap-4">
