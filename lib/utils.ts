@@ -1,5 +1,5 @@
-import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import {ClassValue, clsx} from "clsx";
+import {twMerge} from "tailwind-merge";
 
 // import { env } from "@/env.mjs"
 
@@ -7,16 +7,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-import { FilterList } from "@/types";
-import { siteConfig } from "@/config/site";
+import {FilterList} from "@/types";
+import {siteConfig} from "@/config/site";
 
 export function formatDate(timestamp: number): string {
   const date = new Date(timestamp);
 
   const day = date.getDate();
-  const month = new Intl.DateTimeFormat("en-US", { month: "short" }).format(
-    date
-  );
+  const month = new Intl.DateTimeFormat("en-US", {month: "short"}).format(date);
   const year = date.getFullYear().toString().slice(-2);
 
   return `${day} ${month}, ${year}`;
@@ -26,7 +24,7 @@ export function formatDateShort(timestamp: number): string {
   const date = new Date(timestamp);
 
   const day = date.getDate();
-  const month = new Intl.DateTimeFormat("en-US", { month: "numeric" }).format(
+  const month = new Intl.DateTimeFormat("en-US", {month: "numeric"}).format(
     date
   );
   const year = date.getFullYear().toString().slice(-2);
@@ -134,7 +132,7 @@ export const configPercentChange = (value1: any, value2: any) => {
 export const convertImageToFile = async (name: string, url: string) => {
   const response = await fetch(url);
   const blob = await response.blob();
-  const file = new File([blob], name, { type: "image/jpeg" });
+  const file = new File([blob], name, {type: "image/jpeg"});
   return file;
 };
 
@@ -213,13 +211,13 @@ export function formatMoney(input: number | string): string {
 export function nFormatter(num?: number, digits?: number) {
   if (!num) return "0";
   const lookup = [
-    { value: 1, symbol: "" },
-    { value: 1e3, symbol: "K" },
-    { value: 1e6, symbol: "M" },
-    { value: 1e9, symbol: "G" },
-    { value: 1e12, symbol: "T" },
-    { value: 1e15, symbol: "P" },
-    { value: 1e18, symbol: "E" },
+    {value: 1, symbol: ""},
+    {value: 1e3, symbol: "K"},
+    {value: 1e6, symbol: "M"},
+    {value: 1e9, symbol: "G"},
+    {value: 1e12, symbol: "T"},
+    {value: 1e15, symbol: "P"},
+    {value: 1e18, symbol: "E"},
   ];
   const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
   var item = lookup
@@ -279,7 +277,7 @@ export function combinePostsByDay(countStats: Stats): Result {
   const result: Result = Object.entries(sumsAndCounts).map(
     ([date, [totalPosts, ids, timestamp]]) => {
       const averagePosts = totalPosts / ids.size;
-      return { date: timestamp, data: averagePosts };
+      return {date: timestamp, data: averagePosts};
     }
   );
 
@@ -346,7 +344,7 @@ export function absoluteUrl(path: string) {
   return `${siteConfig.url}${path}`;
 }
 
-import { Metadata } from "next";
+import {Metadata} from "next";
 
 export function constructMetadata({
   title = siteConfig.title,
@@ -373,7 +371,7 @@ export function constructMetadata({
       shortcut: `${siteConfig.url}/image/brand/favicon-16x16.png `,
       apple: `${siteConfig.url}/image/brand/apple-touch-icon.png`,
     },
-    metadataBase: new URL("https://shortformbooks.com"),
+    metadataBase: new URL("https://www.foundercentral.co/"),
     themeColor: "#FFF",
   };
 }
