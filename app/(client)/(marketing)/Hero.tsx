@@ -101,10 +101,7 @@ const Hero = () => {
                 placeholder="youremail@domain.com"
                 className="bg-white shadow-lg"
               />
-              <Button
-                variant="outline"
-                className=" text-white border-white   rounded-md"
-              >
+              <Button className="bg-theme-pink text-white border-none   rounded-md">
                 Subscribe
               </Button>
             </div>
