@@ -7,6 +7,12 @@ import {Icons} from "@/app/(client)/components/icons";
 import Image from "next/image";
 import {Input} from "@/app/(client)/components/ui/input";
 import {Button} from "@/app/(client)/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/(client)/components/ui/accordion";
 
 export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
   const aboutLinks = [
@@ -40,10 +46,10 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
       id="footer"
     >
       <div
-        className="container flex flex-col items-center justify-between gap-4 pt-6 h-fit "
+        className="md:container flex flex-col items-center justify-between gap-4 pt-6 h-fit "
         id="footer-content"
       >
-        <div className="flex flex-col md:flex-row justify-between items-center w-full pb-4 border-b gap-2 md:gap-0 ">
+        <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full pb-4 border-b gap-2 md:gap-0 ">
           <p className="text-xl md:text-2xl font-body text-white md:text-left text-center">
             Join our newsletter to keep up to date with us
           </p>
@@ -65,7 +71,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
         </div>
 
         <span
-          className="footer__logo text-2xl p-2 text-primary font-bold    w-full flex md:flex-row flex-col justify-between  items-center gap-10 "
+          className="footer__logo text-2xl p-2 text-primary font-bold  w-full flex md:flex-row flex-col justify-between  items-center md:gap-10 "
           id="footer-logo"
         >
           <div className="flex flex-row items-center md:items-start md:flex-col gap-4">
@@ -80,7 +86,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
             </p>
           </div>
 
-          <div className="flex items-start  md:gap-20 w-full md:w-[60%]  justify-between ">
+          <div className="items-start  md:gap-20 w-full md:w-[60%]  justify-between hidden md:flex ">
             <div className="flex flex-col items-start gap-1">
               <h1 className="text-white text-2xl">About</h1>
               {aboutLinks.map((link) => (
@@ -151,12 +157,94 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
               </div>
             </div>
           </div>
+
+          <Accordion type="single" collapsible className="w-full md:hidden">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-white font-bold">
+                About
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex flex-col gap-4 items-start">
+                  {aboutLinks.map((link) => (
+                    <LinkButton
+                      key={link.title}
+                      variant={"link"}
+                      className="text-white px-0 py-0 h-fit text-base w-fit text-white/80"
+                      href={link.link}
+                    >
+                      {link.title}
+                    </LinkButton>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="text-white font-bold">
+                Services
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex flex-col gap-4 items-start">
+                  {servicesLinks.map((link) => (
+                    <LinkButton
+                      key={link.title}
+                      variant={"link"}
+                      className="text-white px-0 py-0 h-fit text-base w-fit text-white/80"
+                      href={link.link}
+                    >
+                      {link.title}
+                    </LinkButton>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </span>
+
         <div
-          className="footer__copyright flex md:flex-row flex-col items-center gap-3 pb-2 px-8  md:gap-2 md:px-0 border-t  w-full justify-between"
+          className="mobile_footer__social-links  md:hidden flex gap-4 "
+          id="mobile_footer-social-links"
+        >
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.youtube}
+            className="footer__social-link border-none p-0 aspect-square"
+          >
+            <Icons.youtube
+              className="h-12 w-12"
+              id="mobile_footer-social-link-youtube"
+            />
+          </LinkButton>
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.instagram}
+            className="footer__social-link border-none p-0 aspect-square"
+          >
+            <Icons.instaGram
+              className="h-12 w-12"
+              id="mobile_footer-social-link-instagram"
+            />
+          </LinkButton>
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.tiktok}
+            className="footer__social-link border-none p-0 aspect-square"
+          >
+            <Icons.tiktok
+              className="h-12 w-12"
+              color="white"
+              id="mobile_footer-social-link-tiktok"
+            />
+          </LinkButton>
+        </div>
+
+        <div
+          className="footer__copyright flex md:flex-row flex-col items-center gap-3 pb-2 px-8  md:gap-2 md:px-0 md:border-t  w-full justify-between"
           id="footer-copyright"
         >
-          <div className="flex items-center gap-4 w-fit">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-fit">
             <LinkButton
               href="/terms"
               variant={"link"}
