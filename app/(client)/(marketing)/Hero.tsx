@@ -38,8 +38,8 @@ const Hero = () => {
               Where the next group of billionaires get their daily inspo.
             </h1>
             <Button
-              variant={"outline"}
-              className="text-sm sm:text-base md:text-3xl md:p-6  text-white rounded-lg w-fit mt-4 md:mt-8 border-white"
+              variant={"default"}
+              className="text-sm sm:text-base md:text-3xl md:p-6  text-theme-blue rounded-lg w-fit mt-4 md:mt-8 border-white bg-white hover:bg-theme-blue"
             >
               Join Today
               <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
@@ -61,7 +61,7 @@ const Hero = () => {
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-1 lg:grid-rows-[55%_1fr] w-full md:gap-x-6 h-full  gap-y-6">
           <div className="h-full w-full bg-theme-pink flex items-center  xsm:flex-row md:block  rounded-lg relative overflow-hidden p-4 ">
             <div className="flex flex-col xsm:pl-8 md:pl-0 gap-4  xsm:w-[55%] md:w-full">
-              <h1 className="text-white font-bold font-body text-3xl xsm:text-3xl  md:text-3xl capitalize relative z-10">
+              <h1 className="text-white font-bold font-body text-2xl xsm:text-3xl  md:text-3xl capitalize relative z-10">
                 E-book <br /> now available
               </h1>
               <LinkButton
@@ -87,13 +87,13 @@ const Hero = () => {
                 fill
                 objectFit="contain"
                 sizes="(max-width: 768px) 100vw, 300px"
-                className="lg:ml-3"
+                className="ml-3"
                 loading="eager"
               />
             </div>
           </div>
           <div className="h-fit lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
-            <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-3xl capitalize relative  w-[100%] md:w-[100%] lg:w-[90%]">
+            <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-2xl capitalize relative  w-[100%] md:w-[100%] lg:w-[90%]">
               Join 45k other business geeks like yourself.
             </h1>
             <div className="flex flex-col gap-4">
@@ -101,7 +101,10 @@ const Hero = () => {
                 placeholder="youremail@domain.com"
                 className="bg-white shadow-lg"
               />
-              <Button className="bg-theme-purple border-none shadow-lg rounded-md">
+              <Button
+                variant="outline"
+                className=" text-white border-white   rounded-md"
+              >
                 Subscribe
               </Button>
             </div>

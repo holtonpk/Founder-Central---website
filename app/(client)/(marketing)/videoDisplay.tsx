@@ -115,7 +115,7 @@ const VideoDisplay = () => {
 
   return (
     <div className="flex flex-col relative z-10 w-full mx-auto py-10 pt-20   bg-theme-blue/10">
-      <h1 className="text-4xl sm:text-5xl text-theme-blue font-head font-bold mx-auto relative text-center md:text-left">
+      <h1 className=" font-head font-bold md:text-left text-center  text-4xl lg:text-7xl  text-theme-blue mx-auto">
         Our Short Video Series
       </h1>
 
@@ -136,7 +136,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-yellow bg-white shadow-lg w-fit p-4 rounded-lg flex items-center gap-4 whitespace-nowrap"
+            className="text-theme-yellow bg-white shadow-lg w-full p-4 rounded-lg flex items-center gap-4 whitespace-nowrap"
           >
             <Icons.showPassword className="h-8 w-8" />
             Over 10 Million Views
@@ -147,7 +147,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-purple bg-white w-fit shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
+            className="text-theme-purple bg-white w-full shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
           >
             <Icons.clapperBoard className="h-8 w-8" />
             30+ Videos
@@ -158,7 +158,7 @@ const VideoDisplay = () => {
             initial={{opacity: 0}}
             whileInView={{opacity: 1}}
             viewport={{once: true}}
-            className="text-theme-pink bg-white shadow-lg w-fit p-4 rounded-lg flex flex-col items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
+            className="text-theme-pink bg-white shadow-lg w-full p-4 rounded-lg flex flex-col items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
           >
             Across 3 Platforms
             <div

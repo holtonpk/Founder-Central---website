@@ -6,7 +6,7 @@ import {Icons} from "@/app/(client)/components/icons";
 
 const BookDisplay = () => {
   return (
-    <div className="flex container md:w-[80%] py-8 justify-between md:flex-row flex-col items-center">
+    <div className="flex container w-[90%] md:w-[80%] py-8 justify-between md:flex-row flex-col items-center">
       <div className="flex flex-col md:w-1/2 gap-2  h-fit p-4 rounded-md order-2 md:order-1">
         <h1 className="text-4xl text-center md:text-left font-head text-theme-pink font-bold">
           Craving a little motivation?

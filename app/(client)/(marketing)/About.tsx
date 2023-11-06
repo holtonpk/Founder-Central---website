@@ -80,7 +80,7 @@ const About = () => {
         <div className="md:container mx-auto w-[90%] lg:w-[70%] items-center md:items-start justify-between gap-4 md:gap-2 relative">
           <h1
             id="about-title"
-            className="  font-head font-bold md:text-left  text-5xl lg:text-7xl  text-theme-blue"
+            className="  font-head font-bold md:text-left  text-4xl lg:text-7xl  text-theme-blue"
           >
             Business Content for Business Geeks.
           </h1>

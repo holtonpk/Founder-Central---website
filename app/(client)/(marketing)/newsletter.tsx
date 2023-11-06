@@ -3,9 +3,9 @@ import {Input} from "@/app/(client)/components/ui/input";
 import {Button} from "@/app/(client)/components/ui/button";
 const Newsletter = () => {
   return (
-    <div className="h-fit bg-theme-blue/10 py-20 relative z-10 ">
-      <div className="flex flex-col w-[70%] mx-auto gap-6">
-        <h1 className="text-theme-blue text-3xl font-body font-bold text-center md:text-left">
+    <div className="h-fit bg-theme-blue/10 py-10 md:py-20 relative z-10 ">
+      <div className="flex flex-col w-[90%] md:w-[70%] mx-auto gap-6">
+        <h1 className=" font-head font-bold md:text-left text-center  text-4xl lg:text-7xl  text-theme-blue mx-auto">
           What’s In The Weekly Email?
         </h1>
         <p className="text-theme-blue text-base md:text-xl font-body text-center md:text-left">

@@ -17,7 +17,7 @@ const Feedback = () => {
   return (
     <div className="flex flex-col relative z-1 py-6 pt-20 container bg-white">
       <Image src="/image/brush2.svg" alt="logo" fill objectFit="contain" />
-      <h1 className="text-4xl sm:text-5xl font-bold text-theme-blue mx-auto text-center md:text-left">
+      <h1 className="  font-head font-bold text-center md:text-left  text-4xl lg:text-7xl  text-theme-blue">
         45k Others Like You Are Loving It
       </h1>
       <div className="md:container w-full md:w-[80%] flex flex-col mt-10 ">

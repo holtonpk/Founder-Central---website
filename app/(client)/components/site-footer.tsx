@@ -81,9 +81,9 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
               color="rgb(255 255 255) "
             />
 
-            <p className="text-[12px] text-white max-w-[250px] leading-5">
+            {/* <p className="text-[12px] text-white max-w-[250px] leading-5">
               Where the next group of billionaires get their daily inspo.
-            </p>
+            </p> */}
           </div>
 
           <div className="items-start  md:gap-20 w-full md:w-[60%]  justify-between hidden md:flex ">
