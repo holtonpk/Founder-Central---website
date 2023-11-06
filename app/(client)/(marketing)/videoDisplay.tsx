@@ -115,7 +115,7 @@ const VideoDisplay = () => {
 
   return (
     <div className="flex flex-col relative z-10 w-full mx-auto py-10 pt-20   bg-theme-blue/10">
-      <h1 className="text-5xl text-theme-blue font-head font-bold mx-auto relative text-center md:text-left">
+      <h1 className="text-4xl sm:text-5xl text-theme-blue font-head font-bold mx-auto relative text-center md:text-left">
         Our Short Video Series
       </h1>
 

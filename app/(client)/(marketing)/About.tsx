@@ -192,12 +192,7 @@ const MobileCard = ({card, i}: {card: WhyCard; i: number}) => {
   };
 
   return (
-    <motion.div
-      whileHover={{scale: 1.1}}
-      whileTap={{scale: 0.9}}
-      initial={{opacity: 0}}
-      whileInView={{opacity: 1}}
-      viewport={{once: true}}
+    <div
       id={`desktop-card-${i}`} // Added ID here
       className={` flex h-fit w-full  rounded-lg shadow-lg items-center flex-col gap-3 p-4 transition-all duration-300 blurBack
       ${card.color.bg}`}
@@ -227,7 +222,7 @@ const MobileCard = ({card, i}: {card: WhyCard; i: number}) => {
       >
         {card.cta.text}
       </LinkButton>
-    </motion.div>
+    </div>
     // <div
     //   ref={cardRef}
     //   id={`mobile-card-${i}`} // Added ID here
