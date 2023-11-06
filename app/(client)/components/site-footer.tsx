@@ -241,7 +241,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
         </div>
 
         <div
-          className="footer__copyright flex md:flex-row flex-col items-center gap-3 pb-2 px-8  md:gap-2 md:px-0 md:border-t  w-full justify-between"
+          className="footer__copyright flex md:flex-row flex-col items-center gap-3 pb-2   md:gap-2 px-0 md:border-t  w-full justify-between"
           id="footer-copyright"
         >
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-fit">
@@ -268,7 +268,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
             </LinkButton>
           </div>
           <p
-            className="footer__copyright-text text-center text-[12px] md:text-sm leading-loose md:text-left "
+            className="footer__copyright-text text-center w-full md:w-fit text-sm md:text-[12px] md:text-sm leading-loose md:text-left pt-2 md:pt-0 border-t md:border-none"
             id="footer-copyright-text"
           >
             Copyright © 2023 {siteConfig.businessName}. All Rights Reserved.

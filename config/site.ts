@@ -4,7 +4,7 @@ import pagesConfig from "@/config/pagesConfig.json";
 export const siteConfig: SiteConfig = {
   name: "Founder Central",
   title: "Founder Central",
-  description: "Bite-Sized Stories for the Modern Bookworm",
+  description: "Unlock the secrets of business legends with Founder Central",
   businessName: "Founder Central",
   url: process.env.NEXT_PUBLIC_SITE_URL as string,
   logo: "",
