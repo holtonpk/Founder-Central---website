@@ -160,7 +160,7 @@ const Hero = () => {
               />
             </div>
           </div>
-          <div className="h-fit  lg:h-full justify-between w-full bg-theme-purple  rounded-lg relative p-4 flex flex-col gap-4">
+          <div className="h-fit  lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
             <h1 className="text-white font-bold font-body whitespace-nowrap md:whitespace-normal text-center md:text-left md:text-3xl lg:text-[22px] text-lg xsm:text-xl capitalize relative  w-[100%] ">
               Join 45k other founders like yourself.
             </h1>
