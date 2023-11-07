@@ -119,7 +119,7 @@ const VideoDisplay = () => {
         Our Short Video Series
       </h1>
 
-      <div className="flex w-screen lg:flex-row flex-col items-center gap-10 md:gap-10 relative lg:gap-20">
+      <div className="flex w-screen lg:flex-row flex-col items-center gap-10 md:gap-10 relative lg:gap-20 md:container">
         <div className="h-fit w-fit relative">
           <div
             id="video-container"

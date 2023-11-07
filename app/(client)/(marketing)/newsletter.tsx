@@ -74,7 +74,7 @@ const Newsletter = () => {
       id="newsletter"
       className="h-fit bg-theme-blue/10 py-10 md:py-20 relative z-10 "
     >
-      <div className="flex flex-col w-[90%] md:w-[70%] mx-auto gap-6">
+      <div className="flex flex-col w-[90%] md:w-[70%] mx-auto gap-6 md:container">
         <h1 className="  font-head font-bold text-center  md:text-left   text-4xl lg:text-5xl  text-theme-blue">
           What’s In The Weekly Email?
         </h1>
