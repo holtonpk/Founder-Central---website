@@ -9,9 +9,9 @@ export const siteConfig: SiteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL as string,
   logo: "",
   links: {
-    instagram: "https://www.instagram.com/shortformbooks",
-    youtube: "https://www.youtube.com/@officialsnapshotsofsuccess",
-    tiktok: "https://www.tiktok.com/@Shortformbooks",
+    instagram: "https://www.instagram.com/foundercentral_",
+    youtube: "https://www.youtube.com/@shortformbooks",
+    tiktok: "https://www.tiktok.com/@foundercentral",
   },
   contact: {
     supportEmail: "",
