@@ -31,7 +31,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
     // {title: "About Us", link: "/about"},
     {
       title: "Careers",
-      link: "/careers",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSc1oFNfSrzOWvnpEX0kpPwNksiCU5wiDHYBWnPTQcnQ9JOsfA/viewform",
     },
     // {
     //   title: "Blog",
