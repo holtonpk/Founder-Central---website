@@ -9,6 +9,7 @@ import {motion} from "framer-motion";
 import Background from "../components/noise";
 import SubscribePopup from "@/app/(client)/components/subscribe-popup";
 import {siteConfig} from "@/config/site";
+import {Button} from "@/app/(client)/components/ui/button";
 
 import {cn} from "@/lib/utils";
 type WhyCard = {
@@ -109,13 +110,13 @@ const About = () => {
               billionaires and connect with other ambitious founders like
               yourself.
             </p>
-            <LinkButton
-              href="/about"
+            <Button
+              // href="/about"
               className="underline text-black w-fit p-0 font-bold hover:text-theme-blue "
               variant={"link"}
             >
               Learn More
-            </LinkButton>
+            </Button>
           </div>
         </div>
         <div

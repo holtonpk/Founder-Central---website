@@ -95,7 +95,7 @@ const Hero = () => {
       className="hero relative overflow-visible z-40 min-h-fit   lg:pt-20 "
       id="hero"
     >
-      <div className="grid grid-rows-[35%_60%]  lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-fit    lg:h-[90vh]  lg:max-h-[650px] z-1 relative">
+      <div className="grid grid-rows-[40%_60%]  lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-fit    lg:h-[90vh]  lg:max-h-[650px] z-1 relative">
         <div className=" h-full w-full bg-theme-blue rounded-lg relative p-4  md:p-8 flex  overflow-hidden">
           <div className="flex max-h-full  flex-col relative z-20">
             <h1 className="text-xl  xsm:text-xl sm:text-[42px] sm:leading-[1] md:text-6xl lg:text-6xl xl:text-7xl font-head font-bold  text-white w-[70%] sm:w-[60%] xl:w-[65%]  capitalize">

@@ -135,7 +135,7 @@ const VideoDisplay = () => {
             Click thumbnails to preview series
           </div>
         </div>
-        <div className="flex  flex-col items-center text-theme-pink text-2xl  md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
+        <div className="flex  flex-col items-center text-theme-pink text-xl  md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
           <div className="text-theme-yellow bg-white shadow-lg w-full p-4 rounded-lg flex items-center gap-4 whitespace-nowrap">
             <Icons.showPassword className="h-8 w-8" />
             Over 10 Million Views
