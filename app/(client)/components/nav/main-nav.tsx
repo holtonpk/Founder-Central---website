@@ -14,6 +14,8 @@ import {motion} from "framer-motion";
 import ContactForm from "@/app/(client)/components/contact-form";
 import {useCart} from "@/context/cart";
 import {Button} from "@/app/(client)/components/ui/button";
+import SubscribePopup from "@/app/(client)/components/subscribe-popup";
+
 const navItems = ["pricing", "changelog"];
 
 const transparentHeaderSegments = new Set(["metatags", "pricing"]);
@@ -100,14 +102,16 @@ export default function Nav() {
             className="flex w-fit items-center relative gap-4 h-10"
             id="header-action-buttons"
           >
-            <LinkButton
+            <SubscribePopup
               variant={"blue"}
-              href={"/contact"}
-              className={"flex items-center text-base font-body "}
+              className={
+                "flex items-center text-base rounded-lg font-body border-theme-blue"
+              }
             >
               Join Our Newsletter
               <Icons.send className="ml-2 h-4 w-4" />
-            </LinkButton>
+            </SubscribePopup>
+
             <Button
               variant={"blueOutline"}
               onClick={toggleCart}

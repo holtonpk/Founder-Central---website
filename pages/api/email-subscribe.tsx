@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type {NextApiRequest, NextApiResponse} from "next";
 
 export default function handler(
   req: NextApiRequest,
@@ -7,11 +7,11 @@ export default function handler(
   interface SubscriptionRequestBody {
     LIST: string;
     EMAIL: string;
-    SOURCE: string;
+    SOURCE?: string;
     NAME?: string;
   }
 
-  const { LIST, EMAIL, SOURCE, NAME }: SubscriptionRequestBody = req.body;
+  const {LIST, EMAIL, SOURCE, NAME}: SubscriptionRequestBody = req.body;
 
   const fetch = require("node-fetch");
   const url = `https://a.klaviyo.com/client/subscriptions/?company_id=${process.env.NEXT_PUBLIC_KLAVIYO_API_KEY}`;
@@ -25,13 +25,14 @@ export default function handler(
       data: {
         type: "subscription",
         attributes: {
-          custom_source: SOURCE,
+          // custom_source: SOURCE,
           profile: {
             data: {
               type: "profile",
               attributes: {
                 email: EMAIL,
-                first_name: NAME ? NAME : "",
+                first_name: "test",
+                // first_name: NAME ? NAME : "",
               },
               // properties: {
               //   Referrer: "test",
@@ -39,7 +40,7 @@ export default function handler(
             },
           },
         },
-        relationships: { list: { data: { type: "list", id: LIST } } },
+        relationships: {list: {data: {type: "list", id: LIST}}},
       },
     }),
   };
@@ -53,12 +54,12 @@ export default function handler(
       }
     })
     .then((responseText: string) => {
-      res
-        .status(200)
-        .json({ message: `${EMAIL} successfully subscribed to ${LIST}` });
+      res.status(200).json({
+        message: `${EMAIL} successfully subscribed to ${LIST}`,
+      });
     })
     .catch((err: Error) => {
       console.error("Error:", err);
-      res.status(500).json({ error: `An error occurred: ${err.message}` });
+      res.status(500).json({error: `An error occurred: ${err.message}`});
     });
 }

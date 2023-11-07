@@ -18,6 +18,7 @@ export const siteConfig: SiteConfig = {
   },
   emailLists: {
     book1: "RMBhiE",
+    newsletter: "QSiDXT",
   },
   pages: pagesConfig,
 };

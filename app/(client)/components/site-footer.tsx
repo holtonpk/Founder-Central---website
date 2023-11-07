@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 import {siteConfig} from "@/config/site";
@@ -13,6 +14,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/(client)/components/ui/accordion";
+import {useToast} from "@/app/(client)/components/ui/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/app/(client)/components/ui/form";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
   const aboutLinks = [
@@ -37,6 +49,59 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
     {title: "Newsletter", link: "/newsletter"},
   ];
 
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  // email form
+  const {toast} = useToast();
+
+  const EmailFormSchema = z.object({
+    email: z
+      .string({
+        required_error: "Please enter your email.",
+      })
+      .email(),
+  });
+
+  type EmailFormValue = z.infer<typeof EmailFormSchema>;
+
+  const form = useForm<EmailFormValue>({
+    resolver: zodResolver(EmailFormSchema),
+    mode: "onChange",
+  });
+
+  async function onSubmit(data: EmailFormValue, e?: React.BaseSyntheticEvent) {
+    e?.preventDefault();
+    setIsLoading(true);
+    try {
+      await fetch("/api/email-subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          LIST: siteConfig.emailLists.newsletter,
+          EMAIL: data.email,
+          SOURCE: document.referrer,
+        }),
+      });
+      setIsLoading(false);
+      form.reset({
+        email: "",
+      });
+      toast({
+        title: "Thanks signing up for our newsletter!",
+        description: "Check your inbox for a confirmation email.",
+      });
+    } catch (err) {
+      setIsLoading(false);
+      toast({
+        variant: "destructive",
+        title: "Oops! Something went wrong.",
+        description: "Please try again later.",
+      });
+    }
+  }
+
   return (
     <footer
       className={cn(
@@ -53,21 +118,38 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           <p className="text-xl md:text-2xl font-body text-white md:text-left text-center">
             Join our newsletter to keep up to date with us
           </p>
-          <div className="flex gap-4">
-            <div className="w-fit relative">
-              <Input
-                placeholder="Enter your email"
-                className="w-[250px] md:w-[300px]  border-white placeholder:text-white rounded-md bg-white/10 relative pl-10"
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({field}) => (
+                  <FormItem className="relative h-fit w-fit flex ">
+                    <FormControl>
+                      <>
+                        <Input
+                          {...field}
+                          placeholder="Enter your email"
+                          className="w-[250px] md:w-[300px]  border-white placeholder:text-white rounded-md bg-white/10 relative pl-10  "
+                        />
+                        <Icons.mails className="h-6 w-6 text-white absolute left-2 top-0 z-20" />
+                      </>
+                    </FormControl>
+                  </FormItem>
+                )}
               />
-              <Icons.mails className="h-6 w-6 text-white absolute left-2 top-1/2 -translate-y-1/2" />
-            </div>
-            <Button
-              variant="white"
-              className="w-fit rounded-md text-theme-blue"
-            >
-              Subscribe
-            </Button>
-          </div>
+
+              <Button
+                variant="white"
+                className="w-fit rounded-md text-theme-blue"
+              >
+                Subscribe
+                {isLoading && (
+                  <Icons.spinner className="ml-2 h-4 w-4 animate-spin" />
+                )}
+              </Button>
+            </form>
+          </Form>
         </div>
 
         <span

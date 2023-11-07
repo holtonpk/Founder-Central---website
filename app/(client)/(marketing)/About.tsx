@@ -7,6 +7,8 @@ import {useLockBody} from "@/lib/hooks/use-lock-body";
 import {LinkButton} from "../components/ui/link";
 import {motion} from "framer-motion";
 import Background from "../components/noise";
+import SubscribePopup from "@/app/(client)/components/subscribe-popup";
+
 import {cn} from "@/lib/utils";
 type WhyCard = {
   icon: keyof typeof Icons;
@@ -15,6 +17,7 @@ type WhyCard = {
   cta: {
     text: string;
     link: string;
+    custom?: React.ReactNode;
   };
   color: {
     bg: string;
@@ -61,6 +64,13 @@ const whyCards: WhyCard[] = [
     cta: {
       text: "Join Newsletter",
       link: "/",
+      custom: (
+        <SubscribePopup
+          className={`bg-transparent border-white hover:text-theme-pink`}
+        >
+          Join Newsletter
+        </SubscribePopup>
+      ),
     },
     color: {
       bg: "bg-theme-pink",
@@ -161,12 +171,16 @@ const DesktopCard = ({card, i}: {card: WhyCard; i: number}) => {
       >
         {card.description}
       </p>
-      <LinkButton
-        href={card.cta.link}
-        className={`bg-transparent border-white ${card.color.hoverText}`}
-      >
-        {card.cta.text}
-      </LinkButton>
+      {card.cta?.custom ? (
+        <>{card.cta.custom}</>
+      ) : (
+        <LinkButton
+          href={card.cta.link}
+          className={`bg-transparent border-white ${card.color.hoverText}`}
+        >
+          {card.cta.text}
+        </LinkButton>
+      )}
     </motion.div>
   );
 };
@@ -212,16 +226,20 @@ const MobileCard = ({card, i}: {card: WhyCard; i: number}) => {
       </h1>
       <p
         id={`desktop-card-description-${i}`} // Added ID here
-        className="card-description text-base font-body text-left text-white h-fit text-center "
+        className="card-description text-base font-body text-center text-white h-fit  "
       >
         {card.description}
       </p>
-      <LinkButton
-        href={card.cta.link}
-        className={`bg-transparent border-white ${card.color.hoverText}`}
-      >
-        {card.cta.text}
-      </LinkButton>
+      {card.cta?.custom ? (
+        <>{card.cta.custom}</>
+      ) : (
+        <LinkButton
+          href={card.cta.link}
+          className={`bg-transparent border-white ${card.color.hoverText}`}
+        >
+          {card.cta.text}
+        </LinkButton>
+      )}
     </div>
     // <div
     //   ref={cardRef}

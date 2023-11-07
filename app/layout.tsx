@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
+import "@/app/(client)/client-style.css";
 
 export const metadata: Metadata = {
   title: "Short Form books",
   description: "this is a short form book site",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className="">

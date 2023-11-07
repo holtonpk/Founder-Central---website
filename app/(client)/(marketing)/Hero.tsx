@@ -12,38 +12,94 @@ import {siteConfig} from "@/config/site";
 import coverImage from "@/public/image/cover-shadow2.png";
 import heroImage from "@/public/image/heroImage.png";
 import Background from "@/app/(client)/components/noise";
-const Hero = () => {
-  const scrolled = useScroll(50);
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/app/(client)/components/ui/form";
+import {useFieldArray, useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import SubscribePopup from "@/app/(client)/components/subscribe-popup";
 
-  const bookIsAvailable = true;
+import * as z from "zod";
+
+const Hero = () => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  // email form
+  const {toast} = useToast();
+
+  const EmailFormSchema = z.object({
+    email: z
+      .string({
+        required_error: "Please enter your email.",
+      })
+      .email(),
+  });
+
+  type EmailFormValue = z.infer<typeof EmailFormSchema>;
+
+  const form = useForm<EmailFormValue>({
+    resolver: zodResolver(EmailFormSchema),
+    mode: "onChange",
+  });
+
+  async function onSubmit(data: EmailFormValue, e?: React.BaseSyntheticEvent) {
+    e?.preventDefault();
+    setIsLoading(true);
+    try {
+      await fetch("/api/email-subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          LIST: siteConfig.emailLists.newsletter,
+          EMAIL: data.email,
+          SOURCE: document.referrer,
+        }),
+      });
+      setIsLoading(false);
+      form.reset({
+        email: "",
+      });
+      toast({
+        title: "Thanks signing up for our newsletter!",
+        description: "Check your inbox for a confirmation email.",
+      });
+    } catch (err) {
+      setIsLoading(false);
+      toast({
+        variant: "destructive",
+        title: "Oops! Something went wrong.",
+        description: "Please try again later.",
+      });
+    }
+  }
 
   return (
     <div
       className="hero relative overflow-visible z-40 min-h-fit pb-10 lg:pt-20"
       id="hero"
     >
-      {/* {!scrolled && (
-        <div
-          className="hero-arrow z-40 absolute -bottom-10 left-1/2 -translate-x-1/2 border border-theme-blue/30 rounded-md w-fit px-4 pt-2 pb-3 h-fit flex-col gap-2 hidden md:flex"
-          id="hero-arrow"
-        >
-          <div className="scroll-arrow" id="scroll-arrow-1" />
-          <div className="scroll-arrow" id="scroll-arrow-2" />
-        </div>
-      )} */}
       <div className="grid grid-rows-[35%_60%] lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-[90vh]   lg:h-[90vh]  lg:max-h-[650px] z-1 relative">
         <div className="h-full w-full bg-theme-blue rounded-lg relative p-4 xsm:p-8 flex  overflow-hidden">
           <div className="flex flex-col relative z-20">
             <h1 className="text-2xl  xsm:text-3xl sm:text-[42px] sm:leading-[1] md:text-6xl lg:text-6xl xl:text-7xl font-head font-bold  text-white w-[60%] sm:w-[60%] xl:w-[65%]  capitalize">
               Where the next group of billionaires get their daily inspo.
             </h1>
-            <Button
+
+            <SubscribePopup
               variant={"default"}
-              className="text-sm sm:text-base md:text-3xl md:p-6  text-theme-blue rounded-lg w-fit mt-4 md:mt-8 border-white bg-white hover:bg-theme-blue"
+              className="text-sm sm:text-base md:text-3xl md:p-6  text-theme-blue hover:text-white rounded-lg w-fit mt-4 md:mt-8 border-white bg-white hover:bg-theme-blue"
             >
               Join Today
               <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
-            </Button>
+            </SubscribePopup>
           </div>
 
           <div className="aspect-square h-[85%]  xsm:h-full z-10  absolute right-0 bottom-0">
@@ -96,15 +152,35 @@ const Hero = () => {
             <h1 className="text-white font-bold font-body text-center md:text-left md:text-4xl lg:text-[25px] text-2xl capitalize relative  w-[100%] md:w-[100%] lg:w-[90%]">
               Join 45k other founders like yourself.
             </h1>
-            <div className="flex flex-col gap-4">
-              <Input
-                placeholder="youremail@domain.com"
-                className="bg-white shadow-lg"
-              />
-              <Button className="bg-theme-pink text-white border-none   rounded-md">
-                Subscribe
-              </Button>
-            </div>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="flex flex-col gap-4"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({field}) => (
+                    <FormItem className="relative">
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="youremail@domain.com"
+                          className="bg-white shadow-lg"
+                          autoComplete="email"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button className="bg-theme-pink text-white border-none   rounded-md">
+                  Subscribe
+                  {isLoading && (
+                    <Icons.spinner className="ml-2 h-4 w-4 animate-spin" />
+                  )}
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </div>
