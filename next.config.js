@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+    // domains: [
+    //   "localhost",
+    //   "cdn.shopify.com",
+    //   "flagsapi.com",
 
-module.exports = nextConfig
+    //   "www.shortformbooks.com",
+    // ],
+  },
+};
+
+module.exports = nextConfig;

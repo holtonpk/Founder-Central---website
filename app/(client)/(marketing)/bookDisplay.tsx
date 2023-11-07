@@ -8,7 +8,7 @@ const BookDisplay = () => {
   return (
     <div className="flex container w-[90%] md:w-[80%] py-8 justify-between md:flex-row flex-col items-center">
       <div className="flex flex-col md:w-1/2 gap-2  h-fit p-4 rounded-md order-2 md:order-1">
-        <h1 className="text-4xl text-center md:text-left font-head text-theme-pink font-bold">
+        <h1 className="  font-head font-bold text-center md:text-left   text-4xl lg:text-5xl  text-theme-pink">
           Craving a little motivation?
         </h1>
         <p className="text-lg text-center md:text-left">
@@ -18,7 +18,7 @@ const BookDisplay = () => {
         <LinkButton
           href="/books/shop/snapshots-of-success-the-50-greatest-business-success-stories"
           variant="pink"
-          className="mt-3"
+          className="mt-3 text-base md:text-xl md:p-6 w-full md:w-fit"
         >
           Buy Now
           <Icons.arrowRight className="h-6 w-6 ml-2" />

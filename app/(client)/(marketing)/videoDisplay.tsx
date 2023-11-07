@@ -115,94 +115,46 @@ const VideoDisplay = () => {
 
   return (
     <div className="flex flex-col relative z-10 w-full mx-auto py-10 pt-20   bg-theme-blue/10">
-      <h1 className=" font-head font-bold md:text-left text-center  text-4xl lg:text-7xl  text-theme-blue mx-auto">
+      <h1 className="  font-head font-bold text-center   text-4xl lg:text-5xl  text-theme-blue">
         Our Short Video Series
       </h1>
 
-      <div className="flex w-screen lg:flex-row flex-col items-center gap-10 md:gap-10 lg:gap-20">
-        <div
-          id="video-container"
-          className="relative z-10 overflow-hidden shadow-lg md:ml-10 w-[90vw] aspect-square  md:h-[600px] md:w-[600px] rounded-full mt-10"
-        >
-          <div className="absolute w-[90vw] aspect-square  md:h-[600px] md:w-[600px] bg-theme-blue rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
-          {Videos.map((video, i) => (
-            <Video key={i} video={video} i={i} />
-          ))}
-        </div>
-        <div className="flex  flex-col lg:items-start items-center text-theme-pink text-2xl  md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
-          <motion.div
-            whileHover={{scale: 1.1}}
-            whileTap={{scale: 0.9}}
-            initial={{opacity: 0}}
-            whileInView={{opacity: 1}}
-            viewport={{once: true}}
-            className="text-theme-yellow bg-white shadow-lg w-full p-4 rounded-lg flex items-center gap-4 whitespace-nowrap"
+      <div className="flex w-screen lg:flex-row flex-col items-center gap-10 md:gap-10 relative lg:gap-20">
+        <div className="h-fit w-fit relative">
+          <div
+            id="video-container"
+            className="relative z-10 overflow-hidden shadow-lg md:ml-10 w-[90vw] aspect-square  md:h-[600px] md:w-[600px] rounded-full mt-10"
           >
+            <div className="absolute w-[90vw] aspect-square  md:h-[600px] md:w-[600px] bg-theme-blue rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
+            {Videos.map((video, i) => (
+              <Video key={i} video={video} i={i} />
+            ))}
+          </div>
+          <div className="text-theme-blue flex items-center w-fit mx-auto mt-4">
+            <Icons.info className="h-4 w-4 mr-2" />
+            Click thumbnails to preview series
+          </div>
+        </div>
+        <div className="flex  flex-col items-center text-theme-pink text-2xl  md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
+          <div className="text-theme-yellow bg-white shadow-lg w-full p-4 rounded-lg flex items-center gap-4 whitespace-nowrap">
             <Icons.showPassword className="h-8 w-8" />
             Over 10 Million Views
-          </motion.div>
-          <motion.div
-            whileHover={{scale: 1.1}}
-            whileTap={{scale: 0.9}}
-            initial={{opacity: 0}}
-            whileInView={{opacity: 1}}
-            viewport={{once: true}}
-            className="text-theme-purple bg-white w-full shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
-          >
+          </div>
+          <div className="text-theme-purple bg-white w-full shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
             <Icons.clapperBoard className="h-8 w-8" />
-            30+ Videos
-          </motion.div>
-          <motion.div
-            whileHover={{scale: 1.1}}
-            whileTap={{scale: 0.9}}
-            initial={{opacity: 0}}
-            whileInView={{opacity: 1}}
-            viewport={{once: true}}
-            className="text-theme-pink bg-white shadow-lg w-full p-4 rounded-lg flex flex-col items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap"
+            Hundreds of Success Stories
+          </div>
+          <div className="text-theme-pink bg-white capitalize shadow-lg w-full p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
+            <Icons.likes className="h-8 w-8" />
+            Loved by thousands
+          </div>
+          <LinkButton
+            href={siteConfig.links.instagram}
+            target="_blank"
+            className="bg-theme-blue rounded-md border-theme-blue hover:bg-theme-blue/80 hover:text-white mt-4 md:mt-6 lg::mt-20"
           >
-            Across 3 Platforms
-            <div
-              className="video__social-links flex gap-4 w-fit "
-              id="video-social-links"
-            >
-              <LinkButton
-                variant={"secondaryOutline"}
-                target="_blank"
-                href={siteConfig.links.youtube}
-                className="video__social-link border-none p-0 aspect-square"
-              >
-                <Icons.youtube
-                  className="h-8 w-8"
-                  id="video-social-link-youtube"
-                  color="#EF1F80"
-                />
-              </LinkButton>
-              <LinkButton
-                variant={"secondaryOutline"}
-                target="_blank"
-                href={siteConfig.links.instagram}
-                className="video__social-link border-none p-0 aspect-square"
-              >
-                <Icons.instaGram
-                  className="h-8 w-8"
-                  id="video-social-link-instagram"
-                  color="#EF1F80"
-                />
-              </LinkButton>
-              <LinkButton
-                variant={"secondaryOutline"}
-                target="_blank"
-                href={siteConfig.links.tiktok}
-                className="video__social-link border-none p-0 aspect-square"
-              >
-                <Icons.tiktok
-                  className="h-8 w-8 "
-                  color="#EF1F80"
-                  id="video-social-link-tiktok"
-                />
-              </LinkButton>
-            </div>
-          </motion.div>
+            View Full Series
+          </LinkButton>
 
           <div className="flex flex-col items-center gap-6 w-fit"></div>
         </div>

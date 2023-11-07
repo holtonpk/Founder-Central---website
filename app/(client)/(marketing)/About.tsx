@@ -8,6 +8,7 @@ import {LinkButton} from "../components/ui/link";
 import {motion} from "framer-motion";
 import Background from "../components/noise";
 import SubscribePopup from "@/app/(client)/components/subscribe-popup";
+import {siteConfig} from "@/config/site";
 
 import {cn} from "@/lib/utils";
 type WhyCard = {
@@ -17,6 +18,7 @@ type WhyCard = {
   cta: {
     text: string;
     link: string;
+    target?: string;
     custom?: React.ReactNode;
   };
   color: {
@@ -33,7 +35,8 @@ const whyCards: WhyCard[] = [
       "Read stories of people who, just like you, started with a dream, navigated through storms and transformed their vision into life changing wealth.",
     cta: {
       text: "View Book",
-      link: "/books",
+      target: "_self",
+      link: "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories",
     },
     color: {
       bg: "bg-theme-purple",
@@ -47,8 +50,9 @@ const whyCards: WhyCard[] = [
     description:
       "Once a day, we tell the story of a business icon in 60 seconds. Follow the series to get the golden nuggets you need for your own journey.",
     cta: {
-      text: "Checkout Videos",
-      link: "/",
+      text: "View Our Instagram",
+      link: siteConfig.links.instagram,
+      target: "_blank",
     },
     color: {
       bg: "bg-theme-yellow",
@@ -64,6 +68,7 @@ const whyCards: WhyCard[] = [
     cta: {
       text: "Join Newsletter",
       link: "/",
+      target: "_self",
       custom: (
         <SubscribePopup
           className={`bg-transparent border-white hover:text-theme-pink`}
@@ -84,7 +89,7 @@ const About = () => {
   return (
     <div
       id="About"
-      className=" relative top-0 h-fit pb-10  sm:mt-10 md:mt-0 z-20 bg-theme-blue/10"
+      className=" relative top-0 h-fit pb-10 mt-10 md:mt-0 z-20 bg-theme-blue/10"
     >
       <div className="md:container relative md:top-20 z-20 flex flex-col md:max-w-screen-xl overflow-visible">
         <div className="md:container mx-auto w-[90%] lg:w-[70%] items-center md:items-start justify-between gap-4 md:gap-2 relative">
@@ -175,6 +180,7 @@ const DesktopCard = ({card, i}: {card: WhyCard; i: number}) => {
         <>{card.cta.custom}</>
       ) : (
         <LinkButton
+          target={card.cta.target}
           href={card.cta.link}
           className={`bg-transparent border-white ${card.color.hoverText}`}
         >

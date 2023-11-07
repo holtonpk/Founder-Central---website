@@ -105,7 +105,7 @@ export default function Nav() {
             <SubscribePopup
               variant={"blue"}
               className={
-                "flex items-center text-base rounded-lg font-body border-theme-blue"
+                "flex items-center text-base rounded-lg font-body border-theme-blue hover:bg-theme-blue/80 hover:text-white"
               }
             >
               Join Our Newsletter
@@ -115,7 +115,7 @@ export default function Nav() {
             <Button
               variant={"blueOutline"}
               onClick={toggleCart}
-              className="rounded-full relative flex items-center justify-center p-2 aspect-square"
+              className="rounded-full relative flex items-center justify-center p-2  aspect-square"
               id="header-cart-button"
             >
               {cartTotalQuantity > 0 && (
@@ -126,7 +126,7 @@ export default function Nav() {
                   {cartTotalQuantity}
                 </span>
               )}
-              <Icons.shoppingBag className="h-5 w-5 " id="header-cart-icon" />
+              <Icons.shoppingBag className="h-8 w-8 " id="header-cart-icon" />
             </Button>
           </div>
         </div>

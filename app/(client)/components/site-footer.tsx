@@ -28,15 +28,15 @@ import * as z from "zod";
 
 export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
   const aboutLinks = [
-    {title: "About Us", link: "/about"},
+    // {title: "About Us", link: "/about"},
     {
       title: "Careers",
       link: "/careers",
     },
-    {
-      title: "Blog",
-      link: "/blog",
-    },
+    // {
+    //   title: "Blog",
+    //   link: "/blog",
+    // },
     {
       title: "Contact Us",
       link: "/contact",
@@ -44,9 +44,12 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
   ];
 
   const servicesLinks = [
-    {title: "Books", link: "/books"},
-    {title: "Agency", link: "/agency"},
-    {title: "Newsletter", link: "/newsletter"},
+    {
+      title: "Books",
+      link: "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories",
+    },
+    // {title: "Agency", link: "/agency"},
+    {title: "Newsletter", link: "/#newsletter"},
   ];
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -114,7 +117,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
         className="md:container flex flex-col items-center justify-between gap-4 pt-6 h-fit "
         id="footer-content"
       >
-        <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full pb-4 border-b gap-2 md:gap-0 ">
+        {/* <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full pb-4 border-b gap-2 md:gap-0 ">
           <p className="text-xl md:text-2xl font-body text-white md:text-left text-center">
             Join our newsletter to keep up to date with us
           </p>
@@ -150,7 +153,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
               </Button>
             </form>
           </Form>
-        </div>
+        </div> */}
 
         <span
           className="footer__logo text-2xl p-2 text-primary font-bold  w-full flex md:flex-row flex-col justify-between  items-center md:gap-10 "
@@ -327,27 +330,27 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           id="footer-copyright"
         >
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-fit">
-            <LinkButton
-              href="/terms"
+            <Button
+              // href="/terms"
               variant={"link"}
               className="text-white whitespace-nowrap"
             >
               Terms & Conditions
-            </LinkButton>
-            <LinkButton
-              href="/privacy"
+            </Button>
+            <Button
+              // href="/privacy"
               variant={"link"}
               className="text-white whitespace-nowrap"
             >
               Privacy Policy
-            </LinkButton>
-            <LinkButton
-              href="/Cookies"
+            </Button>
+            <Button
+              // href="/Cookies"
               variant={"link"}
               className="text-white whitespace-nowrap"
             >
               Cookies
-            </LinkButton>
+            </Button>
           </div>
           <p
             className="footer__copyright-text text-center w-full md:w-fit text-sm md:text-[12px] md:text-sm leading-loose md:text-left pt-2 md:pt-0 border-t md:border-none"
