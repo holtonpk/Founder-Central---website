@@ -65,7 +65,7 @@ export default function MobileNav() {
 
   return (
     <>
-      <div className="flex items-center justify-between px-4 relative z-20  py-2 bg-white">
+      <div className="flex items-center justify-between px-4 relative z-20  py-2 bg-white lg:hidden">
         <Link href="/#" className="">
           <span className="text-2xl text-primary font-bold  flex items-center ">
             <div className="h-10 w-20 relative  -mr-2">
