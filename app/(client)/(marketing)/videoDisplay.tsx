@@ -135,16 +135,16 @@ const VideoDisplay = () => {
             Click thumbnails to preview series
           </div>
         </div>
-        <div className="flex  flex-col items-center text-theme-pink text-xl  md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
-          <div className="text-theme-yellow bg-white shadow-lg w-full p-4 rounded-lg flex items-center gap-4 whitespace-nowrap">
+        <div className="flex  flex-col items-center text-theme-pink text-base xsm:text-xl sm:text-2xl md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
+          <div className="text-theme-yellow bg-white shadow-lg justify-center lg:justify-start w-full p-4 rounded-lg flex items-center gap-2 md:gap-4 whitespace-nowrap">
             <Icons.showPassword className="h-8 w-8" />
             Over 10 Million Views
           </div>
-          <div className="text-theme-purple bg-white w-full shadow-lg p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
+          <div className="text-theme-purple bg-white w-full shadow-lg justify-center lg:justify-start p-4  rounded-lg flex items-center gap-2 md:gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
             <Icons.clapperBoard className="h-8 w-8" />
             Hundreds of Success Stories
           </div>
-          <div className="text-theme-pink bg-white capitalize shadow-lg w-full p-4 rounded-lg flex items-center gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
+          <div className="text-theme-pink bg-white capitalize shadow-lg justify-center lg:justify-start w-full p-4 rounded-lg flex items-center gap-2 md:gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
             <Icons.likes className="h-8 w-8" />
             Loved by thousands
           </div>
