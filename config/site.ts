@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
   logo: "",
   links: {
     instagram: "https://www.instagram.com/foundercentral_",
-    youtube: "https://www.youtube.com/@shortformbooks",
+    youtube: "https://www.youtube.com/@FounderCentral",
     tiktok: "https://www.tiktok.com/@foundercentral",
   },
   contact: {
