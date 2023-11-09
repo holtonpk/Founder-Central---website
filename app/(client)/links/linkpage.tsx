@@ -40,7 +40,7 @@ const LinkPageLayout = () => {
   };
 
   return (
-    <div className="bg-theme-blue h-screen flex pt-16 ">
+    <div className="bg-theme-blue h-screen flex pt-10 md:pt-16 ">
       <div className="flex flex-col items-center max-auto w-[100%] md:w-[60%] md:container gap-2 h-fit">
         <div className="h-[100px] w-[100px] relative">
           <Image
