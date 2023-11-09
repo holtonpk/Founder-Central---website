@@ -31,7 +31,7 @@ const Reports = () => {
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">Reports</h2>
-          <div className="flex items-center space-x-2">
+          <div className="items-center space-x-2 hidden md:flex">
             <CalendarDateRangePicker date={date} setDate={setDate} />
             <Button>Download</Button>
           </div>

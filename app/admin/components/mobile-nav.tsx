@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useCycle } from "framer-motion";
+import {motion, useCycle} from "framer-motion";
 import Link from "next/link";
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { Icons } from "@/app/admin/components/icons";
-import { Button } from "@/app/admin/components/ui/button";
-import { useParams, useSelectedLayoutSegment } from "next/navigation";
+import {ReactNode, useEffect, useMemo, useRef, useState} from "react";
+import {Icons} from "@/app/admin/components/icons";
+import {Button} from "@/app/admin/components/ui/button";
+import {useParams, useSelectedLayoutSegment} from "next/navigation";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -29,7 +29,7 @@ const sidebar = {
 export default function MobileNav() {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
-  const { height } = useDimensions(containerRef);
+  const {height} = useDimensions(containerRef);
   const segment = useSelectedLayoutSegment();
 
   return (
@@ -51,13 +51,13 @@ export default function MobileNav() {
         <div className="grid gap-8">
           <MenuItem className="gap-4 flex-col flex">
             <Link
-              href="/admin/dashboard"
+              href="/admin/reports"
               onClick={() => toggleOpen()}
               className={`flex w-full font-bold text-2xl transition-colors hover:text-primary ${
-                segment === "dashboard" ? "text-primary" : ""
+                segment === "reports" ? "text-primary" : ""
               }`}
             >
-              Sales Dashboard
+              Reports
             </Link>
             <Link
               onClick={() => toggleOpen()}
@@ -103,7 +103,7 @@ export default function MobileNav() {
   );
 }
 
-const MenuToggle = ({ toggle, isOpen }: { toggle: any; isOpen: boolean }) => (
+const MenuToggle = ({toggle, isOpen}: {toggle: any; isOpen: boolean}) => (
   <Button onClick={toggle} className="relative  aspect-square p-2  ">
     {isOpen ? (
       <Icons.close className="w-5 h-5 " />
@@ -142,14 +142,14 @@ const MenuItemVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      y: { stiffness: 1000, velocity: -100 },
+      y: {stiffness: 1000, velocity: -100},
     },
   },
   closed: {
     y: 50,
     opacity: 0,
     transition: {
-      y: { stiffness: 1000 },
+      y: {stiffness: 1000},
       duration: 0.04,
     },
   },
@@ -157,15 +157,15 @@ const MenuItemVariants = {
 
 const variants = {
   open: {
-    transition: { staggerChildren: 0.04, delayChildren: 0.2 },
+    transition: {staggerChildren: 0.04, delayChildren: 0.2},
   },
   closed: {
-    transition: { staggerChildren: 0.02, staggerDirection: -1 },
+    transition: {staggerChildren: 0.02, staggerDirection: -1},
   },
 };
 
 const useDimensions = (ref: any) => {
-  const dimensions = useRef({ width: 0, height: 0 });
+  const dimensions = useRef({width: 0, height: 0});
 
   useEffect(() => {
     dimensions.current.width = ref.current.offsetWidth;

@@ -330,20 +330,20 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           id="footer-copyright"
         >
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-fit">
-            <Button
-              // href="/terms"
+            <LinkButton
+              href="/legal/terms"
               variant={"link"}
               className="text-white whitespace-nowrap"
             >
               Terms & Conditions
-            </Button>
-            <Button
-              // href="/privacy"
+            </LinkButton>
+            <LinkButton
+              href="/legal/privacy-policy"
               variant={"link"}
               className="text-white whitespace-nowrap"
             >
               Privacy Policy
-            </Button>
+            </LinkButton>
             <Button
               // href="/Cookies"
               variant={"link"}
