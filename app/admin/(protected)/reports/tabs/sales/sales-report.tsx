@@ -36,7 +36,6 @@ const fetchData = async (): Promise<SalesDataFull> => {
     );
 
     if (!salesDataRes.ok) {
-      console.error("Error fetching sales data:", salesDataRes);
       throw new Error(salesDataRes.statusText);
     }
 
@@ -56,10 +55,10 @@ const fetchData = async (): Promise<SalesDataFull> => {
     };
 
     return salesData as SalesDataFull;
-  } catch (error) {
+  } catch (error: any) {
     // Handle the error (e.g., log it, show a user-friendly message, etc.)
     console.error("Error fetching sales data:", error);
-    throw error; // Re-throw the error to propagate it further if needed
+    throw new Error(error.statusText);
   }
 };
 
@@ -110,6 +109,8 @@ export default function SalesReport({date}: {date: DateRange | undefined}) {
       {error && (
         <div className="w-full h-[200px] b-r flex justify-center items-center text-red-500 ">
           {error}
+          <br />
+          ask patrick to fix this
         </div>
       )}
       <div className=" flex-col flex ">
