@@ -27,33 +27,39 @@ type SalesDataFull = {
 };
 
 const fetchData = async (): Promise<SalesDataFull> => {
-  const salesDataRes = await fetch(
-    `${siteConfig.url}/api/admin/shopify/sales-data`,
-    {
-      cache: "no-cache",
+  try {
+    const salesDataRes = await fetch(
+      `${siteConfig.url}/api/admin/shopify/sales-data`,
+      {
+        cache: "no-cache",
+      }
+    );
+
+    if (!salesDataRes.ok) {
+      throw new Error("Failed to fetch sales data");
     }
-  );
 
-  if (!salesDataRes.ok) {
-    throw new Error("Failed to fetch sales data");
+    const data = (await salesDataRes.json()) as SalesData[];
+
+    // const data = DummyData as SalesData[];
+
+    const totalRevenue = data.reduce((acc, curr) => acc + curr.revenue, 0);
+    const totalProfit = data.reduce((acc, curr) => acc + curr.profit, 0);
+    const totalSales = data.length;
+
+    const salesData = {
+      totalRevenue,
+      totalProfit,
+      totalSales,
+      data,
+    };
+
+    return salesData as SalesDataFull;
+  } catch (error) {
+    // Handle the error (e.g., log it, show a user-friendly message, etc.)
+    console.error("Error fetching sales data:", error);
+    throw error; // Re-throw the error to propagate it further if needed
   }
-
-  const data = (await salesDataRes.json()) as SalesData[];
-
-  // const data = DummyData as SalesData[];
-
-  const totalRevenue = data.reduce((acc, curr) => acc + curr.revenue, 0);
-  const totalProfit = data.reduce((acc, curr) => acc + curr.profit, 0);
-  const totalSales = data.length;
-
-  const salesData = {
-    totalRevenue,
-    totalProfit,
-    totalSales,
-    data,
-  };
-
-  return salesData as SalesDataFull;
 };
 
 // Example usage:
@@ -69,20 +75,22 @@ export default function SalesReport({date}: {date: DateRange | undefined}) {
   // const data = await getData();
   const [data, setData] = useState<SalesDataFull | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any | undefined>(undefined);
 
   // Using Dummy Data
   useEffect(() => {
     async function getData() {
       try {
-        // const salesDataRes = await fetchData();
-        // console.log("Sales Data:", JSON.stringify(salesDataRes));
-        // setData(salesDataRes);
-        setData(DummyData as SalesDataFull);
+        const salesDataRes = await fetchData();
+        setData(salesDataRes);
         setLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error:", error);
+        setError(error.message);
+        setLoading(false); // Set loading to false even if there's an error
       }
     }
+
     getData();
   }, []);
 
@@ -98,6 +106,11 @@ export default function SalesReport({date}: {date: DateRange | undefined}) {
 
   return (
     <>
+      {error && (
+        <div className="w-full h-[200px] b-r flex justify-center items-center text-red-500 ">
+          {JSON.stringify(error)}
+        </div>
+      )}
       <div className=" flex-col flex ">
         <div className="flex-1 space-y-4 pt-0 ">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
