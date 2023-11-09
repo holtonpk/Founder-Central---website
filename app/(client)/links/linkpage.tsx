@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import logo from "@/public/image/logo_pink.png";
@@ -33,12 +32,6 @@ const LinkPageLayout = () => {
     },
   ];
 
-  const router = useRouter();
-
-  const clickLink = (href: string) => {
-    router.push(href);
-  };
-
   return (
     <div className="bg-theme-blue h-screen flex pt-10 md:pt-16 ">
       <div className="flex flex-col items-center max-auto w-[100%] md:w-[60%] md:container gap-2 h-fit">
@@ -59,10 +52,10 @@ const LinkPageLayout = () => {
         </p>
         <div className="flex flex-col gap-4 mt-6 w-[85%] md:w-full">
           {links.map((link) => (
-            <div
-              onClick={() => clickLink(link.href)}
+            <LinkButton
+              href={link.href}
               key={link.text}
-              className="w-full bg-white rounded-lg shadow-xl h-fit p-4 relative "
+              className="w-full bg-white border-white hover:bg-white rounded-lg shadow-xl h-fit p-4 relative hover:md:scale-[1.05] transition-all duration-300 ease-in-out "
             >
               {link.image && (
                 <div className="h-[80%] aspect-square absolute top-1/2 -translate-y-1/2 left-2">
@@ -75,10 +68,10 @@ const LinkPageLayout = () => {
                   />
                 </div>
               )}
-              <p className="text-black text-sm md:text-base text-center capitalize font-head">
+              <p className="text-black text-sm md:text-base  text-center capitalize font-body">
                 {link.text}
               </p>
-            </div>
+            </LinkButton>
           ))}
         </div>
         <div className="mt-4  flex gap-4 " id="footer-social-links">
