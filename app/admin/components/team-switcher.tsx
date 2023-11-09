@@ -48,7 +48,7 @@ const groups = [
     label: "Teams",
     teams: [
       {
-        label: "Short Form Books",
+        label: "Founder Central",
         avatar: "/image/logo.png",
       },
     ],
@@ -83,7 +83,7 @@ export default function TeamSwitcher({className}: TeamSwitcherProps) {
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage src={selectedTeam.avatar} alt={selectedTeam.label} />
-              <AvatarFallback>SF</AvatarFallback>
+              <AvatarFallback>FC</AvatarFallback>
             </Avatar>
             {selectedTeam.label}
             <Icons.chevronUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />

@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import {NextApiRequest, NextApiResponse} from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -80,7 +80,7 @@ export default async function handler(
           "X-Shopify-Access-Token": process.env
             .NEXT_PUBLIC_ADMIN_ACCESS_TOKEN as string,
         },
-        body: JSON.stringify({ query: bulkOperationQuery }),
+        body: JSON.stringify({query: bulkOperationQuery}),
       }
     );
 
@@ -91,7 +91,7 @@ export default async function handler(
     // Step 2: Check the status of the bulk operation periodically
     let bulkOperationStatus: string;
     do {
-      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 1/2 seconds before checking again
 
       const checkStatusQuery = `
         query {
@@ -112,7 +112,7 @@ export default async function handler(
             "X-Shopify-Access-Token": process.env
               .NEXT_PUBLIC_ADMIN_ACCESS_TOKEN as string,
           },
-          body: JSON.stringify({ query: checkStatusQuery }),
+          body: JSON.stringify({query: checkStatusQuery}),
         }
       );
 
@@ -146,7 +146,7 @@ export default async function handler(
           "X-Shopify-Access-Token": process.env
             .NEXT_PUBLIC_ADMIN_ACCESS_TOKEN as string,
         },
-        body: JSON.stringify({ query: fileQuery }),
+        body: JSON.stringify({query: fileQuery}),
       }
     );
 
@@ -166,7 +166,7 @@ export default async function handler(
 
       if (jsonLine.id) {
         // Start of a new order
-        const order: Record<string, any> = { ...jsonLine, lineItems: [] };
+        const order: Record<string, any> = {...jsonLine, lineItems: []};
         orders.push(order);
       } else if (jsonLine.__parentId) {
         // LineItem associated with the last order
@@ -234,6 +234,6 @@ export default async function handler(
 
     res.status(200).json(salesData);
   } catch (error) {
-    res.status(500).json({ success: false, error: error });
+    res.status(500).json({success: false, error: error});
   }
 }
