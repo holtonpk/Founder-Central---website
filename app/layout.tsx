@@ -1,10 +1,12 @@
 import type {Metadata} from "next";
 import "@/app/(client)/client-style.css";
+import {siteConfig} from "@/config/site";
+import {constructMetadata} from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Short Form books",
-  description: "this is a short form book site",
-};
+export const metadata = constructMetadata({
+  title: siteConfig.name,
+  description: siteConfig.description,
+});
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
