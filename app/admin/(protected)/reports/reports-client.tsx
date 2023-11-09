@@ -40,9 +40,15 @@ const Reports = () => {
           <TabsList>
             <TabsTrigger value="sales">Sales</TabsTrigger>
             <TabsTrigger value="site">Website</TabsTrigger>
-            <TabsTrigger value="email">Email</TabsTrigger>
-            <TabsTrigger value="fiance">Fiances</TabsTrigger>
-            <TabsTrigger value="socials">Socials</TabsTrigger>
+            <TabsTrigger value="email" disabled>
+              Email
+            </TabsTrigger>
+            <TabsTrigger value="fiance" disabled>
+              Fiances
+            </TabsTrigger>
+            <TabsTrigger value="socials" disabled>
+              Socials
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="sales" className="space-y-4">
             <SalesReport date={date} />
