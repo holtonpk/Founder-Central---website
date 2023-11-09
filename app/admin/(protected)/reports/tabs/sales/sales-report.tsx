@@ -36,7 +36,7 @@ const fetchData = async (): Promise<SalesDataFull> => {
     );
 
     if (!salesDataRes.ok) {
-      throw new Error("Failed to fetch sales data");
+      throw new Error(`${salesDataRes}`);
     }
 
     const data = (await salesDataRes.json()) as SalesData[];
