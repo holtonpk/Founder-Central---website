@@ -48,7 +48,7 @@ export function RecentSales({data}: {data: SalesData[]}) {
         {data.map((sale, i) => (
           <div key={i} className="flex items-center">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={`/avatars/0${i + 1}.png`} alt="Avatar" />
+              <AvatarImage src={`/avatars/noimage.png`} alt="Avatar" />
               <AvatarFallback>
                 {sale.customer.firstName[0] + sale.customer.lastName[0]}
               </AvatarFallback>
