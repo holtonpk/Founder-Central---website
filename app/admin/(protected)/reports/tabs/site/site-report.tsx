@@ -13,7 +13,11 @@ import {AnalyticsResponseData} from "@/app/admin/types";
 import {Separator} from "@/app/admin/components/ui/separator";
 import Image from "next/image";
 import {ScrollArea} from "@/app/admin/components/ui/scroll-area";
-
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/admin/components/ui/avatar";
 import {
   OverviewCard,
   PieOverview,
@@ -64,7 +68,7 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
               <div className="text-2xl font-bold">
                 {analyticsData
                   ? !loading
-                    ? analyticsData.siteTrafficData.pageViews
+                    ? formatNumber(analyticsData.siteTrafficData.pageViews)
                     : "--"
                   : "--"}
               </div>
@@ -79,7 +83,7 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
               <div className="text-2xl font-bold">
                 {analyticsData
                   ? !loading
-                    ? analyticsData.siteTrafficData.users
+                    ? formatNumber(analyticsData.siteTrafficData.users)
                     : "--"
                   : "--"}
               </div>
@@ -87,7 +91,11 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
           </Card>
         </div>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-6 ">
-          <Card className="col-span-1 md:col-span-4 relative max-w-full h-fit">
+          <Card
+            className={`col-span-1 md:col-span-4 relative max-w-full ${
+              loading ? "h-full" : "h-fit"
+            }`}
+          >
             <CardHeader>
               <CardTitle>Traffic</CardTitle>
             </CardHeader>
@@ -132,11 +140,29 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
                                   className="justify-between w-[90%] mx-auto grid grid-cols-[80%_20%]"
                                 >
                                   <div className="flex items-center gap-4 max-w-full overflow-hidden text-ellipsis">
+                                    <Avatar className="h-6 w-6">
+                                      <AvatarImage
+                                        src={`https://www.google.com/s2/favicons?domain=${tag.title}&sz=2000`}
+                                        alt="Avatar"
+                                      />
+                                      <AvatarFallback>
+                                        <Icons.globe className="h-4 w-4" />
+                                      </AvatarFallback>
+                                    </Avatar>
+
                                     <h1 className="w-full text-ellipsis overflow-hidden whitespace-nowrap">
-                                      {tag.title.length ? tag.title : "Direct"}
+                                      {tag.title.length
+                                        ? tag.title
+                                            .replace("https://www.", "")
+                                            .replace("http://", "")
+                                            .replace("https://", "")
+                                            .split("/")[0]
+                                        : "Direct"}
                                     </h1>
                                   </div>
-                                  <h1 className="ml-auto">{tag.value}</h1>
+                                  <h1 className="ml-auto">
+                                    {formatNumber(tag.value)}
+                                  </h1>
                                 </div>
                                 <Separator className="my-2" />
                               </>
@@ -157,3 +183,13 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
 };
 
 export default SocialsReport;
+
+function formatNumber(value: any): string {
+  if (value >= 1000000) {
+    return (value / 1000000).toFixed(1) + "m";
+  } else if (value >= 1000) {
+    return (value / 1000).toFixed(1) + "k";
+  } else {
+    return value.toString();
+  }
+}

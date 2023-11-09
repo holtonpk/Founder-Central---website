@@ -1,6 +1,10 @@
 "use client";
 import React, {PureComponent} from "react";
-
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/admin/components/ui/avatar";
 import {
   Area,
   AreaChart,
@@ -343,6 +347,7 @@ const renderActiveShape = (props: any) => {
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
 
+  console.log(payload);
   return (
     <g>
       <text
@@ -351,7 +356,7 @@ const renderActiveShape = (props: any) => {
         dy={8}
         textAnchor="middle"
         fill="hsl(var(--foreground))"
-        className="uppercase"
+        className="uppercase flex flex-col"
       >
         {payload.name}
       </text>
@@ -379,13 +384,16 @@ const renderActiveShape = (props: any) => {
         fill="none"
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
         className="absolute"
         fill="hsl(var(--muted-foreground))"
-      >{`Traffic ${value}`}</text>
+      >
+        {value}
+      </text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
