@@ -36,7 +36,8 @@ const fetchData = async (): Promise<SalesDataFull> => {
     );
 
     if (!salesDataRes.ok) {
-      throw new Error(`${salesDataRes}`);
+      console.error("Error fetching sales data:", salesDataRes);
+      throw new Error(salesDataRes.statusText);
     }
 
     const data = (await salesDataRes.json()) as SalesData[];
@@ -108,7 +109,7 @@ export default function SalesReport({date}: {date: DateRange | undefined}) {
     <>
       {error && (
         <div className="w-full h-[200px] b-r flex justify-center items-center text-red-500 ">
-          {JSON.stringify(error)}
+          {error}
         </div>
       )}
       <div className=" flex-col flex ">
