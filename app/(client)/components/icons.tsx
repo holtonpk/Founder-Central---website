@@ -13,7 +13,7 @@ import {
   CreditCard,
   File,
   Pencil,
-  FileText,
+  FileText,Mail,
   HelpCircle,
   Image,
   Laptop,
@@ -118,6 +118,7 @@ import {
 //   export type XIcon = LucideIcon;
 
 export const Icons = {
+  mail:Mail,
   mails: Mails,
   clapperBoard: Clapperboard,
   openBook: BookOpen,
