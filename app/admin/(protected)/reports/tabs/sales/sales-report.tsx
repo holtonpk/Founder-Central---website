@@ -62,15 +62,6 @@ const fetchData = async (): Promise<SalesDataFull> => {
   }
 };
 
-// Example usage:
-fetchData()
-  .then((result) => {
-    console.log("Sales Data:", result);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
-
 export default function SalesReport({date}: {date: DateRange | undefined}) {
   // const data = await getData();
   const [data, setData] = useState<SalesDataFull | undefined>(undefined);
@@ -86,7 +77,7 @@ export default function SalesReport({date}: {date: DateRange | undefined}) {
         setLoading(false);
       } catch (error: any) {
         console.error("Error:", error);
-        setError(error.message);
+        setError(error);
         setLoading(false); // Set loading to false even if there's an error
       }
     }
