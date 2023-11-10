@@ -27,8 +27,8 @@ const Reports = () => {
   });
 
   return (
-    <div className="flex-col flex">
-      <div className="flex-1 space-y-4 p-8 pt-6">
+    <div className="flex-col h-fit flex ">
+      <div className="flex-1 space-y-4 p-8  pt-6">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">Reports</h2>
           <div className="items-center space-x-2 hidden md:flex">
@@ -36,7 +36,7 @@ const Reports = () => {
             <Button>Download</Button>
           </div>
         </div>
-        <Tabs defaultValue="sales" className="space-y-4">
+        <Tabs defaultValue="sales" className="space-y-4 h-fit">
           <TabsList>
             <TabsTrigger value="sales">Sales</TabsTrigger>
             <TabsTrigger value="site">Website</TabsTrigger>

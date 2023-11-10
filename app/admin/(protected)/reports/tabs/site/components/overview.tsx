@@ -312,11 +312,7 @@ export const PieOverview = ({data}: {data: any}) => {
   ];
 
   return (
-    <ResponsiveContainer
-      width={300}
-      height={300}
-      className="  overflow-visible absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-    >
+    <ResponsiveContainer className="overflow-visible aspect-square  w-full ">
       <Example data={formattedData} />
     </ResponsiveContainer>
   );
@@ -426,7 +422,7 @@ const Example = ({data}: {data: any}) => {
     <PieChart
       width={500}
       height={400}
-      className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 "
+      className="z-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 "
     >
       <Pie
         activeIndex={activeIndex}
@@ -434,8 +430,8 @@ const Example = ({data}: {data: any}) => {
         data={data}
         cx="50%"
         cy="50%"
-        innerRadius={80}
-        outerRadius={140}
+        innerRadius={70}
+        outerRadius={110}
         fill="hsl(var(--primary))"
         dataKey="value"
         onMouseEnter={onPieEnter}
