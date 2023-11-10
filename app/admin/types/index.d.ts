@@ -103,3 +103,22 @@ export type SalesData = {
     };
   }[];
 };
+
+type Post = {
+  id: string;
+  title: string;
+  content?: any; // Assuming you're using Prisma's Json type, adjust as needed
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+  authorId: string;
+  // Assuming there's a User type defined somewhere
+  author: User;
+};
+
+type User = {
+  id: string;
+  // Add other fields from your User model as needed
+};
+
+export {Post, User};

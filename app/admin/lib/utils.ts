@@ -45,7 +45,7 @@ export function formatDateShort(timestamp: number): string {
   const date = new Date(timestamp);
 
   const day = date.getDate();
-  const month = new Intl.DateTimeFormat("en-US", { month: "numeric" }).format(
+  const month = new Intl.DateTimeFormat("en-US", {month: "numeric"}).format(
     date
   );
   const year = date.getFullYear().toString().slice(-2);
@@ -57,9 +57,16 @@ export function formatDateMonthDay(timestamp: string): string {
   const date = new Date(timestamp);
 
   const day = date.getDate();
-  const month = new Intl.DateTimeFormat("en-US", { month: "short" }).format(
-    date
-  );
+  const month = new Intl.DateTimeFormat("en-US", {month: "short"}).format(date);
 
   return `${month}-${day}`;
+}
+
+export function formatDate(input: string | number): string {
+  const date = new Date(input);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }

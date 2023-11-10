@@ -1,3 +1,22 @@
+h1 {
+  @apply text-4xl;
+}
+h2 {
+  @apply text-3xl;
+}
+h3 {
+  @apply text-2xl;
+}
+h4 {
+  @apply text-xl;
+}
+h5 {
+  @apply text-lg;
+}
+h6 {
+  @apply text-base;
+}
+
 .dark .ce-block--selected .ce-block__content,
 .dark .ce-inline-toolbar,
 .dark .codex-editor--narrow .ce-toolbox,
@@ -35,6 +54,23 @@
 
 .dark ::selection {
   background: theme("colors.accent.DEFAULT");
+}
+
+.dark .ce-popover-item:hover {
+  background-color: theme("colors.accent.DEFAULT") !important;
+}
+
+.dark .ce-popover-item__title {
+  color: theme("colors.accent.foreground") !important;
+}
+
+.dark .ce-popover-item__icon {
+  background-color: theme("colors.secondary.DEFAULT") !important;
+  color: theme("colors.accent.foreground") !important;
+}
+
+.bg-theme {
+  background-color: theme("colors.primary.DEFAULT");
 }
 
 .dark .cdx-settings-button:hover,

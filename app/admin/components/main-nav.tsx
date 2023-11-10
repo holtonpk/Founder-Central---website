@@ -47,6 +47,14 @@ export function MainNav({
         Site Data
       </Link>
       <Link
+        href="/admin/blog"
+        className={`text-sm font-medium transition-colors hover:text-primary ${
+          segment === "blog" ? "text-default" : "text-muted-foreground"
+        }`}
+      >
+        Blog
+      </Link>
+      <Link
         href="/admin/settings"
         className={`text-sm font-medium transition-colors hover:text-primary ${
           segment === "settings" ? "text-default" : "text-muted-foreground"

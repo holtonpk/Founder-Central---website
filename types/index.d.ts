@@ -51,3 +51,4 @@ export type MainNavItem = NavItem;
 export type MarketingConfig = {
   mainNav: MainNavItem[];
 };
+declare module "@editorjs/embed";

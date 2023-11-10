@@ -1,6 +1,7 @@
 "use client";
-import React, { useContext, useState, useEffect, createContext } from "react";
-import { app } from "@/config/firebase";
+import React, {useContext, useState, useEffect, createContext} from "react";
+import {app} from "@/config/firebase";
+import * as z from "zod";
 
 import {
   doc,
@@ -13,8 +14,9 @@ import {
   addDoc,
   getDocs,
 } from "firebase/firestore";
-import { UpdateRequest, Note } from "@/app/admin/types";
-import { tr } from "date-fns/locale";
+import {UpdateRequest, Note} from "@/app/admin/types";
+import {tr} from "date-fns/locale";
+import {Post} from "@/app/admin/types";
 
 type ResponseStatus = "success" | "error";
 
@@ -31,6 +33,14 @@ interface StorageContextType {
     id: string,
     status: "pending" | "in progress" | "completed" | "rejected"
   ) => void;
+  CreateBlogPost: () => Promise<{id: string} | "error">;
+  FindBlogPost: (id: string) => Promise<any>;
+  SaveBlogPost: (
+    id: string,
+    post: {title: string; content: any}
+  ) => Promise<ResponseStatus>;
+  GetBlogPosts: () => Promise<Post[]>;
+  DeleteBlogPost: (id: string) => Promise<ResponseStatus>;
 }
 
 const StorageContext = createContext<StorageContextType | null>(null);
@@ -41,11 +51,7 @@ export function useAdminStorage() {
 
 export const db = getFirestore(app);
 
-export function AdminStorageProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function AdminStorageProvider({children}: {children: React.ReactNode}) {
   // Update Requests actions
 
   const CreateUpdateRequest = async (
@@ -114,6 +120,60 @@ export function AdminStorageProvider({
     return response;
   };
 
+  // Blog actions
+  // const CreateBlogPost = async (post: z.infer<typeof postCreateSchema>) => {
+
+  const CreateBlogPost = async () => {
+    try {
+      const response = await addDoc(collection(db, "admin/blog/posts"), {
+        title: "Untitled Post",
+        content: "",
+        published: false,
+        createdAt: new Date().toDateString(),
+        updatedAt: new Date().toDateString(),
+      });
+      return {id: response.id};
+    } catch {
+      return "error";
+    }
+  };
+
+  const FindBlogPost = async (id: string) => {
+    const post = await getDoc(doc(db, "admin/blog/posts", id));
+    return {id: id, ...post.data()};
+  };
+
+  const SaveBlogPost = async (
+    id: string,
+    post: {title: string; content: any}
+  ) => {
+    try {
+      const response = await updateDoc(doc(db, "admin/blog/posts", id), {
+        title: post.title,
+        content: post.content,
+        updatedAt: new Date().toDateString(),
+      });
+      return "success";
+    } catch {
+      return "error";
+    }
+  };
+
+  const GetBlogPosts = async () => {
+    const posts = await getDocs(collection(db, "admin/blog/posts"));
+    const allPosts = posts.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+    return allPosts as Post[];
+  };
+
+  const DeleteBlogPost = async (id: string) => {
+    try {
+      const response = await deleteDoc(doc(db, "admin/blog/posts", id));
+      return "success";
+    } catch {
+      return "error";
+    }
+  };
+
   const value = {
     CreateUpdateRequest,
     FetchUpdateRequests,
@@ -122,6 +182,11 @@ export function AdminStorageProvider({
     FetchNotes,
     DeleteNote,
     changeUpdateRequestStatus,
+    CreateBlogPost,
+    FindBlogPost,
+    SaveBlogPost,
+    GetBlogPosts,
+    DeleteBlogPost,
   };
 
   return (
