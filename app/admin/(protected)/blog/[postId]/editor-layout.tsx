@@ -16,8 +16,6 @@ export default function EditorLayout({postId}: {postId: string}) {
     fetchPost();
   }, [FindBlogPost, postId]);
 
-  if (!post) return <>loading</>;
-
   return (
     <>
       {post ? (
