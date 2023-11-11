@@ -8,6 +8,7 @@ import {ButtonProps, buttonVariants} from "@/app/admin/components/ui/button";
 import {toast} from "@/app/admin/components/ui/use-toast";
 import {Icons} from "@/app/admin/components/icons";
 import {useAdminStorage} from "@/app/admin/context/storage";
+import {useAuth} from "@/app/admin/context/user-auth";
 
 interface PostCreateButtonProps extends ButtonProps {}
 
@@ -19,11 +20,12 @@ export function PostCreateButton({
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const {CreateBlogPost} = useAdminStorage()!;
+  const {currentUser} = useAuth()!;
 
   async function onClick() {
     setIsLoading(true);
-
-    const post = await CreateBlogPost();
+    console.log("CreateBlogPost", currentUser);
+    const post = await CreateBlogPost(currentUser);
 
     setIsLoading(false);
 

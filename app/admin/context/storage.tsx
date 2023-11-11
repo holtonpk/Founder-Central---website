@@ -17,6 +17,7 @@ import {
 import {UpdateRequest, Note} from "@/app/admin/types";
 import {tr} from "date-fns/locale";
 import {Post} from "@/app/admin/types";
+import {UserData} from "@/app/admin/context/user-auth";
 
 type ResponseStatus = "success" | "error";
 
@@ -33,7 +34,9 @@ interface StorageContextType {
     id: string,
     status: "pending" | "in progress" | "completed" | "rejected"
   ) => void;
-  CreateBlogPost: () => Promise<{id: string} | "error">;
+  CreateBlogPost: (
+    currentUser: UserData | undefined
+  ) => Promise<{id: string} | "error">;
   FindBlogPost: (id: string) => Promise<any>;
   SaveBlogPost: (
     id: string,
@@ -123,14 +126,19 @@ export function AdminStorageProvider({children}: {children: React.ReactNode}) {
   // Blog actions
   // const CreateBlogPost = async (post: z.infer<typeof postCreateSchema>) => {
 
-  const CreateBlogPost = async () => {
+  const CreateBlogPost = async (currentUser: UserData | undefined) => {
     try {
       const response = await addDoc(collection(db, "admin/blog/posts"), {
         title: "Untitled Post",
         content: "",
         published: false,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString(),
+        createdAt: new Date().getTime(),
+        updatedAt: new Date().getTime(),
+        author: {
+          id: currentUser?.uid,
+          avatar: currentUser?.avatar,
+          name: currentUser?.displayName,
+        },
       });
       return {id: response.id};
     } catch {
@@ -151,7 +159,7 @@ export function AdminStorageProvider({children}: {children: React.ReactNode}) {
       const response = await updateDoc(doc(db, "admin/blog/posts", id), {
         title: post.title,
         content: post.content,
-        updatedAt: new Date().toDateString(),
+        updatedAt: new Date().getTime(),
       });
       return "success";
     } catch {

@@ -109,8 +109,8 @@ type Post = {
   title: string;
   content?: any; // Assuming you're using Prisma's Json type, adjust as needed
   published: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
   authorId: string;
   // Assuming there's a User type defined somewhere
   author: User;
