@@ -170,7 +170,7 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
                                       </AvatarFallback>
                                     </Avatar>
 
-                                    <h1 className="w-full text-ellipsis overflow-hidden whitespace-nowrap">
+                                    <h3 className="w-full text-ellipsis overflow-hidden whitespace-nowrap">
                                       {tag.title.length
                                         ? tag.title
                                             .replace("https://www.", "")
@@ -178,7 +178,7 @@ const SocialsReport = ({date}: {date: DateRange | undefined}) => {
                                             .replace("https://", "")
                                             .split("/")[0]
                                         : "Direct"}
-                                    </h1>
+                                    </h3>
                                   </div>
                                   <h1 className="ml-auto">
                                     {formatNumber(tag.value)}

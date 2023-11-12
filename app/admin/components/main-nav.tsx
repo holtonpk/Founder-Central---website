@@ -30,22 +30,7 @@ export function MainNav({
       >
         Website
       </Link>
-      {/* <Link
-        href="/admin/analytics"
-        className={`text-sm font-medium transition-colors hover:text-primary ${
-          segment === "analytics" ? "text-default" : "text-muted-foreground"
-        }`}
-      >
-        Analytics
-      </Link> */}
-      <Link
-        href="/admin/site-data"
-        className={`text-sm font-medium transition-colors hover:text-primary ${
-          segment === "site-data" ? "text-default" : "text-muted-foreground"
-        }`}
-      >
-        Site Data
-      </Link>
+
       <Link
         href="/admin/blog"
         className={`text-sm font-medium transition-colors hover:text-primary ${
