@@ -70,7 +70,8 @@ const Hero = () => {
       });
       toast({
         title: "Thanks signing up for our newsletter!",
-        description: "Check your inbox for a confirmation email.",
+        description:
+          "Check your inbox for a confirmation email. (Check your spam folder too!)",
       });
     } catch (err) {
       setIsLoading(false);
