@@ -110,13 +110,13 @@ const About = () => {
               billionaires and connect with other ambitious founders like
               yourself.
             </p>
-            <Button
+            {/* <Button
               // href="/about"
               className="underline text-black w-fit p-0 font-bold hover:text-theme-blue "
               variant={"link"}
             >
               Learn More
-            </Button>
+            </Button> */}
           </div>
         </div>
         <div
