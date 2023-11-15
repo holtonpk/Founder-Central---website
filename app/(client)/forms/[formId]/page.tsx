@@ -17,6 +17,13 @@ import {
 } from "@/app/(client)/components/ui/radio-group";
 import {useToast} from "@/app/(client)/components/ui/use-toast";
 import {useStorage} from "@/context/storage";
+import {constructMetadata} from "@/lib/utils";
+
+export const metadata = constructMetadata({
+  title: "Founder Central newsletter survey",
+  description: "Help us shape the future of Founder Central",
+});
+
 type Answer = {
   id: string;
   question: string;
@@ -24,6 +31,7 @@ type Answer = {
   error: boolean;
   required: boolean;
 };
+
 const FormPage = () => {
   const {toast} = useToast();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
