@@ -32,7 +32,8 @@ const FormPageLayout = () => {
   const {toast} = useToast();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [completed, setComplete] = React.useState<boolean>(false);
-
+  const nameRef = createRef<HTMLInputElement>();
+  const [nameError, setNameError] = React.useState<boolean>(false);
   const [answers, setAnswers] = React.useState<Answer[]>(
     survey.questions.map((question: Question) => {
       return {
@@ -57,6 +58,20 @@ const FormPageLayout = () => {
         answersLocal[i] = {...answer, error: true};
       }
     });
+    console.log("name ref", nameRef.current?.value);
+    if (!nameRef.current?.value || nameRef.current?.value === "") {
+      console.log("name ref errpr", nameRef.current?.value);
+      toast({
+        variant: "destructive",
+        title: "Please fill in the required fields",
+        description: "Double check that you have filled in all the fields.",
+      });
+      setNameError(true);
+      setIsLoading(false);
+      return;
+    } else {
+      setNameError(false);
+    }
     if (answersLocal.some((answer) => answer.error == true)) {
       setAnswers([...answersLocal]);
       toast({
@@ -64,6 +79,7 @@ const FormPageLayout = () => {
         title: "Please fill in the required fields",
         description: "Double check that you have filled in all the fields.",
       });
+      setNameError(true);
       setIsLoading(false);
       return;
     }
@@ -74,7 +90,11 @@ const FormPageLayout = () => {
       return {id: question.id, q: question.question, a: question.value};
     });
 
-    await SubmitFormResponse(survey.id, {results: formResponse});
+    await SubmitFormResponse(
+      survey.id,
+      nameRef.current ? nameRef.current.value : "",
+      {results: formResponse}
+    );
     setComplete(true);
     setIsLoading(false);
   }
@@ -153,6 +173,18 @@ const FormPageLayout = () => {
           className="flex flex-col gap-10 md:w-[60%] pb-10  mt-4"
         >
           <div className="flex flex-col gap-10 rounded-lg bg-white shadow-lg p-6">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="name">Name</Label>
+              {nameError && (
+                <h2 className="text-red-500">{"*please enter your name"}</h2>
+              )}
+              <Input
+                ref={nameRef}
+                placeholder="enter your name"
+                className="bg-theme-blue/10 border-none"
+                autoComplete="name"
+              />
+            </div>
             {survey.questions.map((question, i) => (
               <div key={i} className="flex flex-col gap-4 ">
                 <h1 className="font-bold">{question.question}</h1>

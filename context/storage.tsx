@@ -41,7 +41,7 @@ interface StorageContextType {
       body: string;
     }[]
   >;
-  SubmitFormResponse: (formId: string, data: any) => void;
+  SubmitFormResponse: (formId: string, name: string, data: any) => void;
 }
 
 const StorageContext = createContext<StorageContextType | null>(null);
@@ -108,8 +108,13 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
     return reviews;
   };
 
-  const SubmitFormResponse = async (formId: string, data: any) => {
+  const SubmitFormResponse = async (
+    formId: string,
+    name: string,
+    data: any
+  ) => {
     const d = await addDoc(collection(db, `surveys/${formId}/results`), {
+      name: name,
       date: new Date(),
       data,
     });
