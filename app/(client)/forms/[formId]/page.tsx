@@ -16,8 +16,9 @@ import {
   RadioGroupItem,
 } from "@/app/(client)/components/ui/radio-group";
 import {useToast} from "@/app/(client)/components/ui/use-toast";
-import {useRouter} from "next/navigation";
+import {useStorage} from "@/context/storage";
 type Answer = {
+  id: string;
   question: string;
   value: string | undefined;
   error: boolean;
@@ -31,6 +32,7 @@ const FormPage = () => {
   const [answers, setAnswers] = React.useState<Answer[]>(
     survey.questions.map((question: Question) => {
       return {
+        id: question.id,
         question: question.question,
         value: undefined,
         error: false,
@@ -39,11 +41,12 @@ const FormPage = () => {
     })
   );
 
-  const handleSubmit = (e: React.BaseSyntheticEvent) => {
+  const {SubmitFormResponse} = useStorage()!;
+
+  async function handleSubmit(e: React.BaseSyntheticEvent) {
     e.preventDefault();
     setIsLoading(true);
     let answersLocal = answers;
-    console.log("answersLocal", answersLocal);
     answersLocal.map((answer, i) => {
       if (answer.value == undefined && answer.required == true) {
         // set the error state to true for the object
@@ -60,10 +63,17 @@ const FormPage = () => {
       setIsLoading(false);
       return;
     }
-    // backend here
+
+    // format response as { question.id: {question: question.question, answer: question.value}, { question.id: {question: question.question, answer: question.value} }
+
+    const formResponse = answersLocal.map((question) => {
+      return {id: question.id, q: question.question, a: question.value};
+    });
+
+    await SubmitFormResponse(survey.id, {results: formResponse});
     setComplete(true);
     setIsLoading(false);
-  };
+  }
   // const router = useRouter();
   const reset = () => {
     setComplete(false);
@@ -74,7 +84,15 @@ const FormPage = () => {
     <div className="flex min-h-screen flex-col bg-background ">
       {completed && (
         <div className=" z-[120] fixed ">
-          <div className="fixed max-w-[90%] flex items-center flex-col z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] bg-white rounded-lg h-fit p-8 border border-border animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%]">
+          <div className="fixed z-40 pointer-events-none">
+            <Confetti
+              className="z-40 fixed"
+              width={window.innerWidth}
+              height={window.innerHeight}
+              colors={["#4DA4E0", "#EE217F", "#8E6CB6", "#FFBD59"]}
+            />
+          </div>
+          <div className="fixed max-w-[90%] flex items-center flex-col z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] bg-white rounded-lg h-fit p-8 border border-border animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%]">
             <h1 className="text-theme-blue text-4xl text-center font-bold">
               Thanks for your feedback!
             </h1>
@@ -82,7 +100,7 @@ const FormPage = () => {
               Your collaboration is instrumental in shaping the essence of
               Founder Central.
             </p>
-            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-6 md:ml-auto mt-10">
+            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-6 md:ml-auto mt-6 md:mt-10">
               <Button onClick={reset} variant="blueOutline">
                 Submit another response
               </Button>
@@ -94,52 +112,52 @@ const FormPage = () => {
               </LinkButton>
             </div>
           </div>
-          <div className="h-screen w-screen fixed bg-white/10 blurBack animate-in fade-in-0" />
-
-          <Confetti
-            width={window.innerWidth}
-            height={window.innerHeight}
-            colors={["#4DA4E0", "#EE217F", "#8E6CB6", "#FFBD59"]}
+          <div
+            onClick={reset}
+            className="h-screen w-screen fixed bg-white/10 blurBack animate-in fade-in-0"
           />
         </div>
       )}
       <div className="container flex flex-col items-center p-6">
-        <Image
-          src="/image/logo.png"
-          alt="logo"
-          objectFit="contain"
-          className="shadow-lg rounded-full"
-          width={100}
-          height={100}
-        />
+        <div className="relative h-[80px] w-[80px] md:h-[100px] md:w-[100px]">
+          <Image
+            src="/image/logo.png"
+            alt="logo"
+            objectFit="contain"
+            fill
+            className="shadow-lg rounded-full"
+          />
+        </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-10 md:w-[60%] bg-white shadow-lg p-6 rounded-lg mt-4"
+          className="flex flex-col gap-10 md:w-[60%] pb-10  mt-4"
         >
-          {survey.questions.map((question, i) => (
-            <div key={i} className="flex flex-col gap-2 ">
-              <h1 className="font-bold">{question.question}</h1>
-              {question.type == "multiple_choice" && (
-                <MultiChoiceQuestion
-                  key={i}
-                  question={question}
-                  i={i}
-                  answers={answers}
-                  setAnswers={setAnswers}
-                />
-              )}
-              {question.type == "open_ended" && (
-                <OpenEndedQuestion
-                  key={i}
-                  question={question}
-                  i={i}
-                  answers={answers}
-                  setAnswers={setAnswers}
-                />
-              )}
-            </div>
-          ))}
+          <div className="flex flex-col gap-10 rounded-lg bg-white shadow-lg p-6">
+            {survey.questions.map((question, i) => (
+              <div key={i} className="flex flex-col gap-2 ">
+                <h1 className="font-bold">{question.question}</h1>
+                {question.type == "multiple_choice" && (
+                  <MultiChoiceQuestion
+                    key={i}
+                    question={question}
+                    i={i}
+                    answers={answers}
+                    setAnswers={setAnswers}
+                  />
+                )}
+                {question.type == "open_ended" && (
+                  <OpenEndedQuestion
+                    key={i}
+                    question={question}
+                    i={i}
+                    answers={answers}
+                    setAnswers={setAnswers}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
           <Button type="submit" variant="blue">
             Submit
             {isLoading && (
@@ -247,6 +265,7 @@ type QuestionOption = {
 };
 
 type MultipleChoiceQuestion = {
+  id: string;
   question: string;
   type: "multiple_choice";
   options: QuestionOption[];
@@ -254,6 +273,7 @@ type MultipleChoiceQuestion = {
 };
 
 type OpenEndedQuestion = {
+  id: string;
   question: string;
   type: "open_ended";
   required: boolean;
@@ -270,6 +290,8 @@ const survey: Survey = {
   id: "1",
   questions: [
     {
+      id: "1",
+
       question:
         "Which stage of your entrepreneurship journey are you in right now?",
       type: "multiple_choice",
@@ -292,6 +314,7 @@ const survey: Survey = {
       required: true,
     },
     {
+      id: "2",
       question:
         "After buying the book ‘The 50 Greatest Business Success Stories’ would you be interested in automatically being added to the weekly newsletter list?",
       type: "multiple_choice",
@@ -306,6 +329,7 @@ const survey: Survey = {
       required: true,
     },
     {
+      id: "3",
       question:
         "We're considering two newsletter formats. Which one do you prefer, or do you like both equally?",
       type: "multiple_choice",
@@ -325,12 +349,14 @@ const survey: Survey = {
       required: true,
     },
     {
+      id: "4",
       question:
         "If you were our ONLY newsletter reader, describe the perfect email that you would like to get each week?",
       type: "open_ended",
       required: true,
     },
     {
+      id: "5",
       question:
         "What do you currently spend the most money on to boost your success?",
       type: "multiple_choice",

@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext, useState, useEffect, createContext } from "react";
-import { app } from "@/config/firebase";
+import React, {useContext, useState, useEffect, createContext} from "react";
+import {app} from "@/config/firebase";
 
 import {
   doc,
@@ -41,6 +41,7 @@ interface StorageContextType {
       body: string;
     }[]
   >;
+  SubmitFormResponse: (formId: string, data: any) => void;
 }
 
 const StorageContext = createContext<StorageContextType | null>(null);
@@ -53,7 +54,7 @@ export function useStorage() {
 
 export const db = getFirestore(app);
 
-export function StorageProvider({ children }: { children: React.ReactNode }) {
+export function StorageProvider({children}: {children: React.ReactNode}) {
   const CreateNewMessage = async (
     name: string,
     email: string,
@@ -66,7 +67,6 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
       subject: subject,
       message: message,
     });
-    console.log("Document written with ID: ", d);
   };
 
   const SaveReview = async (
@@ -108,7 +108,17 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     return reviews;
   };
 
-  const value = { CreateNewMessage, SaveReview, FetchReviews };
+  const SubmitFormResponse = async (formId: string, data: any) => {
+    const d = await addDoc(collection(db, `surveys/${formId}/results`), data);
+    console.log("Document written with ID: ", d);
+  };
+
+  const value = {
+    CreateNewMessage,
+    SaveReview,
+    FetchReviews,
+    SubmitFormResponse,
+  };
 
   return (
     <StorageContext.Provider value={value}>{children}</StorageContext.Provider>
