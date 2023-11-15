@@ -118,7 +118,7 @@ const FormPage = () => {
           className="flex flex-col gap-10 md:w-[60%] bg-white shadow-lg p-6 rounded-lg mt-4"
         >
           {survey.questions.map((question, i) => (
-            <div className="flex flex-col gap-2 ">
+            <div key={i} className="flex flex-col gap-2 ">
               <h1 className="font-bold">{question.question}</h1>
               {question.type == "multiple_choice" && (
                 <MultiChoiceQuestion
