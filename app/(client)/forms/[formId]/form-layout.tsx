@@ -61,8 +61,8 @@ const FormPageLayout = () => {
       setAnswers([...answersLocal]);
       toast({
         variant: "destructive",
-        title: "please fill in the required fields",
-        description: "please fill in the required fields",
+        title: "Please fill in the required fields",
+        description: "Double check that you have filled in all the fields.",
       });
       setIsLoading(false);
       return;
