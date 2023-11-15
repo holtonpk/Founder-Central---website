@@ -109,7 +109,10 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
   };
 
   const SubmitFormResponse = async (formId: string, data: any) => {
-    const d = await addDoc(collection(db, `surveys/${formId}/results`), data);
+    const d = await addDoc(collection(db, `surveys/${formId}/results`), {
+      date: new Date(),
+      data,
+    });
     console.log("Document written with ID: ", d);
   };
 

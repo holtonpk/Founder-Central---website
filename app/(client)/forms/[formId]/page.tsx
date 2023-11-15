@@ -100,7 +100,7 @@ const FormPage = () => {
               Your collaboration is instrumental in shaping the essence of
               Founder Central.
             </p>
-            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-6 md:ml-auto mt-6 md:mt-10">
+            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-6 md:ml-auto mt-6 md:mt-10 w-full md:w-fit">
               <Button
                 onClick={reset}
                 variant="blueOutline"
@@ -186,9 +186,19 @@ const MultiChoiceQuestion = ({
   answers: Answer[];
   setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
 }) => {
+  const followUpRef = createRef<HTMLInputElement>();
+
   const selectItem = (value: string) => {
     let answersLocal = answers;
-    answersLocal[i] = {...answersLocal[i], value: value, error: false};
+    if (followUpRef.current) {
+      answersLocal[i] = {
+        ...answersLocal[i],
+        value: value + ": " + followUpRef.current.value,
+        error: false,
+      };
+    } else {
+      answersLocal[i] = {...answersLocal[i], value: value, error: false};
+    }
     setAnswers([...answersLocal]);
   };
 
@@ -214,6 +224,16 @@ const MultiChoiceQuestion = ({
             )}
             {option.type == "follow_up_question" && (
               <Input
+                ref={followUpRef}
+                onChange={(e) => {
+                  let answersLocal = answers;
+                  answersLocal[i] = {
+                    ...answersLocal[i],
+                    value: option.option + ": " + e.target.value,
+                    error: e.target.value == "",
+                  };
+                  setAnswers([...answersLocal]);
+                }}
                 type="text"
                 name="question"
                 placeholder={option.follow_up_question_placeholder}
