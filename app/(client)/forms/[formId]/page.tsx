@@ -101,12 +101,17 @@ const FormPage = () => {
               Founder Central.
             </p>
             <div className="flex items-center flex-col md:flex-row gap-4 md:gap-6 md:ml-auto mt-6 md:mt-10">
-              <Button onClick={reset} variant="blueOutline">
+              <Button
+                onClick={reset}
+                variant="blueOutline"
+                className="w-full md:w-fit"
+              >
                 Submit another response
               </Button>
               <LinkButton
                 href={"https://www.foundercentral.co/"}
                 variant="blue"
+                className="w-full md:w-fit"
               >
                 Founders Central Home
               </LinkButton>
