@@ -181,8 +181,8 @@ const FormPageLayout = () => {
               <Input
                 ref={nameRef}
                 placeholder="enter your name"
-                className="bg-theme-blue/10 border-none"
                 autoComplete="name"
+                className="focus:border-theme-blue"
               />
             </div>
             {survey.questions.map((question, i) => (
@@ -280,6 +280,7 @@ const MultiChoiceQuestion = ({
                   };
                   setAnswers([...answersLocal]);
                 }}
+                className="focus:border-theme-blue"
                 type="text"
                 name="question"
                 placeholder={option.follow_up_question_placeholder}
