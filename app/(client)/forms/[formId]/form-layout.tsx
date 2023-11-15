@@ -128,25 +128,26 @@ const FormPageLayout = () => {
         </div>
       )}
       <div className="container flex flex-col items-center p-6">
-        <motion.div
-          initial={{scale: 0}}
-          animate={{rotate: 360, scale: 1}}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-          }}
-          className="relative h-[80px] w-[80px] md:h-[100px] md:w-[100px]"
-        >
-          <Image
-            src="/image/logo.png"
-            alt="logo"
-            objectFit="contain"
-            fill
-            className="shadow-lg rounded-full"
-          />
-        </motion.div>
-
+        <div className="h-[80px] w-[80px] md:h-[100px] md:w-[100px]">
+          <motion.div
+            initial={{scale: 0}}
+            animate={{rotate: 360, scale: 1}}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
+            className="relative h-[80px] w-[80px] md:h-[100px] md:w-[100px]"
+          >
+            <Image
+              src="/image/logo.png"
+              alt="logo"
+              objectFit="contain"
+              fill
+              className="shadow-lg rounded-full"
+            />
+          </motion.div>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-10 md:w-[60%] pb-10  mt-4"
