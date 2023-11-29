@@ -6,13 +6,17 @@ export const marketingConfig: MarketingConfig = {
       title: "Home",
       href: "/#",
     },
-    // {
-    //   title: "About Us",
-    //   href: "/about",
-    // },
+    {
+      title: "About Us",
+      href: "/about",
+    },
     {
       title: "Shop",
       href: "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories",
+    },
+    {
+      title: "Work With Us",
+      href: "/work-with-us",
     },
     {
       title: "Contact",

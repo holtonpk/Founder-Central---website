@@ -145,7 +145,7 @@ export default function Product({productData}: {productData: any}) {
           <AccordionContent id="product-delivery-details-content">
             <div className="grid grid-cols-2  sm:w-1/2 sm:mx-auto gap-4 bg-theme-blue/20 p-4 rounded-md">
               <h1 className="font-bold">Publisher:</h1>
-              <h2 className="">Short Form Books</h2>
+              <h2 className="">Founder Central</h2>
               <h1 className="font-bold">Publication date:</h1> 10/9/2023
               <h1 className="font-bold">Pages:</h1> 165
               <h1 className="font-bold">Book dimensions:</h1> (6 x 9 in / 152 x

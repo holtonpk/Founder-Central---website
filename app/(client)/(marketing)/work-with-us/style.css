@@ -1,0 +1,143 @@
+/* Define the keyframes for the width growth animation */
+@keyframes growWidth {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes shrinkWidth {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes textColor {
+  0% {
+    color: black;
+  }
+  100% {
+    color: white;
+  }
+}
+
+@keyframes textColorRev {
+  0% {
+    color: white;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.shadow-clg {
+  --tw-shadow: 0 0px 15px 0px rgb(0 0 0 / 0.1), 0 4px 6px 0px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 0px 15px 0px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.tran-300 {
+  transition: 500ms;
+}
+
+/* Apply the animation to the grow-width class */
+.grow-width {
+  animation: growWidth 350ms ease-in-out forwards;
+}
+
+.shrink-width {
+  animation: shrinkWidth 350ms ease-in-out forwards;
+}
+
+/* Apply the animation to #color-block when DetailTab is hovered */
+.DetailTab:hover #color-block {
+  animation: growWidth 350ms ease-in-out forwards;
+}
+
+.DetailTab:not(:hover) #color-block {
+  animation: shrinkWidth 350ms ease-in-out forwards;
+}
+
+/* Apply text animations */
+.DetailTab:hover #detail-text {
+  animation: textColor 350ms ease-in-out forwards;
+}
+
+.DetailTab:not(:hover) #detail-text {
+  animation: textColorRev 350ms ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.slide-up {
+  animation: slideUp 350ms ease-in-out forwards;
+}
+
+@keyframes growHeight {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 50px; /* Change this value to your desired final height */
+  }
+}
+
+/* Apply the animation to the grow-height class */
+.grow-height {
+  animation: growHeight 0.3s ease-in-out forwards;
+}
+@keyframes shrinkHeight {
+  0% {
+    height: 50px; /* Change this value to your desired final height */
+  }
+  100% {
+    height: 0;
+  }
+}
+
+/* Apply the animation to the grow-height class */
+.shrink-height {
+  animation: shrinkHeight 0.3s ease-in-out forwards;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Apply the animation to the grow-height class */
+.disappear {
+  animation: disappear 0.3s ease-in-out forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply the animation to the grow-height class */
+.appear {
+  animation: appear 0.3s ease-in-out forwards;
+}

@@ -47,7 +47,7 @@ const Page = () => {
         viewBox="0 0 243 236"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="mx-auto h-50 w-40"
+        className="mx-auto h-50 w-40 hidden md:block"
       >
         <g opacity="0.8" clip-path="url(#clip0_50_969)">
           <path
@@ -66,18 +66,16 @@ const Page = () => {
           </clipPath>
         </defs>
       </svg>
-      <div className="md:container ">
-        <div className="flex flex-col gap-4 md:flex-row items-center justify-between container md:pl-20">
-          <h1 className="text-2xl md:text-4xl text-black font-head font-bold md:w-1/2 md:leading-[80px]">
+      <div className="md:container mt-20 md:mt-0">
+        <div className="flex flex-col gap-4 md:flex-row items-center md:items-start justify-between container md:pl-20">
+          <h1 className="text-3xl leading-[50px] text-center md:text-left md:text-5xl text-black font-head font-bold md:w-1/2 md:leading-[80px]">
             <span className="text-theme-blue relative ">
               Millions
               <svg
-                width="207"
-                height="83"
                 viewBox="0 0 207 83"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-16 hidden md:block"
+                className="absolute  h-full w-full  -bottom-2 translate-y-1/2"
               >
                 <g clip-path="url(#clip0_50_979)">
                   <path
@@ -99,16 +97,16 @@ const Page = () => {
             </span>{" "}
             watching our daily short video series on social media
           </h1>
-          <div className="w-[90%] md:w-1/3 aspect-square relative">
+          <div className="w-[90%] md:w-[40%] aspect-square relative">
             <Image src={socialImage} alt="logo" fill objectFit="contain" />
           </div>
         </div>
-        <div className="w-full h-40  md:mt-20 hidden md:block relative  rotate-90  ">
+        <div className="w-full h-40  md:mt-20 hidden md:block relative  rotate-90 ">
           <svg
             viewBox="0 0 346 330"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-40 w-32 md:h-60 md:w-50 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+            className="h-40 w-32 md:h-60 md:w-60  absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
           >
             <g opacity="0.8" clip-path="url(#clip0_50_971)">
               <path
@@ -133,16 +131,14 @@ const Page = () => {
             <Image src={bookImage} alt="logo" fill objectFit="contain" />
           </div>
 
-          <h1 className="text-2xl md:text-4xl text-black font-head font-bold md:w-1/3  md:leading-[80px] order-1 md:order-2">
+          <h1 className="text-3xl leading-[50px] md:text-5xl text-center md:text-left text-black font-head font-bold md:w-1/3  md:leading-[80px] order-1 md:order-2">
             <span className="text-theme-blue relative ">
               Hundreds
               <svg
-                width="256"
-                height="70"
                 viewBox="0 0 256 70"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-12 hidden md:block "
+                className="absolute -bottom-2 translate-y-1/2  h-full w-full "
               >
                 <g clip-path="url(#clip0_50_981)">
                   <path
@@ -165,12 +161,12 @@ const Page = () => {
             reading the ‘50 Greatest Business Stories’ every day.
           </h1>
         </div>
-        <div className="w-full h-40 relative  hidden md:block">
+        <div className="w-full h-40  relative  hidden md:block">
           <svg
             viewBox="0 0 413 305"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-32 w-20 md:h-40 md:w-30 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+            className="h-32 w-20 md:h-40 md:w-60 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
           >
             <g opacity="0.8" clip-path="url(#clip0_50_973)">
               <path
@@ -191,14 +187,14 @@ const Page = () => {
           </svg>
         </div>
         <div className="flex items-center  flex-col md:flex-row justify-between container md:pl-20 mt-10">
-          <h1 className="text-2xl md:text-4xl text-black font-head font-bold w-[90%] md:w-1/2 md:leading-[80px]">
+          <h1 className="text-3xl text-center md:text-left md:text-5xl leading-[50px] text-black font-head font-bold w-[90%] md:w-1/2 md:leading-[80px]">
             <span className="text-theme-blue relative ">
               Thousands
               <svg
                 viewBox="0 0 309 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-2 hidden md:block"
+                className="absolute -bottom-1 translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full "
               >
                 <g clip-path="url(#clip0_50_983)">
                   <path
@@ -215,7 +211,7 @@ const Page = () => {
             </span>{" "}
             subscribed to weekly newsletter where founders connect with founders
           </h1>
-          <div className="w-[90%] md:w-1/3 aspect-square relative">
+          <div className="w-[90%] md:w-[40%] aspect-square relative">
             <Image src={emailImage} alt="logo" fill objectFit="contain" />
           </div>
         </div>

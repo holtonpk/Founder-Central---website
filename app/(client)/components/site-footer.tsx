@@ -41,6 +41,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
       title: "Contact Us",
       link: "/contact",
     },
+    {title: "Work With Us", link: "/work-with-us"},
   ];
 
   const servicesLinks = [
@@ -50,6 +51,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
     },
     // {title: "Agency", link: "/agency"},
     {title: "Newsletter", link: "/#newsletter"},
+    {title: "Agency", link: "/work-with-us"},
   ];
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -161,7 +163,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           id="footer-logo"
         >
           <div className="flex flex-row items-center md:items-start md:flex-col gap-4">
-            <Icons.logo
+            <Icons.fullLogo
               id="footer-logo-icon"
               className="text-white h-28 w-[250px] "
               color="rgb(255 255 255) "

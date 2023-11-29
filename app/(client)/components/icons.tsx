@@ -13,7 +13,8 @@ import {
   CreditCard,
   File,
   Pencil,
-  FileText,Mail,
+  FileText,
+  Mail,
   HelpCircle,
   Image,
   Laptop,
@@ -113,12 +114,16 @@ import {
   BadgeCheck,
   Clapperboard,
   Mails,
+  Video,
+  MonitorIcon,
 } from "lucide-react";
 
 //   export type XIcon = LucideIcon;
 
 export const Icons = {
-  mail:Mail,
+  monitor: MonitorIcon,
+  video: Video,
+  mail: Mail,
   mails: Mails,
   clapperBoard: Clapperboard,
   openBook: BookOpen,
@@ -154,7 +159,7 @@ export const Icons = {
   comment: MessageSquare,
   share: Share,
   helpCircle: HelpCircleIcon,
-  monitor: Monitor,
+
   checkCircle: CheckCircle2,
   xCircle: XCircleIcon,
   accounts: Users2,
@@ -251,6 +256,19 @@ export const Icons = {
     </svg>
   ),
   logo: ({...props}: LucideProps) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 339 600"
+    >
+      <path
+        fill={props.color}
+        d="M140.008 123.539c-80.042 80.295-124.931 126.07-127.84 130.622C4.961 265.794.915 278.312.156 292.348c-.759 16.059 1.138 25.416 8.219 40.084 5.437 11.254 6.828 13.025 28.957 35.406l23.14 23.519L185.15 266.806c84.847-84.848 126.07-126.828 128.978-131.507 5.69-9.357 10.369-23.899 11.507-35.532 1.391-16.565-4.426-37.935-14.163-51.338-3.54-4.932-46.027-48.43-47.291-48.43-.38 0-56.27 55.637-124.173 123.54zM180.472 315.742l-96.987 97.112 92.814 93.572 92.813 93.572 25.796-25.922c24.151-24.152 26.174-26.681 30.98-36.67 3.793-7.713 5.816-14.289 7.334-23.14 1.896-11.381 1.896-13.151 0-24.658-1.518-8.977-3.415-15.173-7.208-23.013-4.805-9.863-7.334-12.772-28.198-33.888l-22.761-23.014 23.393-23.772c23.646-23.773 28.704-29.969 33.762-41.096 6.575-14.036 8.346-35.279 4.552-51.465-4.173-17.703-9.104-25.037-34.52-50.959-12.898-13.024-23.646-23.646-24.026-23.646-.379 0-44.383 43.625-97.744 96.987z"
+      ></path>
+    </svg>
+  ),
+  fullLogo: ({...props}: LucideProps) => (
     <svg
       {...props}
       viewBox="0 0 1112 500"

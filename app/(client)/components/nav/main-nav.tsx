@@ -39,15 +39,15 @@ export default function Nav() {
     // >
     <>
       <div
-        className="header mx-auto w-full z-20 absolute hidden lg:block "
+        className="header mx-auto w-full z-20 absolute hidden lg:block bg-white"
         id="header"
       >
         <div
-          className="flex h-20 pt-4 items-center justify-between w-full container"
+          className="flex h-20 py-4 items-center justify-between w-full container"
           id="header-container"
         >
           <div
-            className="flex w-fit items-center sticky md:gap-10"
+            className="flex w-fit items-center sticky md:gap-10 h-fit "
             id="header-logo-container"
           >
             <Link href="/#" className="pb-1" id="header-logo-link">
@@ -67,10 +67,14 @@ export default function Nav() {
                   id="header-logo-icon"
                 >
                   <Icons.logo
-                    className="text-white h-16 w-40 relative z-1"
+                    className="text-white h-12 w-12  relative z-1"
                     color="#4DA4E0"
                   />
                 </motion.div>
+                <span className="flex flex-col text-theme-blue items-center">
+                  <p className="font-head font-bold leading-[20px]">Founder</p>
+                  <p className="font-head font-thin leading-[20px]">Central</p>
+                </span>
               </span>
             </Link>
             <div
@@ -78,7 +82,7 @@ export default function Nav() {
               id="header-nav"
             >
               {marketingConfig.mainNav?.length ? (
-                <nav className="hidden gap-6 md:flex" id="header-nav-menu">
+                <nav className="hidden gap-10 md:flex" id="header-nav-menu">
                   {marketingConfig.mainNav?.map((item, index) => (
                     <Link
                       key={index}
