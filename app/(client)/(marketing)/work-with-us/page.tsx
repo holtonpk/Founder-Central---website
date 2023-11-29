@@ -17,14 +17,11 @@ const WorkPage = () => {
 
         <div className="mt-4  flex flex-col lg:grid lg:grid-cols-2 items-center  justify-between gap-10  container  w-[90%]">
           <div className="flex flex-col  gap-2 order-2 lg:order-1">
-            <h2 className="text-theme-blue text-2xl uppercase font-body ">
+            <h2 className="text-theme-blue text-4xl font-head capitalize font-bold ">
               Why Founder Central
             </h2>
-            <h2 className="text-theme-blue text-4xl font-head capitalize font-bold ">
-              How Founder Central empowers your brand
-            </h2>
 
-            <h2 className="text-black font-bold text-xl uppercase text-left lg:mt-10 font-head">
+            <h2 className="text-black font-bold text-xl uppercase text-left lg:mt-8 font-head">
               Expertise
             </h2>
             <p className="text-left font-body">
@@ -57,15 +54,15 @@ const WorkPage = () => {
           <div className="relative w-full ">
             <TeamIcon />
           </div>
-          <div className="flex flex-col items-end gap-2">
-            <h2 className="text-theme-blue text-2xl uppercase text-right font-body">
+          <div className="flex flex-col items-start lg:items-end gap-2">
+            <h2 className="text-theme-blue text-2xl uppercase text-left lg:text-right font-body">
               Our Team
             </h2>
-            <h2 className="text-theme-blue text-4xl font-head capitalize font-bold text-right ">
+            <h2 className="text-theme-blue text-4xl font-head capitalize font-bold text-left lg:text-right ">
               Meet the team behind the magic
             </h2>
 
-            <p className="text-right font-body">
+            <p className="text-left lg:text-right font-body">
               At Founder Central, we embody the perfect blend of youthfulness,
               hunger, and seasoned expertise. Our dynamic team is driven by a
               passion for innovation and a relentless pursuit of excellence. We

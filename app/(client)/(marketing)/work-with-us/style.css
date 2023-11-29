@@ -89,10 +89,10 @@
 
 @keyframes growHeight {
   0% {
-    height: 0;
+    max-height: 0;
   }
   100% {
-    height: 50px; /* Change this value to your desired final height */
+    max-height: 200px; /* Change this value to your desired final height */
   }
 }
 
@@ -102,10 +102,10 @@
 }
 @keyframes shrinkHeight {
   0% {
-    height: 50px; /* Change this value to your desired final height */
+    max-height: 200px; /* Change this value to your desired final height */
   }
   100% {
-    height: 0;
+    max-height: 0px;
   }
 }
 

@@ -114,17 +114,17 @@ const AgencyForm = () => {
     <div id="agency-get-started" className="py-20 ">
       {/* <div id="agency-get-started" className="py-20 "> */}
       <div className="w-full bg-white p-10 ">
-        <div className="md:container w-full md:w-[60%] ">
+        <div className="md:container w-full lg:w-[60%] ">
           <h2 className="text-theme-blue text-4xl font-head capitalize font-bold text-center ">
             We are ready when you are
           </h2>
-          <p className="text-theme-blue text-center text-lg font-body font-normal">
-            Let&apos;s get started with your project
+          <p className="text-theme-blue text-center text-lg font-body font-normal hidden lg:block">
+            Fill out the form below and we will get back to ASAP.
           </p>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col  gap-4 justify-center items-center mt-10"
+              className="flex flex-col  gap-4 justify-center items-center mt-6"
             >
               <div className="grid grid-cols-2 w-full gap-4">
                 <FormField

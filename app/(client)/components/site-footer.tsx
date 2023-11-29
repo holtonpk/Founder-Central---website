@@ -165,7 +165,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           <div className="flex flex-row items-center md:items-start md:flex-col gap-4">
             <Icons.fullLogo
               id="footer-logo-icon"
-              className="text-white h-28 w-[250px] "
+              className="text-white h-20 w-[150px] md:h-28 md:w-[250px] "
               color="rgb(255 255 255) "
             />
 
@@ -332,7 +332,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
           className="footer__copyright flex md:flex-row flex-col items-center gap-3 pb-2   md:gap-2 px-0 md:border-t  w-full justify-between"
           id="footer-copyright"
         >
-          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-fit">
+          <div className="flex flex-row items-center gap-2 md:gap-4 w-fit">
             <LinkButton
               href="/legal/terms"
               variant={"link"}

@@ -19,7 +19,7 @@ const ServiceTabs = () => {
   const tabs: Tab[] = [
     {id: 4, icon: "video", label: "Video Editing"},
     {id: 3, icon: "pencil", label: "Writing"},
-    {id: 2, icon: "globe", label: "Deep Dive"},
+    {id: 2, icon: "globe", label: "Sponsored Deep Dives"},
     {id: 1, icon: "monitor", label: "Web Development"},
   ];
 
