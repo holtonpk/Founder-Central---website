@@ -10,10 +10,6 @@ const ServiceTabs = () => {
   const [activeTab, setActiveTab] = React.useState(4);
   const [topZIndex, setTopZIndex] = React.useState(4);
 
-  useEffect(() => {
-    setTopZIndex(topZIndex + 1);
-  }, [activeTab, topZIndex]);
-
   type Tab = {
     id: number;
     icon: keyof typeof Icons;
@@ -33,38 +29,29 @@ const ServiceTabs = () => {
         {tabs.map((tab, i) => {
           const Icon = Icons[tab.icon];
 
-          const bgClass =
+          const themeColor =
             i == 0
-              ? "bg-theme-blue"
+              ? "theme-blue"
               : i == 1
-              ? "bg-theme-pink"
+              ? "theme-pink"
               : i == 2
-              ? "bg-theme-purple"
-              : "bg-theme-yellow";
+              ? "theme-purple"
+              : "theme-yellow";
 
-          const hoverbgClass =
-            i == 0
-              ? "hover:bg-theme-blue"
-              : i == 1
-              ? "hover:bg-theme-pink"
-              : i == 2
-              ? "hover:bg-theme-purple"
-              : "hover:bg-theme-yellow";
+          const bgClass = `bg-${themeColor}`;
 
-          const textColorClass =
-            i == 0
-              ? "text-theme-blue"
-              : i == 1
-              ? "text-theme-pink"
-              : i == 2
-              ? "text-theme-purple"
-              : "text-theme-yellow";
+          const hoverBgClass = `hover:bg-${themeColor}`;
+
+          const textColorClass = `text-${themeColor}`;
 
           return (
             <div
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setTopZIndex(topZIndex + 1);
+              }}
               key={i}
-              className={`w-full tran-300 ease-in-out transition-[2s] aspect-[1/1.2] md:aspect-[1/.70] cursor-pointer justify-center p-6  shadow-clg  flex flex-col gap-2 items-center   group  text-center ${hoverbgClass}
+              className={`w-full tran-300 ease-in-out transition-[2s] aspect-[1/1.2] md:aspect-[1/.70] cursor-pointer justify-center p-6  shadow-clg  flex flex-col gap-2 items-center   group  text-center ${hoverBgClass}
             ${
               activeTab === tab.id
                 ? `${"text-white " + bgClass}`
