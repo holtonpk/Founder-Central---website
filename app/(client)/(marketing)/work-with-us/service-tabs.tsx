@@ -32,26 +32,58 @@ const ServiceTabs = () => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 w-full overflow-visible pb-10 ">
         {tabs.map((tab, i) => {
           const Icon = Icons[tab.icon];
+
+          const bgClass =
+            i == 0
+              ? "bg-theme-blue"
+              : i == 1
+              ? "bg-theme-pink"
+              : i == 2
+              ? "bg-theme-purple"
+              : "bg-theme-yellow";
+
+          const hoverbgClass =
+            i == 0
+              ? "hover:bg-theme-blue"
+              : i == 1
+              ? "hover:bg-theme-pink"
+              : i == 2
+              ? "hover:bg-theme-purple"
+              : "hover:bg-theme-yellow";
+
+          const textColorClass =
+            i == 0
+              ? "text-theme-blue"
+              : i == 1
+              ? "text-theme-pink"
+              : i == 2
+              ? "text-theme-purple"
+              : "text-theme-yellow";
+
           return (
             <div
               onClick={() => setActiveTab(tab.id)}
               key={i}
-              className={`w-full tran-300 ease-in-out hover:bg-theme-blue transition-[2s] aspect-[1/1.2] md:aspect-[1/.70] cursor-pointer justify-center p-6  shadow-clg  flex flex-col gap-2 items-center   group  text-center
+              className={`w-full tran-300 ease-in-out transition-[2s] aspect-[1/1.2] md:aspect-[1/.70] cursor-pointer justify-center p-6  shadow-clg  flex flex-col gap-2 items-center   group  text-center ${hoverbgClass}
             ${
               activeTab === tab.id
-                ? "bg-theme-blue text-white"
+                ? `${"text-white " + bgClass}`
                 : "bg-[#EEF5FB] text-black  "
             } }`}
             >
               <Icon
-                className={`w-12 h-12 text-theme-blue  group-hover:text-white ${
-                  activeTab === tab.id ? "text-white" : "text-theme-blue"
-                }`}
+                className={`w-12 h-12   group-hover:text-white ${
+                  activeTab === tab.id ? "text-white" : textColorClass
+                }
+
+            }`}
               />
               <p
                 className={`text-xl font-bold  group-hover:text-white text-black ${
                   activeTab === tab.id ? "text-white" : "text-black "
                 }
+                ${textColorClass} 
+              
             }`}
               >
                 {tab.label}
@@ -67,7 +99,7 @@ const ServiceTabs = () => {
               <WritingImage />
             </div>
             <div className="flex flex-col w-full gap-4">
-              <h2 className="text-theme-blue text-xl uppercase font-body">
+              <h2 className="text-theme-pink text-xl uppercase font-body">
                 Personal Scribe
               </h2>
               <h1 className="text-5xl font-bold font-head">Ghostwriting</h1>
@@ -81,15 +113,15 @@ const ServiceTabs = () => {
                 content bank for you to use on your socials.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <DetailTab text="Ghost Writing" />
-                <DetailTab text="Video Scripts" />
-                <DetailTab text="Newsletters" />
-                <DetailTab text="Website Copy" />
+                <DetailTab text="Ghost Writing" color="bg-theme-pink" />
+                <DetailTab text="Video Scripts" color="bg-theme-pink" />
+                <DetailTab text="Newsletters" color="bg-theme-pink" />
+                <DetailTab text="Website Copy" color="bg-theme-pink" />
               </div>
               <LinkButton
                 href={"/work-with-us#agency-get-started"}
                 variant="blue"
-                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-blue font-head"
+                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase  bg-theme-pink hover:text-theme-pink hover:border-theme-pink font-head"
               >
                 Get Started
               </LinkButton>
@@ -99,7 +131,7 @@ const ServiceTabs = () => {
         <DetailSection activeTab={activeTab} index={2} topZIndex={topZIndex}>
           <>
             <div className="flex flex-col  lg:w-full  gap-4  order-2 lg:order-1">
-              <h2 className="text-theme-blue text-xl uppercase font-body">
+              <h2 className="text-theme-purple text-xl uppercase font-body">
                 Tell Your story with
               </h2>
               <h1 className="text-5xl font-bold font-head">
@@ -116,13 +148,16 @@ const ServiceTabs = () => {
                 traffic to your website or social media.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <DetailTab text="We tell your story" />
-                <DetailTab text="focus on your startup" />
+                <DetailTab text="We tell your story" color="bg-theme-purple" />
+                <DetailTab
+                  text="focus on your startup"
+                  color="bg-theme-purple"
+                />
               </div>
               <LinkButton
                 href={"/work-with-us#agency-get-started"}
                 variant="blue"
-                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-blue font-head"
+                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-purple hover:text-theme-purple hover:border-theme-purple font-head"
               >
                 Get Started
               </LinkButton>
@@ -139,7 +174,7 @@ const ServiceTabs = () => {
               <WebsiteImage />
             </div>
             <div className="flex flex-col w-full gap-4">
-              <h2 className="text-theme-blue text-xl uppercase font-body">
+              <h2 className="text-theme-yellow text-xl uppercase font-body">
                 Your Dream
               </h2>
               <h1 className="text-5xl font-bold font-head">Website</h1>
@@ -154,15 +189,15 @@ const ServiceTabs = () => {
                 resonate with your audience.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <DetailTab text="e-commerce" />
-                <DetailTab text="High Performance" />
-                <DetailTab text="User-friendly" />
-                <DetailTab text="SEO optimized" />
+                <DetailTab text="e-commerce" color="bg-theme-yellow" />
+                <DetailTab text="High Performance" color="bg-theme-yellow" />
+                <DetailTab text="User-friendly" color="bg-theme-yellow" />
+                <DetailTab text="SEO optimized" color="bg-theme-yellow" />
               </div>
               <LinkButton
                 href={"/work-with-us#agency-get-started"}
                 variant="blue"
-                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-blue font-head"
+                className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-yellow hover:text-theme-yellow hover:border-theme-yellow font-head"
               >
                 Get Started
               </LinkButton>
@@ -186,10 +221,10 @@ const ServiceTabs = () => {
                 and our content is tailored to engage and resonate with them.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <DetailTab text="Engaging" />
-                <DetailTab text="Trending" />
-                <DetailTab text="Professional Quality" />
-                <DetailTab text="Quick turnaround" />
+                <DetailTab text="Engaging" color="bg-theme-blue" />
+                <DetailTab text="Trending" color="bg-theme-blue" />
+                <DetailTab text="Professional Quality" color="bg-theme-blue" />
+                <DetailTab text="Quick turnaround" color="bg-theme-blue" />
               </div>
               <LinkButton
                 href={"/work-with-us#agency-get-started"}
@@ -239,7 +274,7 @@ const DetailSection = ({
   );
 };
 
-const DetailTab = ({text}: {text: string}) => {
+const DetailTab = ({text, color}: {text: string; color: string}) => {
   return (
     <div className="rounded-md bg-theme-blue/10 text-lg items-center justify-center p-3 text-center capitalize relative DetailTab">
       <span
@@ -250,7 +285,7 @@ const DetailTab = ({text}: {text: string}) => {
       </span>
       <div
         id="color-block"
-        className="h-full w-0 rounded-md bg-theme-blue absolute top-0 left-0  z-10 pointer-events-none"
+        className={`h-full w-0 rounded-md absolute top-0 left-0  z-10 pointer-events-none ${color}`}
       />
     </div>
   );
