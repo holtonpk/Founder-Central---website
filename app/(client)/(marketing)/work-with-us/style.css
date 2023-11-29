@@ -89,28 +89,35 @@
 
 @keyframes growHeight {
   0% {
-    max-height: 0;
+    grid-template-rows: 0fr;
+    opacity: 0;
   }
   100% {
-    max-height: 200px; /* Change this value to your desired final height */
+    grid-template-rows: 1fr;
+    opacity: 1;
   }
 }
 
 /* Apply the animation to the grow-height class */
 .grow-height {
   animation: growHeight 0.3s ease-in-out forwards;
+  grid-template-rows: 0fr;
 }
+
 @keyframes shrinkHeight {
   0% {
-    max-height: 200px; /* Change this value to your desired final height */
+    grid-template-rows: 1fr;
+    opacity: 1;
   }
   100% {
-    max-height: 0px;
+    grid-template-rows: 0fr;
+    opacity: 0;
   }
 }
 
 /* Apply the animation to the grow-height class */
 .shrink-height {
+  grid-template-rows: 1fr;
   animation: shrinkHeight 0.3s ease-in-out forwards;
 }
 
