@@ -158,7 +158,7 @@ const Page = () => {
                 </defs>
               </svg>
             </span>{" "}
-            reading the ‘50 Greatest Business Stories’ every day.
+            reading the ‘50 Greatest Business Success Stories’ every day.
           </h1>
         </div>
         <div className="w-full h-40  relative  hidden md:block">
