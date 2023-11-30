@@ -9,6 +9,11 @@ import cover4 from "@/public/image/videos/cover4.png";
 import cover5 from "@/public/image/videos/cover5.png";
 import cover6 from "@/public/image/videos/cover6.png";
 import cover7 from "@/public/image/videos/cover7.png";
+import {getCheckoutLink} from "@/app/(client)/components/cart-preview";
+import {useRouter} from "next/navigation";
+import {useCart} from "@/context/cart";
+import {logEvent} from "firebase/analytics";
+import {analytics} from "@/config/firebase";
 
 import {siteConfig} from "@/config/site";
 import {LinkButton} from "@/app/(client)/components/ui/link";
@@ -25,7 +30,13 @@ type VideoObject = {
   position: {x: number | string; y: number | string; z: number; scale: number};
 };
 
-const VideoDisplay = () => {
+const VideoDisplay = ({
+  selectedVariant,
+  product,
+}: {
+  selectedVariant: any;
+  product: any;
+}) => {
   const Videos: VideoObject[] = [
     {
       coverImage: cover1,
@@ -113,13 +124,39 @@ const VideoDisplay = () => {
     },
   ];
 
+  const router = useRouter();
+
+  const {addToCart, checkoutObject, cartTotalPrice} = useCart();
+
+  const [redirectToCheckout, setRedirectToCheckout] = React.useState(false);
+  React.useEffect(() => {
+    const redirectToLink = async () => {
+      if (redirectToCheckout) {
+        const checkoutLink = await getCheckoutLink(checkoutObject);
+        router.push(checkoutLink);
+      }
+    };
+
+    redirectToLink();
+  }, [redirectToCheckout, checkoutObject, router]);
+
+  const buyNow = async () => {
+    logEvent(analytics, "begin_checkout", {
+      currency: "USD",
+      value: cartTotalPrice,
+      items: [checkoutObject],
+    });
+    await addToCart({...product, selectedVariant: selectedVariant}, 1);
+    setRedirectToCheckout(true);
+  };
+
   return (
-    <div className="flex flex-col relative z-10 w-full mx-auto py-10 pt-20   bg-theme-blue/10">
-      <h1 className="  font-head font-bold text-center   text-4xl lg:text-5xl  text-theme-blue">
-        Our Short Video Series
+    <div className="flex flex-col relative z-10 w-full mx-auto py-10    bg-theme-blue/10">
+      <h1 className="  font-head font-bold text-center px-4  text-4xl lg:text-5xl  text-theme-blue">
+        Preview Stories Featured In The Book
       </h1>
 
-      <div className="flex w-screen lg:flex-row flex-col items-center gap-10 md:gap-10 relative lg:gap-20 md:container">
+      <div className="flex  lg:flex-row flex-col items-center md:w-screen  relative  md:container">
         <div className="h-fit w-fit relative">
           <div
             id="video-container"
@@ -135,28 +172,30 @@ const VideoDisplay = () => {
             Click thumbnails to preview series
           </div>
         </div>
-        <div className="flex  flex-col items-center text-theme-pink text-base xsm:text-xl sm:text-2xl md:text-4xl w-[80%] md:w-fit font-bold font-body relative h-fit">
-          <div className="text-theme-yellow bg-white shadow-lg justify-center lg:justify-start w-full p-4 rounded-lg flex items-center gap-2 md:gap-4 whitespace-nowrap">
-            <Icons.showPassword className="h-8 w-8" />
-            Over 10 Million Views
-          </div>
-          <div className="text-theme-purple bg-white w-full shadow-lg justify-center lg:justify-start p-4  rounded-lg flex items-center gap-2 md:gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
-            <Icons.clapperBoard className="h-8 w-8" />
-            Hundreds of Success Stories
-          </div>
-          <div className="text-theme-pink bg-white capitalize shadow-lg justify-center lg:justify-start w-full p-4 rounded-lg flex items-center gap-2 md:gap-4 mt-4 md:mt-6 lg::mt-20 whitespace-nowrap">
-            <Icons.likes className="h-8 w-8" />
-            Loved by thousands
-          </div>
-          <LinkButton
-            href={siteConfig.links.instagram}
-            target="_blank"
-            className="bg-theme-blue rounded-md border-theme-blue hover:bg-theme-blue/80 hover:text-white mt-4 md:mt-6 lg::mt-20"
+        <div className="flex flex-col gap-4 mt-6 md:w-[450px] items-center relative  lg:ml-20 md:h-[450px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute top-0 left-0 w-full h-full hidden md:block"
+            fill="none"
+            viewBox="0 0 336 335"
           >
-            View Full Series
-          </LinkButton>
-
-          <div className="flex flex-col items-center gap-6 w-fit"></div>
+            <path
+              fill="#fff"
+              d="M168 0l23.152 44.277 37.537-32.899 5.641 49.676 46.851-17.077-12.631 48.365 49.837 1.051-29.197 40.523 46.093 19.037-41.82 27.207 36.124 34.452-48.796 10.218 21.276 45.214-49.181-8.152 3.555 49.87-42.925-25.421-14.646 47.79L168 294.875l-30.87 39.256-14.646-47.79-42.925 25.421 3.555-49.87-49.18 8.152 21.275-45.214-48.796-10.218 36.124-34.452-41.82-27.207 46.093-19.037-29.197-40.523 49.837-1.051-12.63-48.365 46.85 17.077 5.641-49.676 37.537 32.899L168 0z"
+            ></path>
+          </svg>
+          <div className="flex flex-col md:p-20 relative z-20 items-center justify-center h-full gap-4">
+            <p className="text-2xl text-theme-blue font-bold font-body text-center">
+              Get all 50 stories for only $4.99!
+            </p>
+            <Button
+              onClick={buyNow}
+              variant="blue"
+              className="uppercase w-[90%]  rounded-lg"
+            >
+              Buy Now
+            </Button>
+          </div>
         </div>
       </div>
     </div>

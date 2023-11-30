@@ -116,11 +116,13 @@ import {
   Mails,
   Video,
   MonitorIcon,
+  Truck,
 } from "lucide-react";
 
 //   export type XIcon = LucideIcon;
 
 export const Icons = {
+  truck: Truck,
   monitor: MonitorIcon,
   video: Video,
   mail: Mail,
