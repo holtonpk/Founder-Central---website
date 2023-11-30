@@ -116,7 +116,7 @@ export default function Product({productData}: {productData: any}) {
           onValueChange={setAccordionValue}
           className="w-[90%] mx-auto"
         >
-          <AccordionItem id="product-overview">
+          <AccordionItem value="details" id="product-overview">
             <AccordionTrigger
               id="product-overview-trigger"
               className="underline-0"
