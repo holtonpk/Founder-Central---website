@@ -39,7 +39,7 @@ export default function Nav() {
     // >
     <>
       <div
-        className="header mx-auto w-full z-20 absolute hidden lg:block bg-white"
+        className="header mx-auto  w-full z-20 absolute hidden lg:block bg-white h-fit"
         id="header"
       >
         <div
