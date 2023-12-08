@@ -25,7 +25,6 @@ import {useFieldArray, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import SubscribePopup from "@/app/(client)/components/subscribe-popup";
 import {useRouter} from "next/navigation";
-
 import * as z from "zod";
 
 const Hero = () => {

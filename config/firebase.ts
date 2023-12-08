@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAuth} from "firebase/auth";
+import {getAnalytics} from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -20,26 +20,14 @@ if (firebaseConfig?.projectId) {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-  if (app.name && typeof window !== "undefined") {
-    analytics = getAnalytics(app);
-  }
-
-  // Access Firebase services using shorthand notation
+  // if (
+  //   app.name &&
+  //   typeof window !== "undefined" &&
+  //   firebaseConfig?.projectId &&
+  //   document.cookie.includes("myCookieConsentCookie=true")
+  // ) {
+  //   analytics = getAnalytics(app);
+  // }
 }
 
-export { analytics };
-
-// Export a function to get analytics conditionally
-// export function getAnalyticsIfNotLocalhost() {
-//   const router = useRouter(); // Get the router instance
-
-//   // Check if the current route starts with "/admin"
-//   if (!router.pathname.startsWith("/admin")) {
-//     var host = window.location.hostname;
-//     // if (host !== "localhost") {
-//     return getAnalytics(app);
-//     // }
-//   }
-
-//   return null; // Disable analytics for /admin route or localhost
-// }
+// export {analytics};

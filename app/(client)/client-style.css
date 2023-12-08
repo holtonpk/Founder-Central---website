@@ -414,3 +414,35 @@ button:focus {
 .top-shadow {
   box-shadow: 0 -10px 15px 3px rgb(0 0 0 / 0.1), 0 -4px 6px 4px rgb(0 0 0 / 0.1);
 }
+
+@keyframes cookie-enter-bottom {
+  0% {
+    transform: translateY(150%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes cookie-enter-right {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.cookie-consent {
+  transform: translateY(150%);
+  animation: cookie-enter-bottom 500ms ease-in-out forwards;
+  animation-delay: 2s;
+}
+
+@media (min-width: 768px) {
+  .cookie-consent {
+    transform: translateX(150%);
+    animation: cookie-enter-right 500ms ease-in-out forwards;
+    animation-delay: 2s;
+  }
+}
