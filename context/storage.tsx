@@ -125,7 +125,7 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
     console.log("Document written with ID: ", d);
   };
   const [consentGiven, setConsentGiven] = useState<boolean>(
-    document.cookie.includes("myCookieConsentCookie=true") ||
+    (document && document.cookie.includes("myCookieConsentCookie=true")) ||
       document.cookie.includes("myCookieConsentCookie=false")
   );
 
@@ -133,6 +133,7 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
+      document &&
       document.cookie.includes("myCookieConsentCookie=true")
     ) {
       setAnalytics(getAnalytics(app));
