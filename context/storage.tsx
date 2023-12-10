@@ -125,8 +125,10 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
     console.log("Document written with ID: ", d);
   };
   const [consentGiven, setConsentGiven] = useState<boolean>(
-    (document && document.cookie.includes("myCookieConsentCookie=true")) ||
-      document.cookie.includes("myCookieConsentCookie=false")
+    typeof window !== "undefined"
+      ? document.cookie.includes("myCookieConsentCookie=true") ||
+          document.cookie.includes("myCookieConsentCookie=false")
+      : false
   );
 
   const [analytics, setAnalytics] = useState<any>(null);
