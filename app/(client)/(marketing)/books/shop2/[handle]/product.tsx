@@ -17,7 +17,6 @@ import {cn} from "@/lib/utils";
 import {Label} from "@/app/(client)/components/ui/label";
 import {Textarea} from "@/app/(client)/components/ui/textarea";
 import {logEvent} from "firebase/analytics";
-import {analytics} from "@/config/firebase";
 import {
   Tabs,
   TabsContent,
@@ -137,23 +136,28 @@ const SaleBox = ({
     redirectToLink();
   }, [redirectToCheckout, checkoutObject, router]);
 
-  const addItemToCart = () => {
-    logEvent(analytics, "add_to_cart", {
-      currency: "USD",
-      value: selectedVariant.priceV2.amount,
-      items: [selectedVariant],
-    });
+  const {analytics} = useStorage()!;
 
+  const addItemToCart = () => {
+    if (analytics) {
+      logEvent(analytics, "add_to_cart", {
+        currency: "USD",
+        value: selectedVariant.priceV2.amount,
+        items: [selectedVariant],
+      });
+    }
     addToCart({...product, selectedVariant: selectedVariant}, quantityLocal);
     setShowCartPreview(true);
   };
 
   const buyNow = async () => {
-    logEvent(analytics, "begin_checkout", {
-      currency: "USD",
-      value: cartTotalPrice,
-      items: [checkoutObject],
-    });
+    if (analytics) {
+      logEvent(analytics, "begin_checkout", {
+        currency: "USD",
+        value: cartTotalPrice,
+        items: [checkoutObject],
+      });
+    }
     await addToCart(
       {...product, selectedVariant: selectedVariant},
       quantityLocal

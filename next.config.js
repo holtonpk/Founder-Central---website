@@ -7,13 +7,11 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-    // domains: [
-    //   "localhost",
-    //   "cdn.shopify.com",
-    //   "flagsapi.com",
+  },
 
-    //   "www.shortformbooks.com",
-    // ],
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    return config;
   },
 };
 

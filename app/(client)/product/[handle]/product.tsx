@@ -16,7 +16,7 @@ import {cn} from "@/lib/utils";
 import {Label} from "@/app/(client)/components/ui/label";
 import {Textarea} from "@/app/(client)/components/ui/textarea";
 import {logEvent} from "firebase/analytics";
-import {analytics} from "@/config/firebase";
+
 import VideoDisplay from "./videoDisplay";
 import {
   Accordion,
@@ -30,6 +30,7 @@ import {set} from "date-fns";
 import Link from "next/link";
 import {Icons} from "@/app/(client)/components/icons";
 import {motion} from "framer-motion";
+import QuickLook from "./quick-look";
 // import previewVideo from "@/public/video/Video1.mp4";
 
 export default function Product({productData}: {productData: any}) {
@@ -71,10 +72,9 @@ export default function Product({productData}: {productData: any}) {
           <div className="hidden md:block ">
             <ProductImages product={product} />
           </div>
-          <Button className="w-[90%] bg-background border-none rounded-lg text-theme-blue mx-auto mt-4">
-            <Icons.showPassword className="h-5 w-5 mr-2" />
-            Quick Look In The Book
-          </Button>
+          <div className="md:hidden flex">
+            <QuickLook />
+          </div>
 
           <div
             id="product-saleBox-container"
@@ -82,13 +82,13 @@ export default function Product({productData}: {productData: any}) {
           >
             <h1
               id="product-title-header"
-              className="text-black text-3xl md:text-4xl lg:text-6xl font-head font-bold "
+              className="text-black text-3xl md:text-4xl  font-head font-bold "
             >
               {product.title}
             </h1>
             <span
               id="product-collection-header"
-              className="text-base md:text-xl lg:text2xl  uppercase font-body text-theme-blue "
+              className="text-base md:text-xl   uppercase font-body text-theme-blue "
             >
               {product.collection}
             </span>
@@ -116,7 +116,7 @@ export default function Product({productData}: {productData: any}) {
           onValueChange={setAccordionValue}
           className="w-[90%] mx-auto"
         >
-          <AccordionItem value="details" id="product-overview">
+          <AccordionItem value="overview" id="product-overview">
             <AccordionTrigger
               id="product-overview-trigger"
               className="underline-0"
@@ -124,10 +124,6 @@ export default function Product({productData}: {productData: any}) {
               Book Overview
             </AccordionTrigger>
             <AccordionContent id="product-overview-content">
-              <div
-                id="product-overview-content-body"
-                dangerouslySetInnerHTML={{__html: product.description}}
-              />
               <h1 className="my-3 font-bold">
                 The book includes stories of the following entrepreneurs:
               </h1>
@@ -249,203 +245,150 @@ const Reviews = ({
 
   const orderedReviews = reviews.sort((a, b) => b.date - a.date);
 
+  const [displayedReview, setDisplayedReview] = React.useState<number>(0);
+
+  const increaseDisplayedReview = () => {
+    if (displayedReview === 5) {
+      setDisplayedReview(0);
+    } else {
+      setDisplayedReview(displayedReview + 1);
+    }
+  };
+  const decreaseDisplayedReview = () => {
+    if (displayedReview === 0) {
+      setDisplayedReview(orderedReviews.length - 1);
+    } else {
+      setDisplayedReview(displayedReview - 1);
+    }
+  };
+
   return (
     <div
       id="product-reviews-container"
-      className="w-full flex flex-col gap-4 mt-10 items-center"
+      className="w-full flex flex-col gap-4 mt-10 items-center md:container"
     >
       <h1 className="  font-head font-bold text-center px-4  text-4xl lg:text-5xl  text-theme-blue">
-        We&apos;ve helped hundreds of entrepreneurs start their businesses
-        journeys.
+        What people are saying
       </h1>
-      {/* <div
-        id="product-reviews-header"
-        className="w-full bg-theme-blue/10 rounded-md flex flex-col gap-2 justify-center items-center p-8"
-      >
-        <div
-          id="product-reviews-header-rating"
-          className="flex items-center gap-1   w-fit "
-        >
-          <Stars rating={productRating} />
-        </div>
-        <p id="product-reviews-header-rating-quantity" className="text-xl">
-          Based on {reviews.length} reviews
-        </p>
-        <Button
-          id="product-reviews-header-create-review"
-          variant={"blueOutline"}
-          onClick={() => setWriteReview(!writeReview)}
-        >
-          Write a review
-        </Button>
-      </div> */}
-      {writeReview && (
-        <div
-          id="product-reviews-create"
-          className="flex flex-col mt-6 gap-4 px-2"
-        >
-          <h1 id="product-reviews-create-title" className="text-2xl font-bold">
-            Write a review
-          </h1>
+
+      <div className="grid-cols-3 hidden md:grid">
+        {orderedReviews.slice(0, 6).map((review, i) => (
           <div
-            id="product-reviews-create-name-container"
-            className="flex flex-col gap-2"
+            id={`product-reviews-review-${review.id}`}
+            key={review.id}
+            className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg w-[90%] bg-background mt-6 bg-white"
           >
-            <Label id="product-reviews-create-name-label" className="font-bold">
-              Name
-            </Label>
-            <Input
-              id="product-reviews-create-name-input"
-              ref={nameInputRef}
-              placeholder="Enter your name"
-              autoComplete="name"
-            />
-          </div>
-          <div
-            id="product-reviews-create-email-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              className="font-bold"
-              id="product-reviews-create-email-label"
-            >
-              Email
-            </Label>
-            <Input
-              id="product-reviews-create-email-input"
-              ref={emailInputRef}
-              placeholder="Enter your email"
-              autoComplete="email"
-            />
-          </div>
-          <div
-            id="product-reviews-create-rating-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              id="product-reviews-create-rating-label"
-              className="font-bold"
-            >
-              Rating
-            </Label>
+            <div className="w-full aspect-[1/.9]  rounded-lg overflow-hidden  relative bg-background">
+              <Image
+                alt="Review Image"
+                src={reviewImages[i]}
+                layout="fill"
+                objectFit="contain"
+                className="rounded-lg overflow-hidden "
+              />
+            </div>
             <div
-              id="product-reviews-create-rating-stars"
-              className="flex gap-2"
+              id={`product-reviews-review-${review.id}-rating`}
+              className="flex items-center gap-1   w-fit "
             >
-              {[...Array(5)].map((_, index: number) => (
-                <Button
-                  id={`product-reviews-create-rating-stars-button-${index}`}
-                  key={index}
-                  onClick={() => setRatingValue(index + 1)}
-                  variant={ratingValue >= index + 1 ? "blue" : "blueOutline"}
-                  className="aspect-square p-1 hover:bg-theme-blue hover:text-white"
-                >
-                  <Icons.star className="h-4 w-4" />
-                </Button>
-              ))}
+              <Stars rating={review.rating} />({review.rating})
+            </div>
+
+            <h1
+              id={`product-reviews-review-${review.id}-title`}
+              className="text-xl font-bold bg-theme-blue/10 px-2 text-center"
+            >
+              {review.title}
+            </h1>
+            <p
+              id={`product-reviews-review-${review.id}-body`}
+              className="text-muted-foreground text-center"
+            >
+              {review.body}
+            </p>
+            <p
+              id={`product-reviews-review-${review.id}-authorDate`}
+              className="text-base font-bold"
+            >
+              {review.name}
+            </p>
+            <div className="flex flex-row gap-2 font-bold text-theme-blue">
+              <Icons.badgeCheck className="h-6 w-6 text-theme-blue" />
+              Verified Buyer
             </div>
           </div>
-          <div
-            id="product-reviews-create-title-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              id="product-reviews-create-title-label"
-              className="font-bold"
-            >
-              Review Title
-            </Label>
-            <Input
-              id="product-reviews-create-title-input"
-              ref={titleInputRef}
-              placeholder="Give your review a title"
-            />
-          </div>
-          <div
-            id="product-reviews-create-body-container"
-            className="flex flex-col gap-2"
-          >
-            <Label id="product-reviews-create-body-label" className="font-bold">
-              Body of Review
-            </Label>
-            <Textarea
-              id="product-reviews-create-body-textArea"
-              ref={bodyInputRef}
-              placeholder="Enter your email"
-              className="bg-none ring-none"
-            />
-          </div>
-          <Button
-            id="product-reviews-create-submit"
-            onClick={saveReview}
-            variant={"blue"}
-          >
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.send className="h-4 w-4 mr-2" />
-            )}
-            Submit Review
-          </Button>
-        </div>
-      )}
-      {orderedReviews.slice(0, 1).map((review) => (
+        ))}
+      </div>
+      <div className="block md:hidden w-[90%] ">
         <div
-          id={`product-reviews-review-${review.id}`}
-          key={review.id}
-          className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg w-[90%] bg-background mt-6"
+          id={`product-reviews-review-${orderedReviews[displayedReview].id}`}
+          key={orderedReviews[displayedReview].id}
+          className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg w-full mx-auto bg-background mt-6 "
         >
-          <div className="h-[300px] w-[400px]  rounded-lg overflow-hidden  relative">
+          <div className=" w-full aspect-[1.5/1]  rounded-lg overflow-hidden  relative bg-theme-blue/5">
             <Image
               alt="Review Image"
-              src={"/image/review-Image-1.jpeg"}
+              src={reviewImages[displayedReview]}
               layout="fill"
               objectFit="contain"
               className="rounded-lg overflow-hidden "
             />
           </div>
           <div
-            id={`product-reviews-review-${review.id}-rating`}
+            id={`product-reviews-review-${orderedReviews[displayedReview].id}-rating`}
             className="flex items-center gap-1   w-fit "
           >
-            <Stars rating={review.rating} />
+            <Stars rating={orderedReviews[displayedReview].rating} />(
+            {orderedReviews[displayedReview].rating})
           </div>
-          <span className="text-black ">Excellent {review.rating}</span>
+
           <h1
-            id={`product-reviews-review-${review.id}-title`}
-            className="text-xl font-bold bg-theme-blue/10 px-2"
+            id={`product-reviews-review-${orderedReviews[displayedReview].id}-title`}
+            className="text-xl font-bold bg-theme-blue/10 px-2 text-center"
           >
-            {review.title}
+            {orderedReviews[displayedReview].title}
           </h1>
           <p
-            id={`product-reviews-review-${review.id}-body`}
-            className="text-muted-foreground"
+            id={`product-reviews-review-${orderedReviews[displayedReview].id}-body`}
+            className="text-muted-foreground text-center"
           >
-            {review.body}
+            {orderedReviews[displayedReview].body}
           </p>
           <p
-            id={`product-reviews-review-${review.id}-authorDate`}
+            id={`product-reviews-review-${orderedReviews[displayedReview].id}-authorDate`}
             className="text-base font-bold"
           >
-            {review.name}
+            {orderedReviews[displayedReview].name}
           </p>
           <div className="flex flex-row gap-2 font-bold text-theme-blue">
             <Icons.badgeCheck className="h-6 w-6 text-theme-blue" />
             Verified Buyer
           </div>
         </div>
-      ))}
-      <div className="w-[90%] flex flex-row justify-between items-center">
-        <Button variant="blue" className="rounded-full aspect-square p-1">
+      </div>
+      <div className="w-[90%] flex flex-row justify-between items-center md:hidden ">
+        <Button
+          onClick={decreaseDisplayedReview}
+          variant="blue"
+          className="rounded-full aspect-square p-1"
+        >
           <Icons.chevronLeft className="h-6 w-6" />
         </Button>
         <div className="flex gap-1 ">
-          <span className="h-3 w-3 bg-theme-blue rounded-full" />
-          <span className="h-3 w-3 bg-theme-blue/40 rounded-full" />
-          <span className="h-3 w-3 bg-theme-blue/40 rounded-full" />
-          <span className="h-3 w-3 bg-theme-blue/40 rounded-full" />
+          {orderedReviews.slice(0, 6).map((review, i) => (
+            <span
+              key={i}
+              className={`h-3 w-3 rounded-full
+            ${displayedReview === i ? "bg-theme-blue" : "bg-theme-blue/40"}
+            `}
+            />
+          ))}
         </div>
-        <Button variant="blue" className="rounded-full aspect-square p-1">
+        <Button
+          onClick={increaseDisplayedReview}
+          variant="blue"
+          className="rounded-full aspect-square p-1"
+        >
           <Icons.chevronRight className="h-6 w-6" />
         </Button>
       </div>
@@ -491,7 +434,7 @@ const Header = () => {
       </Link>
       <button
         onClick={toggleCart}
-        className="rounded-full relative  z-[60] flex items-center justify-center p-2 aspect-square text-theme-blue "
+        className="rounded-full relative  z-[20] flex items-center justify-center p-2 aspect-square text-theme-blue "
         id="mobile-header-cart-button"
       >
         {cartTotalQuantity > 0 && (
@@ -514,49 +457,54 @@ const ProductImages = ({product}: {product: any}) => {
   );
 
   return (
-    <div id="product-image-container" className="flex w-full   pt-10 ">
-      <div
-        className="flex flex-col gap-4"
-        id="product-image-selector-container"
-      >
-        {product.images.map((image: any, i: any) => (
-          <div
-            onClick={() => setSelectedImage(image.node.src)}
-            id={`product-image-${i}`}
-            key={i}
-            className={`snap-center cursor-pointer  relative h-[50px] w-[30px]  lg:h-[75px] lg:w-[57px]  pt-10 rounded-md border-4 
+    <div className="flex flex-col">
+      <div id="product-image-container" className="flex w-full   pt-10 ">
+        <div
+          className="flex flex-col gap-4"
+          id="product-image-selector-container"
+        >
+          {product.images.map((image: any, i: any) => (
+            <div
+              onClick={() => setSelectedImage(image.node.src)}
+              id={`product-image-${i}`}
+              key={i}
+              className={`snap-center cursor-pointer  relative h-[50px] w-[30px]  lg:h-[75px] lg:w-[57px]  pt-10 rounded-md border-4 
             ${
               selectedImage === image.node.src
                 ? "border-theme-blue"
                 : "hover:border-theme-blue/60"
             }
             `}
-          >
-            <Image
-              id="product-image"
-              loading="eager"
-              src={image.node.src}
-              alt="logo"
-              fill
-              objectFit="contain"
-              className="p-0 pointer-events-none"
-            />
-          </div>
-        ))}
+            >
+              <Image
+                id="product-image"
+                loading="eager"
+                src={image.node.src}
+                alt="logo"
+                fill
+                objectFit="contain"
+                className="p-0 pointer-events-none"
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          id={`product-image-main`}
+          className="w-[300px] h-[400px]  lg:w-[400px] lg:h-[500px] z-20 relative mx-auto bg-background rounded-b-[20px] "
+        >
+          <Image
+            id="product-image"
+            loading="eager"
+            src={selectedImage}
+            alt="logo"
+            fill
+            objectFit="contain"
+            className="p-0"
+          />
+        </div>
       </div>
-      <div
-        id={`product-image-main`}
-        className="w-[300px] h-[400px]  lg:w-[400px] lg:h-[500px] z-20 relative mx-auto bg-background rounded-b-[20px] "
-      >
-        <Image
-          id="product-image"
-          loading="eager"
-          src={selectedImage}
-          alt="logo"
-          fill
-          objectFit="contain"
-          className="p-0"
-        />
+      <div className="hidden md:block">
+        <QuickLook />
       </div>
     </div>
   );
@@ -702,12 +650,16 @@ const SaleBox = ({
     redirectToLink();
   }, [redirectToCheckout, checkoutObject, router]);
 
+  const {analytics} = useStorage()!;
+
   const buyNow = async () => {
-    logEvent(analytics, "begin_checkout", {
-      currency: "USD",
-      value: cartTotalPrice,
-      items: [checkoutObject],
-    });
+    if (analytics) {
+      logEvent(analytics, "begin_checkout", {
+        currency: "USD",
+        value: cartTotalPrice,
+        items: [checkoutObject],
+      });
+    }
     await addToCart({...product, selectedVariant: selectedVariant}, 1);
     setRedirectToCheckout(true);
   };
@@ -719,7 +671,7 @@ const SaleBox = ({
           <>
             <span
               id="product-saleBox-price1"
-              className="text-theme-blue font-bold text-2xl md:text-5xl  text-center md:text-left"
+              className="text-theme-blue font-bold text-2xl   text-center md:text-left"
             >
               ${selectedVariant.priceV2.amount}
             </span>
@@ -995,255 +947,23 @@ const SaleBox = ({
         </div>
       </div>
       <p id="product-saleBox-description" className="text-muted-foreground">
-        Craving a little motivation? Open this book to dive into a world of
-        riveting tales and lessons from history&apos;s most influential
-        entrepreneurs. <br /> <br /> &quot;Snapshots of Success&quot; is not
-        just a book; it&apos;s a thrilling masterclass in innovation and grit.
-        Each page is a treasure trove of insights from 50 of the most impactful
-        business journeys, distilled into riveting, short-form narratives.{" "}
-        <br /> <br /> This unique compilation is perfect for anyone who craves
-        inspiration and insight but struggles to find the time to sift through
-        lengthy biographies and business texts. Each tale is meticulously
-        crafted to be devoured in just 15-20 minutes - a perfect fit for your
-        coffee break or when you need a shot of motivation.
+        Whether you are just starting out, feeling stuck or simply looking for
+        some motivation, this book will give you the boost you need to finally
+        make your business dreams a reality.
+        <br />
+        <br />
+        Read the stories of people who, just like you, started out with an idea,
+        took a leap of faith and transformed their vision into ventures that
+        left a mark on the world. Through these pages, you will get a look
+        behind the curtain and see the moments of doubt, scrappy growth hacks
+        used in the early days and the shrewd business moves that turned simple
+        ideas into billion dollar empires.
+        <br />
+        <br />
+        Don&apos;t waste your life building someone else&apos;s dream. It&apos;s
+        time to make yours a reality. Every success story began with a single,
+        decisive moment. Yours is now. Take the plunge!
       </p>
-    </div>
-  );
-};
-
-const ProductReviews = ({
-  productRating,
-  productId,
-  reviews,
-}: {
-  productRating: number;
-  productId: string;
-  reviews: {
-    id: string;
-    name: string;
-    email: string;
-    productId: string;
-    rating: number;
-    date: number;
-    title: string;
-    body: string;
-  }[];
-}) => {
-  const {SaveReview} = useStorage()!;
-
-  // create a review
-
-  const [writeReview, setWriteReview] = React.useState<boolean>(false);
-  const [ratingValue, setRatingValue] = React.useState<number>(5);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  const nameInputRef = React.useRef<HTMLInputElement>(null);
-  const emailInputRef = React.useRef<HTMLInputElement>(null);
-  const titleInputRef = React.useRef<HTMLInputElement>(null);
-  const bodyInputRef = React.useRef<HTMLTextAreaElement>(null);
-
-  const saveReview = async () => {
-    setIsLoading(true);
-    if (
-      !nameInputRef.current!.value ||
-      !emailInputRef.current!.value ||
-      !titleInputRef.current!.value ||
-      !bodyInputRef.current!.value
-    ) {
-      toast({
-        title: "You left one or more fields blank",
-        description: "Please fill out all fields to leave a review",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    await SaveReview(
-      nameInputRef.current!.value,
-      productId,
-      emailInputRef.current!.value,
-      ratingValue,
-      Date.now(),
-      titleInputRef.current!.value,
-      bodyInputRef.current!.value
-    );
-
-    toast({
-      title: "Thanks for your review!",
-      description: "Your review will be posted shortly.",
-    });
-    setIsLoading(false);
-    setWriteReview(false);
-  };
-
-  const orderedReviews = reviews.sort((a, b) => b.date - a.date);
-
-  return (
-    <div id="product-reviews-container" className="w-full flex flex-col gap-4">
-      <div
-        id="product-reviews-header"
-        className="w-full bg-theme-blue/10 rounded-md flex flex-col gap-2 justify-center items-center p-8"
-      >
-        <div
-          id="product-reviews-header-rating"
-          className="flex items-center gap-1   w-fit "
-        >
-          <Stars rating={productRating} />
-        </div>
-        <p id="product-reviews-header-rating-quantity" className="text-xl">
-          Based on {reviews.length} reviews
-        </p>
-        <Button
-          id="product-reviews-header-create-review"
-          variant={"blueOutline"}
-          onClick={() => setWriteReview(!writeReview)}
-        >
-          Write a review
-        </Button>
-      </div>
-      {writeReview && (
-        <div
-          id="product-reviews-create"
-          className="flex flex-col mt-6 gap-4 px-2"
-        >
-          <h1 id="product-reviews-create-title" className="text-2xl font-bold">
-            Write a review
-          </h1>
-          <div
-            id="product-reviews-create-name-container"
-            className="flex flex-col gap-2"
-          >
-            <Label id="product-reviews-create-name-label" className="font-bold">
-              Name
-            </Label>
-            <Input
-              id="product-reviews-create-name-input"
-              ref={nameInputRef}
-              placeholder="Enter your name"
-              autoComplete="name"
-            />
-          </div>
-          <div
-            id="product-reviews-create-email-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              className="font-bold"
-              id="product-reviews-create-email-label"
-            >
-              Email
-            </Label>
-            <Input
-              id="product-reviews-create-email-input"
-              ref={emailInputRef}
-              placeholder="Enter your email"
-              autoComplete="email"
-            />
-          </div>
-          <div
-            id="product-reviews-create-rating-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              id="product-reviews-create-rating-label"
-              className="font-bold"
-            >
-              Rating
-            </Label>
-            <div
-              id="product-reviews-create-rating-stars"
-              className="flex gap-2"
-            >
-              {[...Array(5)].map((_, index: number) => (
-                <Button
-                  id={`product-reviews-create-rating-stars-button-${index}`}
-                  key={index}
-                  onClick={() => setRatingValue(index + 1)}
-                  variant={ratingValue >= index + 1 ? "blue" : "blueOutline"}
-                  className="aspect-square p-1 hover:bg-theme-blue hover:text-white"
-                >
-                  <Icons.star className="h-4 w-4" />
-                </Button>
-              ))}
-            </div>
-          </div>
-          <div
-            id="product-reviews-create-title-container"
-            className="flex flex-col gap-2"
-          >
-            <Label
-              id="product-reviews-create-title-label"
-              className="font-bold"
-            >
-              Review Title
-            </Label>
-            <Input
-              id="product-reviews-create-title-input"
-              ref={titleInputRef}
-              placeholder="Give your review a title"
-            />
-          </div>
-          <div
-            id="product-reviews-create-body-container"
-            className="flex flex-col gap-2"
-          >
-            <Label id="product-reviews-create-body-label" className="font-bold">
-              Body of Review
-            </Label>
-            <Textarea
-              id="product-reviews-create-body-textArea"
-              ref={bodyInputRef}
-              placeholder="Enter your email"
-              className="bg-none ring-none"
-            />
-          </div>
-          <Button
-            id="product-reviews-create-submit"
-            onClick={saveReview}
-            variant={"blue"}
-          >
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.send className="h-4 w-4 mr-2" />
-            )}
-            Submit Review
-          </Button>
-        </div>
-      )}
-      {orderedReviews.map((review) => (
-        <div
-          id={`product-reviews-review-${review.id}`}
-          key={review.id}
-          className="flex flex-col bg-theme-blue/10 md:px-6 p-4 md:py-10 gap-2 rounded-md"
-        >
-          <div
-            id={`product-reviews-review-${review.id}-rating`}
-            className="flex items-center gap-1   w-fit "
-          >
-            <Stars rating={review.rating} />
-          </div>
-          <p
-            id={`product-reviews-review-${review.id}-authorDate`}
-            className="text-sm"
-          >
-            {review.name + " - " + timeSince(review.date)}
-          </p>
-          <h1
-            id={`product-reviews-review-${review.id}-title`}
-            className="text-xl font-bold"
-          >
-            {review.title}
-          </h1>
-          <p
-            id={`product-reviews-review-${review.id}-body`}
-            className="text-muted-foreground"
-          >
-            {review.body}
-          </p>
-        </div>
-      ))}
     </div>
   );
 };
@@ -1413,4 +1133,13 @@ const storyNames: string[] = [
   "Apoorva Mehta",
   "Steve Jobs",
   "Sam Zemurray",
+];
+
+const reviewImages = [
+  "/reviews/review-1.jpeg",
+  "/reviews/review-2.jpeg",
+  "/reviews/review-3.jpeg",
+  "/reviews/review-4.jpeg",
+  "/reviews/review-5.jpeg",
+  "/reviews/review-6.jpeg",
 ];

@@ -57,11 +57,10 @@ const getData = async (handle: string): Promise<any> => {
 };
 
 export default async function ProductPage2({params}: Params) {
-  const data = await getData(params.handle);
-
+  // const data = await getData(params.handle);
   return (
     <div className="min-h-screen  flex flex-col justify-between ">
-      <Product productData={data} />
+      <Product productData={StaticProductDetail} />
     </div>
   );
 }
@@ -131,4 +130,170 @@ type ProductInfo = {
       };
     };
   };
+};
+
+const StaticProductDetail = {
+  product: {
+    id: "gid://shopify/Product/8732971761980",
+    title: "The 50 Greatest Business Success Stories",
+    description:
+      '<meta charset="utf-8">\n<div>\n<meta charset="utf-8"> <span>Ever wondered how the most successful entrepreneurs of our time transformed their dreams into reality? How they faced adversity, overcame hurdles, and pioneered industries? Get ready for an inspiring journey through the triumphs and trials of the business world\'s biggest success stories.</span><br><br><span>"Snapshots of Success" is not just a book; it\'s a thrilling masterclass in innovation and grit. Each page is a treasure trove of insights from 50 of the most impactful business journeys, distilled into riveting, short-form narratives.</span><br><br><span>This unique compilation is perfect for anyone who craves inspiration and insight but struggles to find the time to sift through lengthy biographies and business texts. Each tale is meticulously crafted to be devoured in just 15-20 minutes - a perfect fit for your coffee break or when you need a shot of motivation.</span><br><br><span>So, whether you\'re an aspiring entrepreneur seeking guidance, a business veteran hunting for inspiration, or just someone who enjoys captivating stories, this book is your ticket to a world of exciting entrepreneurial journeys.</span><br><span>Dive in and discover how empires were built, fortunes were made, and how you, too, can etch your name in the annals of business history.</span>\n</div>',
+    collection: "Snapshots of success",
+    quantityAvailable: 2870,
+    images: [
+      {
+        node: {
+          src: "https://cdn.shopify.com/s/files/1/0832/2518/2524/files/Group88_1.png?v=1695158269",
+          altText: null,
+        },
+      },
+      {
+        node: {
+          src: "https://cdn.shopify.com/s/files/1/0832/2518/2524/files/open41_2.png?v=1698113229",
+          altText: null,
+        },
+      },
+      {
+        node: {
+          src: "https://cdn.shopify.com/s/files/1/0832/2518/2524/files/open31_2.png?v=1698113229",
+          altText: null,
+        },
+      },
+      {
+        node: {
+          src: "https://cdn.shopify.com/s/files/1/0832/2518/2524/files/Group128_e20c737a-e491-4deb-b3b9-e1c6691264c7.png?v=1698113229",
+          altText: null,
+        },
+      },
+    ],
+    imageSrc:
+      "https://cdn.shopify.com/s/files/1/0832/2518/2524/files/Group88_1.png?v=1695158269",
+    imageAlt: "The 50 Greatest Business Success Stories",
+    price: {amount: "17.99", currencyCode: "USD"},
+    compareAtPrice: {amount: "24.99", currencyCode: "USD"},
+    variants: [
+      {
+        id: "gid://shopify/ProductVariant/47348393738556",
+        title: "Paperback",
+        quantityAvailable: 975,
+        priceV2: {amount: "17.99", currencyCode: "USD"},
+        compareAtPriceV2: {amount: "24.99", currencyCode: "USD"},
+      },
+      {
+        id: "gid://shopify/ProductVariant/47359338709308",
+        title: "Hardcover",
+        quantityAvailable: 996,
+        priceV2: {amount: "27.99", currencyCode: "USD"},
+        compareAtPriceV2: {amount: "35.99", currencyCode: "USD"},
+      },
+      {
+        id: "gid://shopify/ProductVariant/47855265907004",
+        title: "E-Book",
+        quantityAvailable: 899,
+        priceV2: {amount: "4.99", currencyCode: "USD"},
+        compareAtPriceV2: {amount: "9.99", currencyCode: "USD"},
+      },
+    ],
+    reviews: [
+      {
+        date: 1698615241147,
+        body: "Interesting selection of stories. Love the format. ",
+        live: true,
+        name: "Stephanie",
+        productId: "gid://shopify/Product/8732971761980",
+        rating: 5,
+        email: "Ssmith129@gmail.com",
+        title: "Interesting Variety",
+        id: "3gBZfYZRHAWLS9PllLpU",
+      },
+      {
+        title: "Just read it!",
+        date: 1697844011000,
+        rating: 5,
+        live: true,
+        body: "the book gives so much motivation",
+        email: "itsmohamedmomar@gmail.com",
+        productId: "gid://shopify/Product/8732971761980",
+        name: "\tTonya Caldwell",
+        id: "4RI4mYSYADS1BMUgrb7l",
+      },
+      {
+        live: true,
+        date: 1697513487718,
+        title: "Good book ",
+        email: "holtonpk@gmail.com",
+        name: "Patrick",
+        body: "The book quality isnt the best but I like how short the stories are, makes it easier to read. ",
+        productId: "gid://shopify/Product/8732971761980",
+        rating: 4,
+        id: "Bcwyr9S720yge0Mp51Si",
+      },
+      {
+        live: true,
+        rating: 4,
+        name: "EmmaBee",
+        productId: "gid://shopify/Product/8732971761980",
+        title: "So far so good",
+        body: " Super cool stories! Just kinda wished they had a few more from the olden times.",
+        email: "itsmohamedmomar@gmail.com",
+        date: 1697152811000,
+        id: "Cvt85MmarHItcSLRguYI",
+      },
+      {
+        rating: 4,
+        email: "itsmohamedmomar@gmail.com",
+        productId: "gid://shopify/Product/8732971761980",
+        date: 1697325611000,
+        body: "Almost done. Is there be a 2nd book?",
+        live: true,
+        title: "Why not 100",
+        name: "Oscar_Techie",
+        id: "D1vkFB3aTpddBlK1NqaS",
+      },
+      {
+        rating: 5,
+        body: "I thought it was a great book with many takeaways. Worth the read.",
+        email: "itsmohamedmomar@gmail.com",
+        productId: "gid://shopify/Product/8732971761980",
+        name: "Eric ",
+        live: true,
+        title: "No B.S",
+        date: 1697930411000,
+        id: "VpcH1wyUWbt5cmLtSkUY",
+      },
+      {
+        title: "Was worth the wait.",
+        date: 1697584811000,
+        name: "Jared_Valley",
+        body: "Great stuff in here! Some of these stories got me rethinking my business strategy.",
+        rating: 4,
+        email: "itsmohamedmomar@gmail.com",
+        productId: "gid://shopify/Product/8732971761980",
+        live: true,
+        id: "nkGmRH2ogeObYc0Rp9NG",
+      },
+      {
+        live: true,
+        date: 1698016811000,
+        body: "GOod mix of old timers and newbies.",
+        productId: "gid://shopify/Product/8732971761980",
+        title: "Pretty dope collection. ",
+        email: "itsmohamedmomar@gmail.com",
+        rating: 5,
+        name: "AJ",
+        id: "s6JCozocATzi4CuGuucp",
+      },
+      {
+        body: "gets me going whenever im not feeling it.",
+        rating: 4,
+        live: true,
+        date: 1697152811000,
+        title: "pick it up when im feeling down",
+        email: "itsmohamedmomar@gmail.com",
+        name: "Mohamed Mohamed",
+        productId: "gid://shopify/Product/8732971761980",
+        id: "xGbSMmi8w8tnZKHWj1m0",
+      },
+    ],
+  },
 };

@@ -13,8 +13,7 @@ import {getCheckoutLink} from "@/app/(client)/components/cart-preview";
 import {useRouter} from "next/navigation";
 import {useCart} from "@/context/cart";
 import {logEvent} from "firebase/analytics";
-import {analytics} from "@/config/firebase";
-
+import {useStorage} from "@/context/storage";
 import {siteConfig} from "@/config/site";
 import {LinkButton} from "@/app/(client)/components/ui/link";
 import {motion} from "framer-motion";
@@ -140,12 +139,16 @@ const VideoDisplay = ({
     redirectToLink();
   }, [redirectToCheckout, checkoutObject, router]);
 
+  const {analytics} = useStorage()!;
+
   const buyNow = async () => {
-    logEvent(analytics, "begin_checkout", {
-      currency: "USD",
-      value: cartTotalPrice,
-      items: [checkoutObject],
-    });
+    if (analytics) {
+      logEvent(analytics, "begin_checkout", {
+        currency: "USD",
+        value: cartTotalPrice,
+        items: [checkoutObject],
+      });
+    }
     await addToCart({...product, selectedVariant: selectedVariant}, 1);
     setRedirectToCheckout(true);
   };
@@ -157,17 +160,21 @@ const VideoDisplay = ({
       </h1>
 
       <div className="flex  lg:flex-row flex-col items-center md:w-screen  relative  md:container">
+        <div className="text-theme-blue items-center w-fit mx-auto mt-4 flex md:hidden">
+          <Icons.info className="h-4 w-4 mr-2" />
+          Click thumbnails to preview series
+        </div>
         <div className="h-fit w-fit relative">
           <div
             id="video-container"
-            className="relative z-10 overflow-hidden shadow-lg md:ml-10 w-[90vw] aspect-square  md:h-[600px] md:w-[600px] rounded-full mt-10"
+            className="relative z-10 overflow-hidden shadow-lg md:ml-10 w-[90vw] aspect-square  md:h-[600px] md:w-[600px] rounded-full mt-4 md:mt-10"
           >
             <div className="absolute w-[90vw] aspect-square  md:h-[600px] md:w-[600px] bg-theme-blue rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
             {Videos.map((video, i) => (
               <Video key={i} video={video} i={i} />
             ))}
           </div>
-          <div className="text-theme-blue flex items-center w-fit mx-auto mt-4">
+          <div className="text-theme-blue items-center w-fit mx-auto mt-4 hidden md:flex">
             <Icons.info className="h-4 w-4 mr-2" />
             Click thumbnails to preview series
           </div>
@@ -193,7 +200,7 @@ const VideoDisplay = ({
               variant="blue"
               className="uppercase w-[90%]  rounded-lg"
             >
-              Buy Now
+              Grab a Copy
             </Button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 import React, {useContext, useState, useEffect, createContext} from "react";
 import {app} from "@/config/firebase";
+import {getAnalytics} from "firebase/analytics";
 
 import {
   doc,
@@ -42,6 +43,9 @@ interface StorageContextType {
     }[]
   >;
   SubmitFormResponse: (formId: string, name: string, data: any) => void;
+  consentGiven: boolean;
+  setConsentGiven: (value: boolean) => void;
+  analytics: any;
 }
 
 const StorageContext = createContext<StorageContextType | null>(null);
@@ -120,8 +124,25 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
     });
     console.log("Document written with ID: ", d);
   };
+  const [consentGiven, setConsentGiven] = useState<boolean>(
+    document.cookie.includes("myCookieConsentCookie=true") ||
+      document.cookie.includes("myCookieConsentCookie=false")
+  );
+
+  const [analytics, setAnalytics] = useState<any>(null);
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      document.cookie.includes("myCookieConsentCookie=true")
+    ) {
+      setAnalytics(getAnalytics(app));
+    }
+  }, [consentGiven]);
 
   const value = {
+    consentGiven,
+    setConsentGiven,
+    analytics,
     CreateNewMessage,
     SaveReview,
     FetchReviews,

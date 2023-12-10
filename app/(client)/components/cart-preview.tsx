@@ -16,7 +16,7 @@ import {
   SheetTrigger,
 } from "@/app/(client)/components/ui/sheet";
 import {logEvent} from "firebase/analytics";
-import {analytics} from "@/config/firebase";
+import {useStorage} from "@/context/storage";
 
 export const formatPrice = (price: number) => {
   return price.toLocaleString("en-US", {
@@ -43,13 +43,17 @@ const CartPreview = () => {
   };
 
   const router = useRouter();
+  const {analytics} = useStorage()!;
+
   const goToCheckout = async () => {
     setLoading(true);
-    logEvent(analytics, "begin_checkout", {
-      currency: "USD",
-      value: cartTotalPrice,
-      items: [checkoutObject],
-    });
+    if (analytics) {
+      logEvent(analytics, "begin_checkout", {
+        currency: "USD",
+        value: cartTotalPrice,
+        items: [checkoutObject],
+      });
+    }
     const checkoutLink = await getCheckoutLink(checkoutObject);
     router.push(checkoutLink);
     setLoading(false);

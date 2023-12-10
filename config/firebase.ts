@@ -15,19 +15,19 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-let analytics: any;
-if (firebaseConfig?.projectId) {
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+// let analytics: any;
+// if (firebaseConfig?.projectId) {
+//   // Initialize Firebase
+//   const app = initializeApp(firebaseConfig);
 
-  // if (
-  //   app.name &&
-  //   typeof window !== "undefined" &&
-  //   firebaseConfig?.projectId &&
-  //   document.cookie.includes("myCookieConsentCookie=true")
-  // ) {
-  //   analytics = getAnalytics(app);
-  // }
-}
+//   // if (
+//   //   app.name &&
+//   //   typeof window !== "undefined" &&
+//   //   firebaseConfig?.projectId &&
+//   //   document.cookie.includes("myCookieConsentCookie=true")
+//   // ) {
+//   //   analytics = getAnalytics(app);
+//   // }
+// }
 
-// export {analytics};
+// // export {analytics};

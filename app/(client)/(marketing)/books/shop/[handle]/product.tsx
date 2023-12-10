@@ -17,7 +17,6 @@ import {cn} from "@/lib/utils";
 import {Label} from "@/app/(client)/components/ui/label";
 import {Textarea} from "@/app/(client)/components/ui/textarea";
 import {logEvent} from "firebase/analytics";
-import {analytics} from "@/config/firebase";
 import {
   Accordion,
   AccordionContent,
@@ -320,6 +319,7 @@ const ProductImagesMobile = ({product}: {product: any}) => {
 };
 
 const SaleBox = ({product}: {product: any}) => {
+  const {analytics} = useStorage()!;
   const [redirectToCheckout, setRedirectToCheckout] = React.useState(false);
   const {addToCart, setShowCartPreview, checkoutObject, cartTotalPrice} =
     useCart();
@@ -373,22 +373,26 @@ const SaleBox = ({product}: {product: any}) => {
   }, [redirectToCheckout, checkoutObject, router]);
 
   const addItemToCart = () => {
+    if(analytics){
     logEvent(analytics, "add_to_cart", {
       currency: "USD",
       value: selectedVariant.priceV2.amount,
       items: [selectedVariant],
     });
-
+  }
     addToCart({...product, selectedVariant: selectedVariant}, quantityLocal);
     setShowCartPreview(true);
   };
 
   const buyNow = async () => {
+    if(analytics){
+
     logEvent(analytics, "begin_checkout", {
       currency: "USD",
       value: cartTotalPrice,
       items: [checkoutObject],
     });
+  }
     await addToCart(
       {...product, selectedVariant: selectedVariant},
       quantityLocal
@@ -463,30 +467,6 @@ const SaleBox = ({product}: {product: any}) => {
         entrepreneurs.
       </p>
 
-      {/* <div
-        id="product-saleBox-pageViews"
-        className="w-full flex  items-center gap-2 font-bold"
-      >
-        <Icons.showPassword className="h-6 w-6 text-muted-foreground" />
-        {randomNumber} people are viewing this right now.
-      </div>
-      <div
-        id="product-saleBox-salesNumber"
-        className="w-full flex  p-2 items-center  bg-theme-pink/20 text-theme-pink rounded-md whitespace-nowrap"
-      >
-        <Icons.fire
-          id="product-saleBox-salesNumber-icon"
-          className="h-5 w-5 mr-2 "
-        />
-        <p id="product-saleBox-salesNumber-body">
-          <span id="product-saleBox-salesNumber-bold" className="font-bold">
-            {" "}
-            46 copies sold{" "}
-          </span>{" "}
-          in the last 12 hours.
-        </p>
-      </div> */}
-
       <div id="product-saleBox-variants" className="flex flex-col gap-2">
         <p id="product-saleBox-variants-label">
           <span
@@ -513,85 +493,6 @@ const SaleBox = ({product}: {product: any}) => {
         id="buy-button-container"
         className={`z-[50] relative gap-4 w-full grid  `}
       >
-        {/* <div
-          id="fixed-button-container"
-          className={`w-full px-6 z-20 flex flex-col items-center shadow-inner left-0 md:hidden  bg-white top-shadow ${
-            isBuyButtonFixed ? "fixed bottom-0 py-4 " : "hidden "
-          }`}
-        >
-          <Button
-            id="buy-now-button-fixed"
-            onClick={buyNow}
-            variant={"blue"}
-            className={`text-base md:text-xl hover:bg-theme-blue/80  hover:text-white w-full border-theme-blue rounded-md `}
-            size={"lg"}
-          >
-            {redirectToCheckout ? (
-              <Icons.spinner className="mr-2 h-6 w-6 animate-spin" />
-            ) : (
-              "Buy Now"
-            )}
-          </Button>
-          <div
-            id="buy-now-button-fixed-priceRow"
-            className="mt-2  gap-4 flex items-center "
-          >
-            {selectedVariant.compareAtPriceV2 ? (
-              <div
-                id="buy-now-button-fixed-prices"
-                className="flex items-center gap-2"
-              >
-                <span
-                  id="buy-now-button-fixed-price1"
-                  className="text-theme-blue font-bold text-2xl md:text-3xl  text-center md:text-left"
-                >
-                  ${selectedVariant.priceV2.amount}
-                </span>
-                <span
-                  id="buy-now-button-fixed-compareAtPrice"
-                  className="line-through text-base md:text-2xl text-theme-blue/40 decoration-theme-blue/40 text-center md:text-left"
-                >
-                  ${selectedVariant.compareAtPriceV2.amount}
-                </span>
-                <div
-                  id="buy-now-button-fixed-divider"
-                  className="h-[16px] w-[1px] bg-theme-blue"
-                ></div>
-                <div
-                  id="buy-now-button-fixed-discountPercent"
-                  className="  text-sm text-theme-blue "
-                >
-                  {"SAVE " +
-                    Math.round(
-                      ((selectedVariant.compareAtPriceV2.amount -
-                        selectedVariant.priceV2.amount) /
-                        selectedVariant.compareAtPriceV2.amount) *
-                        100
-                    ) +
-                    "%"}
-                </div>
-              </div>
-            ) : (
-              <h1
-                id="buy-now-button-fixed-price1"
-                className=" font-bold text-theme-blue hidden md:block text-2xl md:text-3xl text-center md:text-left"
-              >
-                ${selectedVariant.priceV2.amount}
-              </h1>
-            )}
-
-            <div
-              id="product-saleBox-desktop-quantity"
-              className="md:block hidden"
-            >
-              <QuantitySelector2
-                product={selectedVariant}
-                quantityLocal={quantityLocal}
-                setQuantityLocal={setQuantityLocal}
-              />
-            </div>
-          </div>
-        </div> */}
         <div
           id="product-saleBox-buy-container"
           className="grid gap-4   md:grid-cols-[1fr_70%]  items-end w-full"
@@ -630,26 +531,6 @@ const SaleBox = ({product}: {product: any}) => {
           )}
         </Button>
       </div>
-
-      {/* <div
-        id="product-saleBox-available"
-        className="flex flex-col gap-2 w-full"
-      >
-        <p id="product-saleBox-available-body">
-          Hurry! only{" "}
-          <span
-            id="product-saleBox-quantity-available-bold"
-            className="font-bold"
-          >
-            {" "}
-            25 items{" "}
-          </span>{" "}
-          left in stock{" "}
-        </p>
-        <div id="product-saleBox-available-progress">
-          <Progress className="h-2" value={33} />
-        </div>
-      </div> */}
     </div>
   );
 };

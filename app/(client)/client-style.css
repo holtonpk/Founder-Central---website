@@ -417,32 +417,47 @@ button:focus {
 
 @keyframes cookie-enter-bottom {
   0% {
-    transform: translateY(150%);
+    transform: translate(-50%, 150%);
   }
   100% {
-    transform: translateY(0%);
+    transform: translate(-50%, 0%);
   }
 }
 
-@keyframes cookie-enter-right {
+@keyframes cookie-enter-top {
   0% {
-    transform: translateX(100%);
+    transform: translate(-50%, -100%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translate(-50%, 0%);
   }
 }
 
 .cookie-consent {
-  transform: translateY(150%);
-  animation: cookie-enter-bottom 500ms ease-in-out forwards;
+  transform: translate(-50%, 150%);
+  animation: cookie-enter-bottom 250ms ease-in-out forwards;
   animation-delay: 2s;
 }
 
 @media (min-width: 768px) {
   .cookie-consent {
-    transform: translateX(150%);
-    animation: cookie-enter-right 500ms ease-in-out forwards;
+    transform: translate(-50%, -150%);
+    animation: cookie-enter-top 250ms ease-in-out forwards;
     animation-delay: 2s;
   }
+}
+
+@keyframes cookie-overlay-enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.cookie-consent-overlay {
+  opacity: 0;
+  animation: cookie-overlay-enter 250ms ease-in-out forwards;
+  animation-delay: 2s;
 }
