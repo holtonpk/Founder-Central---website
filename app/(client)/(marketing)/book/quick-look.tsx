@@ -120,7 +120,7 @@ const QuickLook = () => {
             className="bg-white  z-[60]  p-4 "
           >
             <SheetHeader>
-              <SheetTitle className="text-[#4DA6E0]">
+              <SheetTitle className="text-[#4DA6E0] w-[90%]">
                 {" "}
                 Quick look in The 50 Greatest Business Success Stories
               </SheetTitle>

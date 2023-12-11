@@ -6,12 +6,14 @@ import {useCart} from "@/context/cart";
 import {Icons} from "@/app/(client)/components/icons";
 import {marketingConfig} from "@/config/marketing";
 import {useRouter} from "next/navigation";
+import {siteConfig} from "@/config/site";
+import {LinkButton} from "@/app/(client)/components/ui/link";
 import "./style.css";
 
 const MobileNav = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const mobileMenuVariant = {
+  const mobileMenuVariant2 = {
     opened: {
       y: "0%",
       transition: {
@@ -30,14 +32,44 @@ const MobileNav = () => {
     },
   };
 
+  const mobileMenuVariant = {
+    opened: {
+      y: "0%",
+      // x: "0%",
+      transition: {
+        delay: 0.15,
+        duration: 1.1,
+        ease: [0.74, 0, 0.19, 1.02],
+      },
+    },
+    closed: {
+      y: "-100%",
+
+      // x: "100%",
+      transition: {
+        delay: 0.35,
+        duration: 0.63,
+        ease: [0.74, 0, 0.19, 1.02],
+      },
+    },
+  };
+
   const fadeInVariant = {
     opened: {
       opacity: 1,
       transition: {
-        delay: 1.2,
+        duration: 1.1,
+        delay: 0.5,
       },
     },
-    closed: {opacity: 0},
+    closed: {
+      opacity: 0,
+
+      transition: {
+        duration: 0,
+        delay: 0.5,
+      },
+    },
   };
 
   const ulVariant = {
@@ -113,10 +145,10 @@ const MobileNav = () => {
     <motion.nav
       initial="closed"
       animate={mobileNavOpen ? "opened" : "closed"}
-      className="flex items-center justify-between px-4 relative z-20  py-2 bg-white  w-screen lg:hidden"
+      className="flex items-center justify-between px-4 relative z-20  py-2  bg-white w-screen lg:hidden"
     >
       <motion.div
-        className="relative  z-[60]"
+        className="relative  z-[90]"
         onClick={() => setMobileNavOpen(!mobileNavOpen)}
       >
         <svg width="23" height="23" viewBox="0 0 23 23" className="text-white">
@@ -142,7 +174,7 @@ const MobileNav = () => {
           />
         </svg>
       </motion.div>
-      <Link href="/#" className="relative  z-[60]">
+      <Link href="/#" className="relative  z-[90]">
         <span className="text-2xl text-primary font-bold  flex items-center ">
           <div className="h-10 w-20 relative  -mr-2">
             <Icons.fullLogo
@@ -155,7 +187,7 @@ const MobileNav = () => {
 
       <button
         onClick={toggleCart}
-        className="rounded-full relative  z-[60] flex items-center justify-center p-2 aspect-square text-theme-blue "
+        className="rounded-full relative  z-[90] flex items-center justify-center p-2 aspect-square text-theme-blue "
         id="mobile-header-cart-button"
       >
         {cartTotalQuantity > 0 && (
@@ -168,16 +200,26 @@ const MobileNav = () => {
         )}
         <Icons.shoppingBag className="h-6 w-6 " id="header-cart-icon" />
       </button>
-      <motion.div variants={mobileMenuVariant} className="mobile-menu bg-white">
+
+      {/* <motion.div
+        variants={fadeInVariant}
+        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+        className="h-screen w-screen top-0 right-0 fixed bg-white/20 blurBack"
+      /> */}
+
+      <motion.div
+        variants={mobileMenuVariant}
+        className="mobile-menu bg-white   shadow-none z-[80] "
+      >
         <motion.ul
           variants={ulVariant}
-          className="flex flex-col items-center mt-20 w-full gap-4 px-4 "
+          className="flex flex-col items-center w-full px-4  gap-10 mt-20 "
         >
           {marketingConfig.mainNav.map((navItem, i) => (
-            <motion.li whileTap={{scale: 0.95}} key={i}>
+            <motion.li whileTap={{scale: 0.95}} key={i} className=" w-full">
               <motion.div
                 onClick={() => clickLink(navItem.href)}
-                className="text-theme-blue font-bold text-center w-full  text-3xl border-b-2 border-theme-blue"
+                className="text-theme-blue font-bold text-center w-full  text-3xl border-b-2 border-theme-blue border-none"
                 variants={liVariant}
               >
                 {navItem.title}
@@ -185,13 +227,46 @@ const MobileNav = () => {
             </motion.li>
           ))}
         </motion.ul>
-        {/* <motion.div
+
+        <motion.div
           variants={fadeInVariant}
-          className="flex mt-auto gap-2 justify-between"
+          className="flex mt-auto  justify-between w-[50%] min-w-fit gap-4 "
         >
-          <h5>+852 5650 2233</h5>
-          <h5>hi@designagency.com</h5>
-        </motion.div> */}
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.youtube}
+            className="footer__social-link border-none p-0 aspect-square"
+          >
+            <Icons.youtube
+              className="h-8 w-8 text-theme-blue"
+              id="footer-social-link-youtube"
+            />
+          </LinkButton>
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.instagram}
+            className="footer__social-link border-none p-0 aspect-square text-theme-blue"
+          >
+            <Icons.instaGram
+              className="h-8 w-8"
+              id="footer-social-link-instagram"
+            />
+          </LinkButton>
+          <LinkButton
+            variant={"secondaryOutline"}
+            target="_blank"
+            href={siteConfig.links.tiktok}
+            className="footer__social-link border-none p-0 aspect-square"
+          >
+            <Icons.tiktok
+              className="h-8 w-8 "
+              color="#4DA6E0"
+              id="footer-social-link-tiktok"
+            />
+          </LinkButton>
+        </motion.div>
       </motion.div>
     </motion.nav>
   );

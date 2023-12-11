@@ -43,9 +43,7 @@ export default function Product({productData}: {productData: any}) {
       return acc + review.rating;
     }, 0) / product.reviews.length;
 
-  const [accordionValue, setAccordionValue] = React.useState<string[]>([
-    "overview",
-  ]);
+  const [accordionValue, setAccordionValue] = React.useState<string[]>([]);
 
   const Router = useRouter();
 
@@ -56,11 +54,11 @@ export default function Product({productData}: {productData: any}) {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <div
         id="product"
-        className="w-screen  overflow-hidden  pb-20 bg-white md:bg-background "
+        className="w-screen  overflow-hidden   pb-20 bg-white md:bg-background "
       >
         <div
           id="product-box"
@@ -547,7 +545,7 @@ const ProductImagesMobile = ({product}: {product: any}) => {
     }
   }, []);
   return (
-    <div className="relative">
+    <div className="relative ">
       <div
         id="product-image-scroll-area"
         className="w-screen hideScrollbar snap-mandatory snap-x overflow-scroll flex items-center z-20 relative   pb-4"
@@ -558,7 +556,7 @@ const ProductImagesMobile = ({product}: {product: any}) => {
             <div
               id={`product-image-${i}`}
               key={i}
-              className="snap-center   relative h-[400px] w-[300px]  pt-10"
+              className="snap-center   relative h-[350px] w-[300px]  "
             >
               <Image
                 id="product-image"

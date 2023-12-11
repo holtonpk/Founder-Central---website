@@ -347,13 +347,6 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
             >
               Privacy Policy
             </LinkButton>
-            <Button
-              // href="/Cookies"
-              variant={"link"}
-              className="text-white whitespace-nowrap"
-            >
-              Cookies
-            </Button>
           </div>
           <p
             className="footer__copyright-text text-center w-full md:w-fit text-sm md:text-[12px] md:text-sm leading-loose md:text-left pt-2 md:pt-0 border-t md:border-none"
