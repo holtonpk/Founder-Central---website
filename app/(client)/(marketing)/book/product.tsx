@@ -58,7 +58,7 @@ export default function Product({productData}: {productData: any}) {
 
       <div
         id="product"
-        className="w-screen  overflow-hidden   pb-20 bg-white md:bg-background "
+        className="w-screen  overflow-hidden  md:mt-20 pb-20 bg-white md:bg-background "
       >
         <div
           id="product-box"
@@ -323,7 +323,7 @@ const Reviews = ({
           key={orderedReviews[displayedReview].id}
           className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg w-full mx-auto bg-background mt-6 "
         >
-          <div className=" w-full aspect-[1.5/1]  rounded-lg overflow-hidden  relative bg-theme-blue/5">
+          <div className=" w-full aspect-[1.5/1]  rounded-lg overflow-hidden  relative ">
             <Image
               alt="Review Image"
               src={reviewImages[displayedReview]}
@@ -342,13 +342,13 @@ const Reviews = ({
 
           <h1
             id={`product-reviews-review-${orderedReviews[displayedReview].id}-title`}
-            className="text-xl font-bold bg-theme-blue/10 px-2 text-center"
+            className="text-xl font-bold  px-2 text-center"
           >
             {orderedReviews[displayedReview].title}
           </h1>
           <p
             id={`product-reviews-review-${orderedReviews[displayedReview].id}-body`}
-            className="text-muted-foreground text-center"
+            className="text-muted-foreground text-center "
           >
             {orderedReviews[displayedReview].body}
           </p>
