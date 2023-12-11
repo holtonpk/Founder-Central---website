@@ -433,9 +433,9 @@ button:focus {
   }
 }
 
-.cookie-consent {
+/* .cookie-consent {
   transform: translate(-50%, 150%);
-  animation: cookie-enter-bottom 250ms ease-in-out forwards;
+  animation: cookie-enter-top 250ms ease-in-out forwards;
   animation-delay: 2s;
 }
 
@@ -445,6 +445,11 @@ button:focus {
     animation: cookie-enter-top 250ms ease-in-out forwards;
     animation-delay: 2s;
   }
+} */
+.cookie-consent {
+  transform: translate(-50%, -150%);
+  animation: cookie-enter-top 250ms ease-in-out forwards;
+  animation-delay: 2s;
 }
 
 @keyframes cookie-overlay-enter {

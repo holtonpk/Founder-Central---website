@@ -124,12 +124,16 @@ export function StorageProvider({children}: {children: React.ReactNode}) {
     });
     console.log("Document written with ID: ", d);
   };
-  const [consentGiven, setConsentGiven] = useState<boolean>(
-    typeof window !== "undefined"
-      ? document.cookie.includes("myCookieConsentCookie=true") ||
+
+  const [consentGiven, setConsentGiven] = useState<boolean>(true);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setConsentGiven(
+        document.cookie.includes("myCookieConsentCookie=true") ||
           document.cookie.includes("myCookieConsentCookie=false")
-      : false
-  );
+      );
+    }
+  }, []);
 
   const [analytics, setAnalytics] = useState<any>(null);
   useEffect(() => {

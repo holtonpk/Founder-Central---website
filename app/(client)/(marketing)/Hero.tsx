@@ -12,6 +12,7 @@ import {siteConfig} from "@/config/site";
 import coverImage from "@/public/image/cover-shadow2.png";
 import heroImage from "@/public/image/heroImage.png";
 import Background from "@/app/(client)/components/noise";
+
 import {
   Form,
   FormControl,
@@ -91,113 +92,114 @@ const Hero = () => {
   };
 
   return (
-    <div
-      className="hero relative overflow-visible z-40 min-h-fit   lg:pt-20 "
-      id="hero"
-    >
-      <div className="grid grid-rows-[40%_60%]  lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-fit    lg:h-[90vh]  lg:max-h-[650px] z-1 relative">
-        <div className=" h-full w-full bg-theme-blue rounded-lg relative p-4  md:p-8 flex  overflow-hidden">
-          <div className="flex max-h-full  flex-col relative z-20">
-            <h1 className="text-xl  xsm:text-xl sm:text-[42px] sm:leading-[1] md:text-6xl lg:text-6xl xl:text-7xl font-head font-bold  text-white w-[70%] sm:w-[60%] xl:w-[65%]  capitalize">
-              Where the next group of billionaires get their daily inspo.
-            </h1>
-
-            <SubscribePopup
-              variant={"default"}
-              className="text-sm sm:text-base md:text-3xl md:p-6 relative text-theme-blue hover:text-theme-blue hover:bg-white/80  rounded-lg w-fit mt-4 md:mt-8 border-white bg-white "
-            >
-              Join Today
-              <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
-            </SubscribePopup>
-          </div>
-
-          <div className="aspect-square h-[85%]  xsm:h-full z-10  absolute right-0 bottom-0">
-            <Image
-              src={heroImage}
-              alt="cover"
-              fill
-              objectFit="contain"
-              // sizes="(max-width: 768px) 100vw, 300px"
-              className=""
-              loading="eager"
-            />
-          </div>
-        </div>
-        <div className=" grid grid-rows-[50%_1fr] md:grid-cols-2  md:grid-rows-1 md:items-center lg:grid-cols-1 lg:grid-rows-[65%_1fr] w-full md:gap-x-6 max-h-full h-full md:h-full  gap-y-4  overflow-hidden ">
-          <div
-            onClick={goToBook}
-            className="cursor-pointer hover:bg-theme-pink/80 h-full w-full bg-theme-pink max-h-full overflow-hidden md:min-h-full flex items-center  xsm:flex-row md:block  rounded-lg relative overflow-hidden p-4 "
-          >
-            <div className="flex flex-col xsm:pl-8 md:pl-0 gap-4  xsm:w-[55%] md:w-full">
-              <h1 className="text-white font-bold font-body text-2xl   md:text-3xl capitalize relative z-10">
-                E-book <br /> now available
+    <>
+      <div
+        className="hero relative overflow-visible z-40 min-h-fit   lg:pt-20 "
+        id="hero"
+      >
+        <div className="grid grid-rows-[40%_60%]  lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-fit    lg:h-[90vh]  lg:max-h-[650px] z-1 relative">
+          <div className=" h-full w-full bg-theme-blue rounded-lg relative p-4  md:p-8 flex  overflow-hidden">
+            <div className="flex max-h-full  flex-col relative z-20">
+              <h1 className="text-xl  xsm:text-xl sm:text-[42px] sm:leading-[1] md:text-6xl lg:text-6xl xl:text-7xl font-head font-bold  text-white w-[70%] sm:w-[60%] xl:w-[65%]  capitalize">
+                Where the next group of billionaires get their daily inspo.
               </h1>
-              <LinkButton
-                href={
-                  "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories"
-                }
-                variant={"outline"}
-                className="text-white border-white rounded-lg flex md:hidden w-fit whitespace-nowrap"
+
+              <SubscribePopup
+                variant={"default"}
+                className="text-sm sm:text-base md:text-3xl md:p-6 relative text-theme-blue hover:text-theme-blue hover:bg-white/80  rounded-lg w-fit mt-4 md:mt-8 border-white bg-white "
               >
-                Buy now
+                Join Today
                 <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
-              </LinkButton>
+              </SubscribePopup>
             </div>
 
-            <div className="absolute z-10 top-4 right-4 hidden md:block ">
-              <Icons.arrowRight className="text-white rotate-[-45deg] h-8 w-8" />
-            </div>
-            <div className="mt-6 z-10 relative mb-2 xsm:mb-0 xsm:absolute  xsm:right-10 sm:right-20 md:right-0  md:relative mx-auto aspect-square md:h-full h-[120%] xsm:h-[120%] xsm:top-4 md:mt-6">
+            <div className="aspect-square h-[85%]  xsm:h-full z-10  absolute right-0 bottom-0">
               <Image
-                id={"hero-image-cover"}
-                src={coverImage}
+                src={heroImage}
                 alt="cover"
                 fill
                 objectFit="contain"
-                sizes="(max-width: 768px) 100vw, 300px"
-                className="ml-3"
+                // sizes="(max-width: 768px) 100vw, 300px"
+                className=""
                 loading="eager"
               />
             </div>
           </div>
-          <div className="h-fit  lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
-            <h1 className="text-white font-bold font-body whitespace-nowrap md:whitespace-normal text-center md:text-left md:text-3xl lg:text-[22px] text-lg xsm:text-xl capitalize relative  w-[100%] ">
-              Join 45k other founders like yourself.
-            </h1>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="">
-                <div className="w-full h-fit relative ">
-                  <div className="h-fit w-full">
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({field}) => (
-                        <FormItem className="relative">
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="youremail@domain.com"
-                              className="bg-white shadow-lg w-full relative"
-                              autoComplete="email"
-                            />
-                          </FormControl>
-                        </FormItem>
+          <div className=" grid grid-rows-[50%_1fr] md:grid-cols-2  md:grid-rows-1 md:items-center lg:grid-cols-1 lg:grid-rows-[65%_1fr] w-full md:gap-x-6 max-h-full h-full md:h-full  gap-y-4  overflow-hidden ">
+            <div
+              onClick={goToBook}
+              className="cursor-pointer hover:bg-theme-pink/80 h-full w-full bg-theme-pink max-h-full overflow-hidden md:min-h-full flex items-center  xsm:flex-row md:block  rounded-lg relative overflow-hidden p-4 "
+            >
+              <div className="flex flex-col xsm:pl-8 md:pl-0 gap-4  xsm:w-[55%] md:w-full">
+                <h1 className="text-white font-bold font-body text-2xl   md:text-3xl capitalize relative z-10">
+                  E-book <br /> now available
+                </h1>
+                <LinkButton
+                  href={
+                    "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories"
+                  }
+                  variant={"outline"}
+                  className="text-white border-white rounded-lg flex md:hidden w-fit whitespace-nowrap"
+                >
+                  Buy now
+                  <Icons.arrowRight className="ml-4 md:h-8 md:w-8 h-4 w-4" />
+                </LinkButton>
+              </div>
+
+              <div className="absolute z-10 top-4 right-4 hidden md:block ">
+                <Icons.arrowRight className="text-white rotate-[-45deg] h-8 w-8" />
+              </div>
+              <div className="mt-6 z-10 relative mb-2 xsm:mb-0 xsm:absolute  xsm:right-10 sm:right-20 md:right-0  md:relative mx-auto aspect-square md:h-full h-[120%] xsm:h-[120%] xsm:top-4 md:mt-6">
+                <Image
+                  id={"hero-image-cover"}
+                  src={coverImage}
+                  alt="cover"
+                  fill
+                  objectFit="contain"
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  className="ml-3"
+                  loading="eager"
+                />
+              </div>
+            </div>
+            <div className="h-fit  lg:h-full justify-between w-full bg-theme-yellow  rounded-lg relative p-4 flex flex-col gap-4">
+              <h1 className="text-white font-bold font-body whitespace-nowrap md:whitespace-normal text-center md:text-left md:text-3xl lg:text-[22px] text-lg xsm:text-xl capitalize relative  w-[100%] ">
+                Join 45k other founders like yourself.
+              </h1>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="">
+                  <div className="w-full h-fit relative ">
+                    <div className="h-fit w-full">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({field}) => (
+                          <FormItem className="relative">
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="youremail@domain.com"
+                                className="bg-white shadow-lg w-full relative"
+                                autoComplete="email"
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <Button className="absolute right-0 top-1/2 -translate-y-1/2 h-full  bg-theme-pink text-white border-theme-pink rounded-l-none  hover:bg-theme-pink/80 hover:text-white   rounded-r-md">
+                      Subscribe
+                      {isLoading && (
+                        <Icons.spinner className="ml-2 h-4 w-4 animate-spin" />
                       )}
-                    />
+                    </Button>
                   </div>
-                  <Button className="absolute right-0 top-1/2 -translate-y-1/2 h-full  bg-theme-pink text-white border-theme-pink rounded-l-none  hover:bg-theme-pink/80 hover:text-white   rounded-r-md">
-                    Subscribe
-                    {isLoading && (
-                      <Icons.spinner className="ml-2 h-4 w-4 animate-spin" />
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </Form>
+                </form>
+              </Form>
+            </div>
           </div>
         </div>
-      </div>
-      {/* <div
+        {/* <div
         className="gap-6 flex flex-col md:grid md:grid-cols-2 md:py-10 container min-h-[90vh] max-w-screen-xl relative z-20"
         id="hero-content"
       >
@@ -351,7 +353,8 @@ const Hero = () => {
           </div>
         )}
       </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 "use client";
+
 import React, {useEffect, useState} from "react";
 import {Button} from "@/app/(client)/components/ui/button";
 import {app} from "@/config/firebase";
@@ -6,19 +7,37 @@ import {getAnalytics} from "firebase/analytics";
 import {useStorage} from "@/context/storage";
 
 interface CookieConsentProps {}
-const handleCookieConsent = () => {
-  // Set a cookie to indicate consent
-  document.cookie =
-    "myCookieConsentCookie=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-};
-
-const handleDeclineConsent = () => {
-  // Set a cookie to indicate consent
-  document.cookie =
-    "myCookieConsentCookie=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-};
 
 const CookieConsentBanner: React.FC<CookieConsentProps> = () => {
+  const handleCookieConsent = () => {
+    // Set a cookie to indicate consent
+    document.cookie =
+      "myCookieConsentCookie=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+  };
+
+  const handleDeclineConsent = () => {
+    // Set a cookie to indicate consent
+    document.cookie =
+      "myCookieConsentCookie=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+  };
+
+  console.log("CookieConsentBanner ===============<");
+
+  // const [consentGiven, setConsentGiven] = useState<boolean>(false);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     setConsentGiven(
+  //       document.cookie.includes("myCookieConsentCookie=true") ||
+  //         document.cookie.includes("myCookieConsentCookie=false")
+  //     );
+  //   }
+  // }, []);
+
+  // const [consentGiven, setConsentGiven] = useState<boolean>(
+  //   document.cookie.includes("myCookieConsentCookie=true") ||
+  //     document.cookie.includes("myCookieConsentCookie=false")
+  // );
+
   const {consentGiven, setConsentGiven} = useStorage()!;
 
   const handleConsent = () => {
@@ -26,14 +45,14 @@ const CookieConsentBanner: React.FC<CookieConsentProps> = () => {
     handleCookieConsent();
   };
 
-  // useEffect(() => {
-  //   if (
-  //     typeof window !== "undefined" &&
-  //     document.cookie.includes("myCookieConsentCookie=true")
-  //   ) {
-  //     getAnalytics(app);
-  //   }
-  // }, [consentGiven]);
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      document.cookie.includes("myCookieConsentCookie=true")
+    ) {
+      getAnalytics(app);
+    }
+  }, [consentGiven]);
 
   if (consentGiven) {
     return null; // Do not render the banner if consent is given
@@ -45,9 +64,9 @@ const CookieConsentBanner: React.FC<CookieConsentProps> = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen z-[100] flex max-h-screen  flex-col-reverse p-4  sm:flex-col ">
-      <div className="absolute w-screen h-screen bg-black/20 z-[50] top-0 left-0 blurBack cookie-consent-overlay" />
-      <div className="left-1/2 -translate-x-1/2 bottom-4 md:top-4 group pointer-events-auto relative flex z-[60] flex-col w-full items-left justify-between  overflow-hidden rounded-xl border p-6 pr-8 shadow-lg cookie-consent bg-white  text-theme-blue md:max-w-[800px]">
+    <div className="fixed top-0 left-0 h-screen w-screen z-[999] flex max-h-screen   p-4  flex-col ">
+      <div className="absolute w-screen h-screen bg-black/20 z-[998] top-0 left-0 blurBack cookie-consent-overlay" />
+      <div className="left-1/2 -translate-x-1/2 top-0  pointer-events-auto relative flex z-[999] flex-col w-full items-left justify-between  overflow-hidden rounded-xl border p-6 pr-8 shadow-lg cookie-consent bg-white  text-theme-blue md:max-w-[800px]">
         {/* <h1 className="text-lg font-bold">We value your privacy</h1> */}
         <p className="text-sm">
           This website stores cookies on your computer. These cookies are used

@@ -19,42 +19,11 @@ export async function generateMetadata({
   params: {handle},
 }: Params): Promise<Metadata> {
   return constructMetadata({
-    title: siteConfig.pages[handle].title,
-    description: siteConfig.pages[handle].description,
+    title: "The 50 Greatest Business Success Stories",
+    description:
+      "Ever wondered how the most successful entrepreneurs of our time transformed their dreams into reality? How they faced adversity, overcame hurdles, and pioneered industries? Get ready for an inspiring journey through the triumphs and trials of the business world's biggest success stories.",
   });
 }
-
-const getData = async (handle: string): Promise<any> => {
-  const prodDataRes = await fetch(
-    `${siteConfig.url}/api/productData?handle=${handle}`,
-    {
-      cache: "no-cache",
-    }
-  );
-
-  const productDataRes: ProductInfo = await prodDataRes.json();
-  const productData = productDataRes.data.productByHandle;
-  const product = {
-    id: productData.id,
-    title: productData.title,
-    description: productData.descriptionHtml,
-    collection: productData.collections.edges[0].node.title,
-    quantityAvailable: productData.totalInventory,
-    images: productData.images.edges,
-    imageSrc: productData.images.edges[0].node.src,
-    imageAlt: productData.title,
-    price: productData.variants.edges[0].node.priceV2,
-    compareAtPrice: productData.variants.edges[0].node.compareAtPriceV2,
-    variants: productData.variants.edges.map((variant: any) => {
-      return variant.node;
-    }),
-    reviews: productDataRes.reviews,
-  };
-
-  return {
-    product,
-  };
-};
 
 export default async function ProductPage2({params}: Params) {
   // const data = await getData(params.handle);
