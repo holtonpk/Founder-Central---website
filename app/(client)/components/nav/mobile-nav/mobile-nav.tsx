@@ -187,18 +187,18 @@ const MobileNav = () => {
 
       <button
         onClick={toggleCart}
-        className="rounded-full relative  z-[90] flex items-center justify-center p-2 aspect-square text-theme-blue "
+        className="rounded-full relative  z-[90] flex items-center justify-center  aspect-square text-theme-blue "
         id="mobile-header-cart-button"
       >
         {cartTotalQuantity > 0 && (
           <span
-            className="absolute pointer-events-none top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 font-bold p-1 text-sm flex items-center justify-center text-theme-blue bg-[#EDF6FB] rounded-full"
+            className="absolute pointer-events-none top-0 right-0    h-2 w-2 font-bold p-1 text-[12px] flex items-center justify-center text-theme-blue  rounded-full   bg-theme-pink"
             id="mobile-header-cart-quantity"
           >
-            {cartTotalQuantity}
+            {/* {cartTotalQuantity} */}
           </span>
         )}
-        <Icons.shoppingBag className="h-6 w-6 " id="header-cart-icon" />
+        <Icons.shoppingBag className="h-7 w-7 " id="header-cart-icon" />
       </button>
 
       {/* <motion.div

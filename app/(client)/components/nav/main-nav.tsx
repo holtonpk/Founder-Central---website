@@ -124,7 +124,7 @@ export default function Nav() {
             >
               {cartTotalQuantity > 0 && (
                 <span
-                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 font-bold p-1 text-sm flex items-center justify-center text-theme-blue bg-[#EDF6FB] rounded-full"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 font-bold p-1 text-sm flex items-center justify-center text-theme-blue bg-white  rounded-full"
                   id="header-cart-quantity"
                 >
                   {cartTotalQuantity}

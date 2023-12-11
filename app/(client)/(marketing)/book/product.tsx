@@ -80,7 +80,7 @@ export default function Product({productData}: {productData: any}) {
           >
             <h1
               id="product-title-header"
-              className="text-black text-3xl md:text-4xl  font-head font-bold "
+              className="text-black text-2xl md:text-4xl  font-head font-bold "
             >
               {product.title}
             </h1>
@@ -556,7 +556,7 @@ const ProductImagesMobile = ({product}: {product: any}) => {
             <div
               id={`product-image-${i}`}
               key={i}
-              className="snap-center   relative h-[350px] w-[300px]  "
+              className="snap-center   relative h-[380px] w-[300px] "
             >
               <Image
                 id="product-image"
