@@ -265,7 +265,7 @@ const Reviews = ({
               <Image
                 alt="Review Image"
                 src={reviewImages[i]}
-                layout="fill"
+                fill
                 objectFit="contain"
                 className="rounded-lg overflow-hidden "
               />
@@ -353,8 +353,9 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
       if (displayedReview < scrollSnapPoints.length - 1) {
         setDisplayedReview(displayedReview + 1);
         scrollArea.scrollBy({
-          left: scrollSnapPoints[displayedReview + 1].getBoundingClientRect()
-            .left,
+          left:
+            scrollSnapPoints[displayedReview + 1].getBoundingClientRect().left +
+            16,
           behavior: "smooth",
         });
       }
@@ -394,7 +395,7 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
               <Image
                 alt="Review Image"
                 src={reviewImages[i]}
-                layout="fill"
+                fill
                 objectFit="contain"
                 className={`rounded-lg overflow-hidden `}
               />
