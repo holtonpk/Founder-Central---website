@@ -354,7 +354,7 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
         setDisplayedReview(displayedReview + 1);
         scrollArea.scrollBy({
           left:
-            scrollSnapPoints[displayedReview + 1].getBoundingClientRect().left +
+            scrollSnapPoints[displayedReview + 1].getBoundingClientRect().left -
             16,
           behavior: "smooth",
         });
