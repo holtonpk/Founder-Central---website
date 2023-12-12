@@ -371,8 +371,9 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
       if (displayedReview > 0) {
         setDisplayedReview(displayedReview - 1);
         scrollArea.scrollBy({
-          left: scrollSnapPoints[displayedReview - 1].getBoundingClientRect()
-            .left,
+          left:
+            scrollSnapPoints[displayedReview - 1].getBoundingClientRect().left -
+            16,
           behavior: "smooth",
         });
       }
