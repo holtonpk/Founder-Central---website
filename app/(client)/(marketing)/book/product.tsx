@@ -344,6 +344,40 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
     }
   }, []);
 
+  const NextReview = () => {
+    const scrollArea = scrollAreaRef.current;
+    if (scrollArea) {
+      const scrollSnapPoints = Array.from(
+        scrollArea.querySelectorAll(".snap-center")
+      );
+      if (displayedReview < scrollSnapPoints.length - 1) {
+        setDisplayedReview(displayedReview + 1);
+        scrollArea.scrollBy({
+          left: scrollSnapPoints[displayedReview + 1].getBoundingClientRect()
+            .left,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
+  const PreviousReview = () => {
+    const scrollArea = scrollAreaRef.current;
+    if (scrollArea) {
+      const scrollSnapPoints = Array.from(
+        scrollArea.querySelectorAll(".snap-center")
+      );
+      if (displayedReview > 0) {
+        setDisplayedReview(displayedReview - 1);
+        scrollArea.scrollBy({
+          left: scrollSnapPoints[displayedReview - 1].getBoundingClientRect()
+            .left,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
   return (
     <div className="relative md:hidden">
       <div
@@ -400,17 +434,25 @@ const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
 
       <div
         id="scroll-position-container"
-        className="flex gap-1 w-fit h-2  mx-auto z-30"
+        className="flex gap-1 w-[90%] h-2 items-center justify-between mt-3  mx-auto z-30"
       >
-        {orderedReviews.slice(0, 6).map((image: any, i: any) => (
-          <div
-            key={`scroll-position-indicator-${i}`}
-            id={`scroll-position-indicator-${i}`}
-            className={`rounded-full  h-3 w-3 ${
-              displayedReview === i ? "bg-theme-blue/80" : "bg-theme-blue/20 "
-            }`}
-          />
-        ))}
+        <Button onClick={PreviousReview} variant="blue">
+          <Icons.chevronLeft />
+        </Button>
+        <div className="flex gap-2">
+          {orderedReviews.slice(0, 6).map((image: any, i: any) => (
+            <div
+              key={`scroll-position-indicator-${i}`}
+              id={`scroll-position-indicator-${i}`}
+              className={`rounded-full  h-3 w-3 transition-colors delay-200 ${
+                displayedReview === i ? "bg-theme-blue/80" : "bg-theme-blue/20 "
+              }`}
+            />
+          ))}
+        </div>
+        <Button onClick={NextReview} variant="blue">
+          <Icons.chevronRight />
+        </Button>
       </div>
     </div>
   );
@@ -601,7 +643,7 @@ const ProductImagesMobile = ({product}: {product: any}) => {
           <div
             key={`scroll-position-indicator-${i}`}
             id={`scroll-position-indicator-${i}`}
-            className={`rounded-full  h-[7px] w-[7px] ${
+            className={`rounded-full  h-[7px] w-[7px]  ${
               selectedImage === i ? "bg-theme-blue/80" : "bg-theme-blue/20 "
             }`}
           />
