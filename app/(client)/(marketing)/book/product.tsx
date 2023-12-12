@@ -175,6 +175,17 @@ export default function Product({productData}: {productData: any}) {
   );
 }
 
+type Review = {
+  id: string;
+  name: string;
+  email: string;
+  productId: string;
+  rating: number;
+  date: number;
+  title: string;
+  body: string;
+};
+
 const Reviews = ({
   productRating,
   productId,
@@ -182,16 +193,7 @@ const Reviews = ({
 }: {
   productRating: number;
   productId: string;
-  reviews: {
-    id: string;
-    name: string;
-    email: string;
-    productId: string;
-    rating: number;
-    date: number;
-    title: string;
-    body: string;
-  }[];
+  reviews: Review[];
 }) => {
   const {SaveReview} = useStorage()!;
 
@@ -241,29 +243,12 @@ const Reviews = ({
     setWriteReview(false);
   };
 
-  const orderedReviews = reviews.sort((a, b) => b.date - a.date);
-
-  const [displayedReview, setDisplayedReview] = React.useState<number>(0);
-
-  const increaseDisplayedReview = () => {
-    if (displayedReview === 5) {
-      setDisplayedReview(0);
-    } else {
-      setDisplayedReview(displayedReview + 1);
-    }
-  };
-  const decreaseDisplayedReview = () => {
-    if (displayedReview === 0) {
-      setDisplayedReview(orderedReviews.length - 1);
-    } else {
-      setDisplayedReview(displayedReview - 1);
-    }
-  };
+  const orderedReviews: Review[] = reviews.sort((a, b) => b.date - a.date);
 
   return (
     <div
       id="product-reviews-container"
-      className="w-full flex flex-col gap-4 mt-10 items-center md:container"
+      className="w-full flex flex-col gap-4 mt-10 items-center md:container "
     >
       <h1 className="  font-head font-bold text-center px-4  text-4xl lg:text-5xl  text-theme-blue">
         What people are saying
@@ -317,78 +302,115 @@ const Reviews = ({
           </div>
         ))}
       </div>
-      <div className="block md:hidden w-[90%] ">
-        <div
-          id={`product-reviews-review-${orderedReviews[displayedReview].id}`}
-          key={orderedReviews[displayedReview].id}
-          className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg w-full mx-auto bg-background mt-6 "
-        >
-          <div className=" w-full aspect-[1.5/1]  rounded-lg overflow-hidden  relative ">
-            <Image
-              alt="Review Image"
-              src={reviewImages[displayedReview]}
-              layout="fill"
-              objectFit="contain"
-              className="rounded-lg overflow-hidden "
-            />
-          </div>
-          <div
-            id={`product-reviews-review-${orderedReviews[displayedReview].id}-rating`}
-            className="flex items-center gap-1   w-fit "
-          >
-            <Stars rating={orderedReviews[displayedReview].rating} />(
-            {orderedReviews[displayedReview].rating})
-          </div>
+      <MobileReviews orderedReviews={orderedReviews} />
+    </div>
+  );
+};
 
-          <h1
-            id={`product-reviews-review-${orderedReviews[displayedReview].id}-title`}
-            className="text-xl font-bold  px-2 text-center"
+const MobileReviews = ({orderedReviews}: {orderedReviews: Review[]}) => {
+  const [displayedReview, setDisplayedReview] = React.useState<number>(0);
+  const scrollAreaRef = React.useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scrollArea = scrollAreaRef.current;
+
+    if (scrollArea) {
+      const handleScroll = () => {
+        const scrollSnapPoints = Array.from(
+          scrollArea.querySelectorAll(".snap-center")
+        );
+        const scrollLeft = scrollArea.scrollLeft;
+        const containerWidth = scrollArea.offsetWidth;
+
+        for (let i = 0; i < scrollSnapPoints.length; i++) {
+          const image = scrollSnapPoints[i];
+          const {left, width} = image.getBoundingClientRect();
+          const rightEdgePosition = left + width;
+
+          // Check if the right edge&apos;s left position is greater than half of the container width
+          if (rightEdgePosition > containerWidth / 2) {
+            setDisplayedReview(i);
+            break; // No need to check the rest
+          }
+        }
+      };
+
+      scrollArea.addEventListener("scroll", handleScroll);
+      handleScroll(); // Initial check
+
+      return () => {
+        scrollArea.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
+
+  return (
+    <div className="relative md:hidden">
+      <div
+        className="w-screen hideScrollbar snap-mandatory snap-x overflow-scroll grid grid-flow-col items-center z-20 px-20 relative review gap-4 pb-4 "
+        ref={scrollAreaRef}
+      >
+        {orderedReviews.slice(0, 6).map((review, i) => (
+          <div
+            id={`product-reviews-review-${review.id}`}
+            key={review.id}
+            className="flex flex-col items-center  md:px-6 p-4 md:py-10 gap-2 rounded-lg   bg-background  snap-center review  relative h-[430px] w-[350px] "
           >
-            {orderedReviews[displayedReview].title}
-          </h1>
-          <p
-            id={`product-reviews-review-${orderedReviews[displayedReview].id}-body`}
-            className="text-muted-foreground text-center "
-          >
-            {orderedReviews[displayedReview].body}
-          </p>
-          <p
-            id={`product-reviews-review-${orderedReviews[displayedReview].id}-authorDate`}
-            className="text-base font-bold"
-          >
-            {orderedReviews[displayedReview].name}
-          </p>
-          <div className="flex flex-row gap-2 font-bold text-theme-blue">
-            <Icons.badgeCheck className="h-6 w-6 text-theme-blue" />
-            Verified Buyer
+            <div className=" w-full aspect-[1.5/1]  rounded-lg overflow-hidden  relative ">
+              <Image
+                alt="Review Image"
+                src={reviewImages[i]}
+                layout="fill"
+                objectFit="contain"
+                className={`rounded-lg overflow-hidden `}
+              />
+            </div>
+            <div
+              id={`product-reviews-review-${review.id}-rating`}
+              className="flex items-center gap-1   w-fit "
+            >
+              <Stars rating={review.rating} />({review.rating})
+            </div>
+
+            <h1
+              id={`product-reviews-review-${review.id}-title`}
+              className="text-xl font-bold  px-2 text-center"
+            >
+              {review.title}
+            </h1>
+            <p
+              id={`product-reviews-review-${review.id}-body`}
+              className="text-muted-foreground text-center "
+            >
+              {review.body}
+            </p>
+            <p
+              id={`product-reviews-review-${review.id}-authorDate`}
+              className="text-base font-bold"
+            >
+              {review.name}
+            </p>
+            <div className="flex flex-row gap-2 font-bold text-theme-blue">
+              <Icons.badgeCheck className="h-6 w-6 text-theme-blue" />
+              Verified Buyer
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-      <div className="w-[90%] flex flex-row justify-between items-center md:hidden ">
-        <Button
-          onClick={decreaseDisplayedReview}
-          variant="blue"
-          className="rounded-full aspect-square p-1"
-        >
-          <Icons.chevronLeft className="h-6 w-6" />
-        </Button>
-        <div className="flex gap-1 ">
-          {orderedReviews.slice(0, 6).map((review, i) => (
-            <span
-              key={i}
-              className={`h-3 w-3 rounded-full
-            ${displayedReview === i ? "bg-theme-blue" : "bg-theme-blue/40"}
-            `}
-            />
-          ))}
-        </div>
-        <Button
-          onClick={increaseDisplayedReview}
-          variant="blue"
-          className="rounded-full aspect-square p-1"
-        >
-          <Icons.chevronRight className="h-6 w-6" />
-        </Button>
+
+      <div
+        id="scroll-position-container"
+        className="flex gap-1 w-fit h-2  mx-auto z-30"
+      >
+        {orderedReviews.slice(0, 6).map((image: any, i: any) => (
+          <div
+            key={`scroll-position-indicator-${i}`}
+            id={`scroll-position-indicator-${i}`}
+            className={`rounded-full  h-3 w-3 ${
+              displayedReview === i ? "bg-theme-blue/80" : "bg-theme-blue/20 "
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
