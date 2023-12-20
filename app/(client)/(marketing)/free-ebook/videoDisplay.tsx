@@ -193,7 +193,7 @@ const VideoDisplay = ({
           </svg>
           <div className="flex flex-col md:p-20 relative z-20 items-center justify-center h-full gap-4">
             <p className="text-2xl text-theme-blue font-bold font-body text-center">
-              Get all 50 stories for only $4.99!
+              Get all 50 stories for only free!
             </p>
             <Button
               onClick={buyNow}
