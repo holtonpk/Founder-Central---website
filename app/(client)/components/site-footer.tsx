@@ -194,7 +194,7 @@ export function SiteFooter({className}: React.HTMLAttributes<HTMLElement>) {
                 <LinkButton
                   key={link.title}
                   variant={"link"}
-                  className="text-white px-0 py-0 h-fit"
+                  className="text-white px-0 py-0 h-fit text-base"
                   href={link.link}
                 >
                   {link.title}

@@ -15,6 +15,7 @@ const BlogLayout = () => {
   useEffect(() => {
     async function fetchPosts() {
       const posts = await GetBlogPosts();
+      console.log("posts", JSON.stringify(posts));
       setPosts(posts);
       setIsLoading(false);
     }
