@@ -1,7 +1,7 @@
-import { postToShopify } from "../../lib/validations/shopify";
-import { NextApiRequest, NextApiResponse } from "next";
-import { where, getDocs, query, collection } from "firebase/firestore";
-import { db } from "@/context/storage";
+import {postToShopify} from "../../lib/validations/shopify";
+import {NextApiRequest, NextApiResponse} from "next";
+import {where, getDocs, query, collection} from "firebase/firestore";
+import {db} from "@/context/storage";
 
 export default async function handler(
   req: NextApiRequest,
@@ -101,8 +101,8 @@ export default async function handler(
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    reviews.push({ ...doc.data(), id: doc.id });
+    reviews.push({...doc.data(), id: doc.id});
   });
 
-  res.status(200).json({ data: data, reviews: reviews });
+  res.status(200).json({data: data, reviews: reviews});
 }

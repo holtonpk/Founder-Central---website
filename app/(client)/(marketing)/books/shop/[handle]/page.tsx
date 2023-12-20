@@ -14,14 +14,14 @@ type Params = {
   };
 };
 
-export async function generateMetadata({
-  params: {handle},
-}: Params): Promise<Metadata> {
-  return constructMetadata({
-    title: siteConfig.pages[handle].title,
-    description: siteConfig.pages[handle].description,
-  });
-}
+// export async function generateMetadata({
+//   params: {handle},
+// }: Params): Promise<Metadata> {
+//   return constructMetadata({
+//     title: siteConfig.pages[handle].title,
+//     description: siteConfig.pages[handle].description,
+//   });
+// }
 
 const getData = async (handle: string): Promise<any> => {
   const prodDataRes = await fetch(
