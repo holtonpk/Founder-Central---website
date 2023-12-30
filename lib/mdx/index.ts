@@ -20,8 +20,8 @@ export const getPostBySlug = async (
   meta: Meta;
   content: ReactElement<any, string | JSXElementConstructor<any>>;
 }> => {
-  const realSlug = slug.replace(/\.mdx$/, "");
-  const fullPath = path.join(rootDirectory, `${realSlug}.mdx`);
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = path.join(rootDirectory, `${realSlug}.md`);
 
   const fileContents = fs.readFileSync(fullPath, "utf8") as string;
 
