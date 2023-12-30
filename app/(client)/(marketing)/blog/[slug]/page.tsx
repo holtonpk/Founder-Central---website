@@ -7,12 +7,14 @@ import Image from "next/image";
 import {ReactElement, JSXElementConstructor} from "react";
 import {getPostBySlug} from "@/lib/mdx";
 import {MDXRemote} from "next-mdx-remote/rsc";
+import Error from "next/error";
 
 interface Meta {
   title: string;
   description: string;
   date: string;
   image: string;
+  published: boolean;
 }
 
 const getPageContent = async (
@@ -34,6 +36,23 @@ export async function generateMetadata({params}: {params: {slug: string}}) {
 
 const Page = async ({params}: {params: {slug: string}}) => {
   const {meta, content} = await getPageContent(params.slug);
+
+  if (!meta.published) {
+    return (
+      <div className="flex flex-col container relative max-w-3xl py-6 lg:pb-10 lg:pt-28 gap-10 items-center justify-center ">
+        <h1 className=" text-4xl text-theme-blue text-center">
+          Sorry this post isn&apos;t published yet
+        </h1>
+        <LinkButton
+          href="/blog"
+          className={cn(buttonVariants({variant: "blue"}), "border-none")}
+        >
+          <Icons.chevronLeft className="mr-2 h-4 w-4" />
+          See all posts
+        </LinkButton>
+      </div>
+    );
+  }
 
   return (
     <article className="container relative max-w-3xl py-6 lg:pb-10 lg:pt-28">
