@@ -10,7 +10,7 @@ const Page = async () => {
   });
 
   return (
-    <div className="container max-w-4xl py-6 lg:pb-10 md:pt-28">
+    <div className="container max-w-4xl py-6 lg:pb-10 lg:pt-28">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block font-heading text-4xl tracking-tight lg:text-5xl text-theme-blue font-head font-bold">
@@ -21,13 +21,13 @@ const Page = async () => {
           </p>
         </div>
       </div>
-      <hr className="my-8" />
+      <hr className="my-8 hidden md:block" />
       {posts?.length ? (
-        <div className="grid gap-10 sm:grid-cols-2">
+        <div className="grid gap-10 sm:grid-cols-2 mt-4">
           {sortedPosts.map((post, index) => (
             <article
               key={index}
-              className="group relative flex flex-col space-y-2"
+              className="group relative flex flex-col space-y-2 bg-white rounded-md p-3 "
             >
               {post.image && (
                 <div className="relative overflow-hidden aspect-[2/1]  ">

@@ -36,7 +36,7 @@ const Page = async ({params}: {params: {slug: string}}) => {
   const {meta, content} = await getPageContent(params.slug);
 
   return (
-    <article className="container relative max-w-3xl py-6 lg:pb-10 md:pt-28">
+    <article className="container relative max-w-3xl py-6 lg:pb-10 lg:pt-28">
       <LinkButton
         href="/blog"
         className={cn(
@@ -56,19 +56,20 @@ const Page = async ({params}: {params: {slug: string}}) => {
             Published on {formatDate(Number(meta.date))}
           </time>
         )}
-        <h1 className="mt-2 inline-block font-heading text-4xl leading-tight text-theme-blue font-head font-bold lg:text-5xl">
+        <h1 className="mt-2 inline-block font-heading text-2xl sm:text-3xl md:text-4xl leading-tight text-theme-blue font-head font-bold lg:text-5xl">
           {meta.title}
         </h1>
       </div>
       {meta.image && (
-        <Image
-          src={meta.image}
-          alt={meta.title}
-          width={720}
-          height={405}
-          className="my-8 rounded-md border bg-muted transition-colors"
-          priority
-        />
+        <div className="relative overflow-hidden aspect-[2/1] my-6 ">
+          <Image
+            src={meta.image}
+            alt={meta.title}
+            width={804}
+            height={452}
+            className="rounded-md border bg-muted  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-105 group-hover:z-10 transition-all duration-200 ease-in-out"
+          />
+        </div>
       )}
       <div className="prose">{content}</div>
       <hr className="mt-12" />
