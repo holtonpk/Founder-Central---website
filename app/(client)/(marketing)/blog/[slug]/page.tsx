@@ -39,7 +39,7 @@ const Page = async ({params}: {params: {slug: string}}) => {
 
   if (!meta.published) {
     return (
-      <div className="flex flex-col container relative max-w-3xl py-6 lg:pb-10 lg:pt-28 gap-10 items-center justify-center ">
+      <div className="flex flex-col container relative max-w-3xl py-6 lg:pb-10 lg:pt-28 gap-10 items-center justify-center s">
         <h1 className=" text-4xl text-theme-blue text-center">
           Sorry this post isn&apos;t published yet
         </h1>
