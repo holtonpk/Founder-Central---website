@@ -98,7 +98,21 @@ const FounderQuestionsForm = () => {
     user_message: z.string({
       required_error: "Please enter a message.",
     }),
-    ...QuestionsSchema,
+    q1: z.string({
+      required_error: "Please enter a response.",
+    }),
+    q2: z.string({
+      required_error: "Please enter a response.",
+    }),
+    q3: z.string({
+      required_error: "Please enter a response.",
+    }),
+    q4: z.string({
+      required_error: "Please enter a response.",
+    }),
+    q5: z.string({
+      required_error: "Please enter a response.",
+    }),
   });
   type ContactFormValue = z.infer<typeof ContactFormSchema>;
 
@@ -141,6 +155,8 @@ const FounderQuestionsForm = () => {
     }
     setIsLoading(false);
   }
+
+  type PossibleFieldNames = keyof typeof ContactFormSchema & string;
 
   return (
     <div className="relative pt-6 lg:pt-32 container pb-20">
@@ -274,7 +290,7 @@ export default FounderQuestionsForm;
 type QuestionObject = {
   title: string;
   type: z.ZodTypeAny;
-  name: string;
+  name: "q1" | "q2" | "q3" | "q4" | "q5";
   placeholder: string;
 };
 
