@@ -27,12 +27,58 @@ const FounderQuestionsForm = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const {toast} = useToast();
 
-  const QuestionsSchema = {};
-  Questions.forEach((question, index) => {
+  const Questions: QuestionObject[] = [
+    {
+      title: "In one line what does  your business do?",
+      type: z.string({
+        required_error: "Please enter a response.",
+      }),
+      name: "q1",
+      placeholder: "Your Name",
+    },
+    {
+      title: "Biggest win so far?",
+      type: z.string({
+        required_error: "Please enter a response.",
+      }),
+      name: "q2",
+      placeholder: "Your Name",
+    },
+    {
+      title: "Biggest roadblock you are facing at the moment?",
+      type: z.string({
+        required_error: "Please enter a response.",
+      }),
+      name: "q3",
+      placeholder: "Your Name",
+    },
+    {
+      title: "What is one insight or hack you found so far?",
+      type: z.string({
+        required_error: "Please enter a response.",
+      }),
+      name: "q4",
+      placeholder: "Your Name",
+    },
+    {
+      title: "Ask the community one question?",
+      type: z.string({
+        required_error: "Please enter a response.",
+      }),
+      name: "q5",
+      placeholder: "Your Name",
+    },
+  ];
+
+  const QuestionsSchema: Record<
+    string,
+    z.ZodType<string, z.ZodStringDef, string>
+  > = {};
+  Questions.forEach((question) => {
     QuestionsSchema[question.name] = question.type;
   });
 
-  const initialDynamicQuestionValues = {};
+  const initialDynamicQuestionValues: Record<string, string> = {};
   Questions.forEach((question) => {
     initialDynamicQuestionValues[question.name] = "";
   });
