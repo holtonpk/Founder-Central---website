@@ -225,7 +225,14 @@ const FounderQuestionsForm = () => {
 
 export default FounderQuestionsForm;
 
-const Questions = [
+type QuestionObject = {
+  title: string;
+  type: z.ZodTypeAny;
+  name: string;
+  placeholder: string;
+};
+
+const Questions: QuestionObject[] = [
   {
     title: "In one line what does  your business do?",
     type: z.string({
