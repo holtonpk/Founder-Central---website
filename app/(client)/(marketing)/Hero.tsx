@@ -166,7 +166,7 @@ const Hero = () => {
               <h1 className="text-white font-bold font-body whitespace-nowrap md:whitespace-normal text-center md:text-left md:text-3xl lg:text-[22px] text-lg xsm:text-xl capitalize relative  w-[100%] ">
                 Join 45k other founders like yourself.
               </h1>
-              <Form {...form}>
+              {/* <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="">
                   <div className="w-full h-fit relative ">
                     <div className="h-fit w-full">
@@ -195,7 +195,15 @@ const Hero = () => {
                     </Button>
                   </div>
                 </form>
-              </Form>
+              </Form> */}
+              <iframe
+                src="https://embeds.beehiiv.com/77dff1b9-eaaf-4b3a-9c41-ff3f7209ed44?slim=true"
+                data-test-id="beehiiv-embed"
+                height="52"
+                frameborder="0"
+                scrolling="no"
+                // style={"margin: 0; border-radius: 0px !important; background-color: transparent;"}
+              ></iframe>
             </div>
           </div>
         </div>

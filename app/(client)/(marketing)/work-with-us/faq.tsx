@@ -84,7 +84,7 @@ const FAQ = () => {
     },
   ];
   return (
-    <div className="container w-[90%]  pb-20">
+    <div className="container w-[90%]  pb-20 mt-20">
       <div className="flex flex-col items-center gap-2">
         {/* <h2 className="text-theme-blue text-2xl uppercase font-body  ">
           FREQUENT QUESTIONS

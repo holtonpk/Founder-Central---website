@@ -84,7 +84,7 @@ const Newsletter = () => {
           have missed in a single email. Plus, you can connect with like-minded
           founders reading the same email
         </p>
-        <Form {...form}>
+        {/* <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full md:w-[60%] flex relative"
@@ -111,7 +111,15 @@ const Newsletter = () => {
               )}
             </Button>
           </form>
-        </Form>
+        </Form> */}
+        <iframe
+          src="https://embeds.beehiiv.com/77dff1b9-eaaf-4b3a-9c41-ff3f7209ed44?slim=true"
+          data-test-id="beehiiv-embed"
+          height="52"
+          frameborder="0"
+          scrolling="no"
+          // style={"margin: 0; border-radius: 0px !important; background-color: transparent;"}
+        ></iframe>
       </div>
     </div>
   );

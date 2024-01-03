@@ -22,6 +22,9 @@ const ServiceTabs = () => {
     {id: 1, icon: "monitor", label: "Web Development"},
   ];
 
+  const CALENDlYLINK =
+    "https://calendly.com/foundercentralteam/introcall?month=2024-01";
+
   return (
     <div className="flex flex-col md:container items-center py-10 w-[90%]">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 w-full overflow-visible pb-10 ">
@@ -64,11 +67,12 @@ const ServiceTabs = () => {
                 <DetailTab text="Website Copy" color="bg-theme-pink" />
               </div>
               <LinkButton
-                href={"/work-with-us#agency-get-started"}
+                href={CALENDlYLINK}
+                target="_blank"
                 variant="blue"
                 className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase  bg-theme-pink hover:text-theme-pink hover:border-theme-pink font-head"
               >
-                Get Started
+                Book A Call
               </LinkButton>
             </div>
           </>
@@ -108,11 +112,12 @@ const ServiceTabs = () => {
                 />
               </div>
               <LinkButton
-                href={"/work-with-us#agency-get-started"}
+                href={CALENDlYLINK}
+                target="_blank"
                 variant="blue"
                 className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-purple hover:text-theme-purple hover:border-theme-purple font-head"
               >
-                Get Started
+                Book A Call
               </LinkButton>
             </div>
             <div className="relative lg:h-full w-full md:w-[50%] lg:w-full order-1 lg:order-2 ">
@@ -148,11 +153,12 @@ const ServiceTabs = () => {
                 <DetailTab text="SEO optimized" color="bg-theme-yellow" />
               </div>
               <LinkButton
-                href={"/work-with-us#agency-get-started"}
+                href={CALENDlYLINK}
+                target="_blank"
                 variant="blue"
                 className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-yellow hover:text-theme-yellow hover:border-theme-yellow font-head"
               >
-                Get Started
+                Book A Call
               </LinkButton>
             </div>
           </>
@@ -180,11 +186,12 @@ const ServiceTabs = () => {
                 <DetailTab text="Quick turnaround" color="bg-theme-blue" />
               </div>
               <LinkButton
-                href={"/work-with-us#agency-get-started"}
+                href={CALENDlYLINK}
+                target="_blank"
                 variant="blue"
                 className=" lg:mt-8 p-6 text-xl lg:w-fit w-full rounded-md uppercase bg-theme-blue font-head "
               >
-                Get Started
+                Book A Call
               </LinkButton>
             </div>
             <div className="relative lg:h-full w-full md:w-[50%] lg:w-full order-1 lg:order-2 ">

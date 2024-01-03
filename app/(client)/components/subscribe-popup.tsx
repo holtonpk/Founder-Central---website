@@ -112,7 +112,15 @@ export default function SubscribePopup({
 
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent className="bg-white">
-          <Form {...form}>
+          <DialogHeader>
+            <DialogTitle className="text-[#4DA6DF]">
+              Join the Newsletter
+            </DialogTitle>
+            <DialogDescription>
+              Enter your email to subscribe to our newsletter
+            </DialogDescription>
+          </DialogHeader>
+          {/* <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-4"
@@ -150,7 +158,16 @@ export default function SubscribePopup({
                 </Button>
               </DialogFooter>
             </form>
-          </Form>
+          </Form> */}
+          <iframe
+            src="https://embeds.beehiiv.com/4ccafb08-56e1-4b0e-b460-20f56bcc61af?slim=true"
+            data-test-id="beehiiv-embed"
+            height="52"
+            frameborder="0"
+            scrolling="no"
+            className="w-full"
+            // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
+          ></iframe>
         </DialogContent>
       </Dialog>
     </>
