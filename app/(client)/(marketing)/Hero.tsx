@@ -200,7 +200,6 @@ const Hero = () => {
                 src="https://embeds.beehiiv.com/77dff1b9-eaaf-4b3a-9c41-ff3f7209ed44?slim=true"
                 data-test-id="beehiiv-embed"
                 height="52"
-                frameborder="0"
                 scrolling="no"
                 // style={"margin: 0; border-radius: 0px !important; background-color: transparent;"}
               ></iframe>

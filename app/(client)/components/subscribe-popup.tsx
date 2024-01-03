@@ -163,7 +163,6 @@ export default function SubscribePopup({
             src="https://embeds.beehiiv.com/4ccafb08-56e1-4b0e-b460-20f56bcc61af?slim=true"
             data-test-id="beehiiv-embed"
             height="52"
-            frameborder="0"
             scrolling="no"
             className="w-full"
             // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
