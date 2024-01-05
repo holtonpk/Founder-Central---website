@@ -6,7 +6,6 @@ date: 2023-12-02
 published: false
 ---
 
-# How to Pick a Co-Founder for Your Startup
 
 Selecting the right co-founder is one of the most important decisions you’ll make when starting a company. According to Fundera, the odds of startup success increase by **20-30%** when there are 2 or more founders. Your co-founder must complement your skills, share your vision and values, and be someone you can work closely with during the challenges of building a business.
 
