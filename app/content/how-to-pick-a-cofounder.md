@@ -1,6 +1,6 @@
 ---
-title: "Demystifying the Process: A Young Founder's Guide to Registering an LLC"
-description: From Oprah Winfrey to Elon Musk, the stories of rags-to-riches entrepreneurs are a source of inspiration for aspiring business leaders.
+title: "How to Pick a Co-Founder for Your Startup"
+description: Selecting the right co-founder is one of the most important decisions you’ll make when starting a company.
 image: image url here
 date: 2023-12-02
 published: false
