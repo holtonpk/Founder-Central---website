@@ -38,10 +38,10 @@ const Newsletter = () => {
               Talk to other founders
             </h1>
             <p className="font-body text-white">
-              Join a community of other founders to discuss what's working for
-              them, the challenges they are facing and the secret hacks they are
-              using. Get a behind-the-scenes view of founders in the trenches
-              and watch them build life changing startups from day 1.
+              Join a community of other founders to discuss what&apos;s working
+              for them, the challenges they are facing and the secret hacks they
+              are using. Get a behind-the-scenes view of founders in the
+              trenches and watch them build life changing startups from day 1.
             </p>
           </div>
           <div className="bg-theme-yellow flex flex-col p-6 rounded-lg shadow w-full gap-2">
