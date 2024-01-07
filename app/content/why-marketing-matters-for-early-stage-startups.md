@@ -1,9 +1,9 @@
 ---
-title: “Why Marketing Matters for Early Stage Startups”
+title: Why Marketing Matters for Early Stage Startups
 description: This article explores why you need to prioritize marketing even as early stage startup.
-image: image url here
-date: 2023-12-05
-published: false
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1193373417651572736/foundercentral_49862_A_creative_collage_of_images_representing__3f8e7d52-8fb3-432e-b34d-f44aebce3f8b.webp?ex=65ac7a9a&is=659a059a&hm=f01d11c95d0691d47ba2b44daf965115e7b94a58e050478170cb850bad62732a&"
+date: 2024-01-06
+published: true
 ---
 
 # Why Marketing Matters for Early Stage Startups
