@@ -1,7 +1,7 @@
 ---
 title: "How to Effectively Utilize Product Hunt"
 description: A comprehensive guide on how to make the most of this influential platform.
-image: "https://cdn.discordapp.com/attachments/1190437037665439767/1193362782121361528/foundercentral_49862_magazine_cover_artwork_for_a_business_blog_e482c376-7099-4734-b0c2-b422e447f0e1.png?ex=65ac70b2&is=6599fbb2&hm=fdbb858d597223379220d18e040f9e80fff85e1a4aaf80ca2229331f96b58721&"
+image: image url here
 date: 2024-01-15
 published: false
 ---
