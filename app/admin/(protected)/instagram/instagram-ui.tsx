@@ -196,7 +196,7 @@ const ToolBar = ({
           </>
         )}
       </Button>
-      <Button className="gap-1 border" variant="">
+      <Button className="gap-1 border">
         <Icons.camera className="w-4 h-4" />
         Screenshot
       </Button>
