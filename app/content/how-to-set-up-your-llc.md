@@ -1,11 +1,10 @@
 ---
-title: "Why So Many Startips Fail"
+title: "How to setup your llc"
 description: The easy step by step process
-image: image url here
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1198777060945043466/foundercentral_49862_Entrepreneur_4c3c3c45-00f4-4f3b-8be1-d00b3a3d24d7.png?ex=65c02323&is=65adae23&hm=86c723b948df873f487c5627df88dd4b1cbace536c1b6ff7d239d8f51075e6a2&"
 date: 2024-01-11
-published: false
+published: true
 ---
-
 
 Starting a business is an exciting venture, and one crucial step in the process is registering as a Limited Liability Company (LLC). This legal structure not only provides a level of protection for your personal assets but also offers flexibility in management and taxation. In this guide, we'll walk you through the essential steps on how to register for an LLC, turning your business idea into a legally recognized entity.
 

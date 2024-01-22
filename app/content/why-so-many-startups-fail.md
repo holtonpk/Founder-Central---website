@@ -1,7 +1,7 @@
 ---
-title: "Why So Many Startips Fail"
+title: "Why So Many Startups Fail"
 description: The startup struggle is real
-image: image url here
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1198775767958564904/foundercentral_49862_Entrepreneur_bfaf769f-0ebe-45e6-89f8-1e00dd928358.png?ex=65c021ef&is=65adacef&hm=e447d0497c25d8e212445b3cb1504dcc7229c0a381429c2a935ba5a5404d623a&"
 date: 2024-01-11
 published: true
 ---

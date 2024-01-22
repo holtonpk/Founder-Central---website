@@ -1,9 +1,9 @@
 ---
 title: "How To Grow Your Newsletter"
 description: Mastering email growth
-image: image url here
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1198772152917307554/foundercentral_49862_a_successful_email_newsletter_with_money_2138e2dc-8df3-4117-ad7b-9d8f3b10dc67.png?ex=65c01e91&is=65ada991&hm=cc84a8ef4ccf87dff0eb5c5925c9e8b8a6fae79779bc2c44b737073cab41e2d6&"
 date: 2024-01-11
-published: false
+published: true
 ---
 
 Newsletters have become a powerful tool for businesses and content creators to engage with their audience, foster relationships, and share valuable insights. However, building a substantial and engaged newsletter list requires strategic efforts. In this guide, we unveil effective techniques on how to grow your newsletter list, helping you maximize the impact of your communications.

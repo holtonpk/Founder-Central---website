@@ -1,11 +1,10 @@
 ---
-title: "How Startups Valuations Work"
+title: "How Startups Valuations Works"
 description: Startup valuations made simple
-image: image url here
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1198775275618566244/foundercentral_49862_Entrepreneur_53076d84-b620-47af-9bbb-d64e3525643f.png?ex=65c02179&is=65adac79&hm=6f8b9fed004e6068f77663fed59f740344c0e5f2d7a618f841fcfa24ddef7a18&"
 date: 2024-01-11
 published: true
 ---
-
 
 In the fast-paced realm of startups, one of the most intriguing aspects is how these innovative ventures are valued. The valuation process is not merely a numbers game; it's a dynamic interplay of various factors that determine the worth of a startup. Let's embark on a journey to demystify the intricacies of startup valuations and understand the key elements at play.
 

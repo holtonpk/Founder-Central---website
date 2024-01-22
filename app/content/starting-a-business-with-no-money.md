@@ -1,11 +1,10 @@
 ---
 title: "Starting a Business with No Money"
 description: Best startups to get into if you have no funds.
-image: image url here
+image: "https://cdn.discordapp.com/attachments/1190437037665439767/1198778710065680495/foundercentral_49862_Empty_wallet_ef2f5d14-acad-4c0d-b2ab-bd3e9207d286.png?ex=65c024ac&is=65adafac&hm=96630df4696ce84959d39fb04ab685acea039a3d3dbf8b7ae9f2ef93302f6273&"
 date: 2024-01-11
-published: false
+published: true
 ---
-
 
 Embarking on the entrepreneurial journey with limited funds may seem daunting, but with creativity and determination, it's entirely possible to kickstart your venture without breaking the bank. In this guide, we explore some of the best businesses to start with little to no money, proving that a lack of capital doesn't have to be a barrier to your business dreams.
 
