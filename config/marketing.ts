@@ -15,6 +15,11 @@ export const marketingConfig: MarketingConfig = {
       href: "/books/shop/snapshots-of-success-the-50-greatest-business-success-stories",
     },
     {
+      title: "Blog",
+      href: "/blog",
+    },
+
+    {
       title: "Work With Us",
       href: "/work-with-us",
     },
