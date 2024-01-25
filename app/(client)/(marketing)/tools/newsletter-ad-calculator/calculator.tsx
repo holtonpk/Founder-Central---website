@@ -20,8 +20,8 @@ import {set} from "date-fns";
 const Calculator = () => {
   const [newsletterSize, setNewsletterSize] = React.useState<any>(12);
   const [audienceValue, setAudienceValue] = React.useState<any[]>([1]);
-  const [openRate, setOpenRate] = React.useState<any>(40);
-  const [clickRate, setClickRate] = React.useState<any>(5);
+  const [openRate, setOpenRate] = React.useState<any>(36);
+  const [clickRate, setClickRate] = React.useState<any>(3);
 
   const handleNewsletterSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewsletterSize(Number(e.target.value));
@@ -79,7 +79,7 @@ const Calculator = () => {
         <Input
           placeholder="Enter a number"
           type="number"
-          className="w-full"
+          className="w-full border-theme-blue text-theme-blue placeholder:text-theme-blue focus:ring"
           onChange={handleNewsletterSize}
         />
       </div>
@@ -161,9 +161,9 @@ const Calculator = () => {
             // onValueChange={handleOpenRate}s
             onValueChange={handleOpenRate}
           >
-            <div className="absolute ease-in-out duration-150  -translate-y-0 -translate-x-1/2 w-fit left-[36.6%] text-center rounded-full text-white whitespace-nowrap text-xs font-bold">
-              <span className="h-6 w-1 absolute bg-theme-pink rounded-sm  left-1/2 -translate-x-1/2 -translate-y-0"></span>
-              <h1 className="-translate-y-4 text-theme-pink">Avg.</h1>
+            <div className="absolute ease-in-out duration-150  -translate-y-0 -translate-x-1/2 w-fit left-[36.5%] text-center rounded-full text-white whitespace-nowrap text-xs font-bold">
+              <span className="h-6 w-1 absolute bg-theme-blue rounded-sm  left-1/2 -translate-x-1/2 -translate-y-0"></span>
+              <h1 className="-translate-y-4 text-theme-blue">Avg.</h1>
             </div>
           </Slider>
           100%
@@ -198,8 +198,8 @@ const Calculator = () => {
             onValueChange={handleClickRate}
           >
             <div className="absolute ease-in-out duration-150  -translate-y-0 -translate-x-1/2 w-fit left-[4.3%] text-center rounded-full text-white whitespace-nowrap text-xs font-bold">
-              <span className="h-6 w-1 absolute bg-theme-pink rounded-sm  left-1/2 -translate-x-1/2 -translate-y-0"></span>
-              <h1 className="-translate-y-4 text-theme-pink">Avg.</h1>
+              <span className="h-6 w-1 absolute bg-theme-blue rounded-sm  left-1/2 -translate-x-1/2 -translate-y-0"></span>
+              <h1 className="-translate-y-4 text-theme-blue">Avg.</h1>
             </div>
           </Slider>
           100%
