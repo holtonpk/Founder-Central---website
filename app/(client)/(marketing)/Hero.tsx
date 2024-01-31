@@ -94,7 +94,7 @@ const Hero = () => {
   return (
     <>
       <div
-        className="hero relative overflow-visible z-40 min-h-fit   lg:pt-20 "
+        className="hero relative overflow-visible z-40 min-h-fit   lg:pt-12 "
         id="hero"
       >
         <div className="grid grid-rows-[40%_60%]  lg:grid-rows-1 sm:grid-rows-[40%_60%] md:grid-rows-[60%_40%] gap-y-4 md:gap-y-6 lg:grid-cols-[70%_1fr] lg:p-8 gap-x-6 px-2   lg:container h-fit    lg:h-[90vh]  lg:max-h-[650px] z-1 relative">

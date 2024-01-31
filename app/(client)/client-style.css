@@ -89,7 +89,13 @@
   bottom: 0;
   z-index: -1;
 }
-
+.wrap {
+  /* width: calc(100% - 40px); */
+  --scale: 0.8;
+  transform: scale(var(--scale));
+  transform-origin: top left;
+  margin-bottom: calc((var(--scale) - 1) * 100%);
+}
 .background::before {
   content: "";
   background-color: hsla(var(--blue), 0.4);
@@ -106,7 +112,9 @@
 .blurBack {
   backdrop-filter: blur(10px);
 }
-
+.blurBack2 {
+  backdrop-filter: blur(2px);
+}
 .adminMessage {
   position: absolute;
   z-index: 9999;
@@ -146,6 +154,15 @@
   outline: 3px solid hsl(221.2 83.2% 53.3%);
   position: relative;
 }
+.insta-create {
+  /* global 94%+ browsers support */
+  background: linear-gradient(
+    45deg,
+    rgba(255, 201, 0, 1) 0%,
+    rgba(255, 41, 69, 1) 50%,
+    rgba(214, 16, 201, 1) 100%
+  );
+}
 
 .hover-section:after {
   z-index: 9999;
@@ -170,7 +187,10 @@
 
   font-size: 16px;
 }
-
+.hor-flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 @keyframes applyHoverEffect2 {
   0% {
     outline: none;

@@ -1,11 +1,7 @@
 "use client";
-import React, {useEffect} from "react";
-import {Input} from "@/app/(client)/components/ui/input";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "@/app/(client)/components/ui/radio-group";
+import React, {use, useEffect} from "react";
 import {Checkbox} from "@/app/(client)/components/ui/checkbox";
+import {Input} from "@/app/(client)/components/ui/input";
 import {Label} from "@/app/(client)/components/ui/label";
 import {Slider} from "@/app/(client)/components/ui/slider";
 import {
@@ -15,7 +11,6 @@ import {
   TooltipTrigger,
 } from "@/app/(client)/components/ui/tooltip";
 import {Icons} from "@/app/(client)/components/icons";
-import {set} from "date-fns";
 
 const Calculator = () => {
   const [newsletterSize, setNewsletterSize] = React.useState<any>(12);
@@ -35,33 +30,42 @@ const Calculator = () => {
     setClickRate(Number(e[0]));
   };
 
+  const [checkedTopics, setCheckedTopics] = React.useState<any[]>([]);
+
   const handleAudienceValueChange = (value: any, id: string) => {
     const element = document.getElementById(id);
     // check if element data-state is checked
     if (element?.getAttribute("data-state") === "checked") {
+      setCheckedTopics(checkedTopics.filter((item) => item !== id));
       const indexToRemove = audienceValue.indexOf(value);
       if (indexToRemove !== -1) {
         audienceValue.splice(indexToRemove, 1);
       }
       setAudienceValue([...audienceValue]);
     } else {
+      setCheckedTopics([...checkedTopics, id]);
       setAudienceValue([...audienceValue, value]);
     }
   };
 
   useEffect(() => {
-    console.log("av", audienceValue);
     if (!newsletterSize || !audienceValue || !openRate || !clickRate) return;
     const finalRate = Math.round(
       (((newsletterSize * Math.max(...audienceValue) * openRate) / 100) *
         clickRate) /
         100
     );
-    nbrElmSpdDec(finalRate, document.getElementById("finalRate"), 1000, false);
+    const elm = document.getElementById("finalRate");
+    if (!elm) return;
+    elm.innerHTML = finalRate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const SubValue = finalRate / newsletterSize;
+    const elmSub = document.getElementById("subscribeValue");
+    if (!elmSub) return;
+    elmSub.innerHTML = SubValue.toFixed(2);
   }, [newsletterSize, audienceValue, openRate, clickRate]);
 
   return (
-    <div className="w-full h-fit bg-white p-6 rounded-md flex flex-col  gap-6 mt-4">
+    <div className="w-full h-fit bg-white p-6 rounded-md flex flex-col  gap-6 mt-4 shadow-lg">
       <div className="grid w-full gap-4">
         <h1 className="font-bold text-lg flex items-center">
           Newsletter list size
@@ -79,7 +83,8 @@ const Calculator = () => {
         <Input
           placeholder="Enter a number"
           type="number"
-          className="w-full border-theme-blue text-theme-blue placeholder:text-theme-blue focus:ring"
+          id="newsletterSize"
+          className="w-full border-theme-blue text-black placeholder:text-black focus:ring"
           onChange={handleNewsletterSize}
         />
       </div>
@@ -97,47 +102,21 @@ const Calculator = () => {
                   handleAudienceValueChange(topic.weight, topic.title)
                 }
               />
-              <Label className="text-xsm text-theme-blue" htmlFor={topic.title}>
+              <Label
+                className={`text-xsm s${
+                  checkedTopics.includes(topic.title)
+                    ? "text-theme-blue"
+                    : "text-black/50"
+                }`}
+                htmlFor={topic.title}
+              >
                 {topic.title}
               </Label>
             </div>
           ))}
         </div>
-        {/* <RadioGroup
-          className="gap-4 text-black/60"
-          value={audienceValue}
-          defaultValue="1"
-          onValueChange={handleAudienceValue}
-        >
-           <div className="flex items-center space-x-2">
-            <RadioGroupItem value={"1"} id="r1" />
-            <Label htmlFor="r1">
-              General interest audience (e.g., daily news roundup)
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="2" id="r2" />
-            <Label htmlFor="r2">
-              Targeted interest audience (e.g., travelers, tech enthusiasts, pet
-              lovers)
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="4" id="r3" />
-            <Label htmlFor="r3">
-              Targeted professional audience (e.g., coders, stock traders,
-              marketers)
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="6" id="r4" />
-            <Label htmlFor="r4">
-              B2B audience (e.g., C-Suite, entrepreneurs, founders)
-            </Label>
-          </div>
-        </RadioGroup> */}
       </div>
-      {/* <div className="grid grid-cols-2 gap-10"> */}
+
       <div className="grid gap-4">
         <h1 className="font-bold text-lg flex items-center">
           Open rate (%)
@@ -204,51 +183,37 @@ const Calculator = () => {
           </Slider>
           100%
         </div>
-        {/* </div> */}
       </div>
-      <div className="w-full bg-theme-blue p-4 rounded-md flex flex-col items-end">
-        <span className="text-white opacity-60  items-center ">
-          Rate card price for main sponsorship ($):
-        </span>
-        <span
-          id="finalRate"
-          className="opacity-1 font-bold text-3xl text-white"
-        ></span>
+      <div className="w-full grid grid-cols-2 shadow-lg  rounded-md  borders  overflow-hidden">
+        <div className="w-full p-4 bg-white flex flex-col items-center">
+          <span className="text-theme-blue opacity-60  items-center ">
+            Value per subscriber ($):
+          </span>
+          <span
+            id="subscribeValue"
+            className="opacity-1 font-bold text-3xl text-theme-blue"
+          >
+            --
+          </span>
+          <span className="opacity-1 font-bold text-3xl text-white"></span>
+        </div>
+        <div className="w-full p-4 bg-theme-blue flex flex-col items-center">
+          <span className="text-white opacity-60  items-center ">
+            Price for main sponsorship ($):
+          </span>
+          <span
+            id="finalRate"
+            className="opacity-1 font-bold text-3xl text-white"
+          >
+            --
+          </span>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Calculator;
-
-function nbrElmSpdDec(endNbr: any, elm: any, speed: any, decimal: Boolean) {
-  if (endNbr == 0) {
-    elm.innerHTML = 0;
-    return;
-  }
-
-  let inc = endNbr / (speed / 10);
-  function incNbrRec(i: any, endNbr: any, elm: any) {
-    if (i + inc < endNbr) {
-      if (decimal) {
-        elm.innerHTML = (Math.ceil(i * 100) / 100)
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      } else {
-        elm.innerHTML = Math.round((i * 100) / 100)
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      }
-
-      setTimeout(function () {
-        incNbrRec(i + inc, endNbr, elm);
-      }, 1);
-    } else if (i != endNbr && i + inc >= endNbr) {
-      elm.innerHTML = endNbr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-  }
-  incNbrRec(inc, endNbr, elm);
-}
 
 const Topics = [
   {

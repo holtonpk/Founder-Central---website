@@ -67,6 +67,7 @@
     "framer-motion": "^10.16.1",
     "fs": "^0.0.1-security",
     "glob": "^10.3.6",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.268.0",
     "next": "^14.0.3",
     "next-mdx-remote": "^4.4.1",

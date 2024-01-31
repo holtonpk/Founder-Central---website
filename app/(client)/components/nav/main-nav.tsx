@@ -28,18 +28,18 @@ export default function Nav() {
   const toggleCart = () => {
     setShowCartPreview(!showCartPreview);
   };
-
+  console.log("segment", segment);
   return (
     // <div
     //   className={clsx(`sticky inset-x-0 top-0 z-30 w-full transition-all`, {
-    //     "border-b-border border-b bg-background1/20 backdrop-blur-lg": scrolled,
-    //     "border-b-border border-b  b-b":
+    //     "border-order border-b bg-background1/20 backdrop-blur-lg": scrolled,
+    //     "border-order border-b  ":
     //       segment && !transparentHeaderSegments.has(segment),
     //   })}
     // >
     <>
       <div
-        className="header mx-auto  w-full z-20 absolute hidden lg:block bg-white h-fit"
+        className="header mx-auto w-full z-20 absolute blurBack bg-opacity-50 hidden lg:flex bg-white h-16  justify-center  items-center "
         id="header"
       >
         <div
@@ -47,7 +47,7 @@ export default function Nav() {
           id="header-container"
         >
           <div
-            className="flex w-fit items-center sticky md:gap-10 h-fit "
+            className="flex w-fit items-center sticky md:gap-10  h-fit "
             id="header-logo-container"
           >
             <Link href="/#" className="pb-1" id="header-logo-link">
@@ -67,30 +67,37 @@ export default function Nav() {
                   id="header-logo-icon"
                 >
                   <Icons.logo
-                    className="text-white h-12 w-12  relative z-1"
+                    className="text-white h-8 w-8  relative z-1"
                     color="#4DA4E0"
                   />
                 </motion.div>
                 <span className="flex flex-col text-theme-blue items-center">
-                  <p className="font-head font-bold leading-[20px]">Founder</p>
-                  <p className="font-head font-thin leading-[20px]">Central</p>
+                  <p className="font-head font-bold leading-[14px] text-sm">
+                    Founder
+                  </p>
+                  <p className="font-head font-thin leading-[14px] text-sm">
+                    Central
+                  </p>
                 </span>
               </span>
             </Link>
-            <div
-              className="header__nav flex flex-row items-center gap-6"
-              id="header-nav"
-            >
+            <div className="header__nav p-0  flex flex-row  " id="header-nav">
               {marketingConfig.mainNav?.length ? (
-                <nav className="hidden gap-10 md:flex" id="header-nav-menu">
+                <nav
+                  className="hidden md:flex p-0 gap-12 "
+                  id="header-nav-menu"
+                >
                   {marketingConfig.mainNav?.map((item, index) => (
                     <Link
                       key={index}
                       href={item.disabled ? "#" : item.href}
                       className={cn(
-                        "flex items-center text-base font-body transition-colors hover:text-foreground/80 ",
-                        item?.cta ? "text-theme-blue" : "text-black",
-
+                        "flex items-center  text-sm font-head transition-colors   ",
+                        item.href.startsWith(`/${segment}`)
+                          ? "text-black"
+                          : segment == null && index === 0
+                          ? "text-black"
+                          : "text-black/40",
                         item.disabled && "cursor-not-allowed opacity-80"
                       )}
                       id={`header-nav-link-${index}`}
